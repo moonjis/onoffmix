@@ -1,0 +1,37 @@
+@CHARSET "UTF-8";
+.font_white{
+	color : #eee!important;
+}
+.font_blue {
+	color : #4195f5!important;
+	
+}
+.search_header{
+	background-color : white!important;
+	height:172px;	
+}
+.search_input{
+	text-shadow:none;
+	color:white;
+	border:3px solid #4195f5;
+	color:#333;	
+	height: 40px;
+}
+.white_bg{
+	background-color : white!important;
+}
+.black_bg{
+	background-color : #555!important;
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+.padding15_both{
+	padding : 0px 15px!important;
+}
+
+.opacity_5
+{
+    opacity:0.5 !important;
+}
