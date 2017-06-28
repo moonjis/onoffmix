@@ -22,7 +22,7 @@
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header navbar-right">
 			<ul class="nav navbar-nav">
-				<li><a href="#">login</a></li>
+				<li><a href="#">Login</a></li>
 				<li><a href="#">My page</a></li>
 			</ul>
 		</div>
