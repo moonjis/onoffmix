@@ -3,5 +3,22 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		id="datasource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/new"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="hb01-10"></property>
+	</bean>
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlsession">
+		<property name="dataSource" ref="datasource"></property>
+		<property name="mapperLocations" value="classpath:dao/mapper/*.xml"></property>
+		<property name="typeAliasesPackage" value="model"></property>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="memberDao">
+		<property name="sqlSessionFactory" ref="sqlsession"></property>
+		<property name="mapperInterface" value="dao.ImemberDao"></property>
+	</bean>
+	
 </beans>
