@@ -11,4 +11,11 @@ public class TestController {
 		
 		return "test";
 	}
+	
+	
+	@RequestMapping("/createRoom")
+	public String roomForm() {
+		System.out.println("ss");
+		return "roomForm";
+	}
 }

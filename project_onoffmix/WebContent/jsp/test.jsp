@@ -157,6 +157,10 @@
 				</div>
 			</div>
 		</div>
+		
+		<div>
+				<a href="createRoom">방개설</a>		
+		</div>
 
 	</div>
 </body>
