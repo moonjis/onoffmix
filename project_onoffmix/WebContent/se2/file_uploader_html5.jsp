@@ -32,7 +32,7 @@
 	//파일 기본경로
 	String dftFilePath = request.getServletContext().getRealPath("/");
 	//파일 기본경로 _ 상세경로
-	String filePath = dftFilePath + "/resources/upload/";
+	String filePath = dftFilePath + "/upload/";
 	File file = new File(filePath);
 	if(!file.exists()) {
 		file.mkdirs();
@@ -64,7 +64,7 @@
 	// img 태그의 title 속성을 원본파일명으로 적용시켜주기 위함
 	sFileInfo += "&sFileName="+ filename;;
 	//sFileInfo += "&sFileURL="+"/upload/"+realFileNm;
-	sFileInfo += "&sFileURL="+request.getServletContext().getContextPath()+"/resources/upload/"+realFileNm;
+	sFileInfo += "&sFileURL="+request.getServletContext().getContextPath()+"/upload/"+realFileNm;
 	out.println(sFileInfo);
 	}
 	%>

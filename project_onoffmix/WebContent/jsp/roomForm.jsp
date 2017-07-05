@@ -1,18 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path}/css/room.css">
+<link rel="stylesheet" href="/resources/css/room.css">
 <script src=""></script>
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCr4twUOUTc8amgDmnzl6GkNPS6mBxqz94&callback=initMap"></script>
 <script src="https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyAyjPu8GiR7EEPLncsIaRfTmgS19CipPPI"></script>
-<script type="text/javascript" src="${path}/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 
 <script type="text/javascript">
 	//[1] 기본값 설정
@@ -49,7 +47,7 @@
 				oAppRef: oEditors,
 				elPlaceHolder: "ir1",
 				//SmartEditor2Skin.html 파일이 존재하는 경로
-				sSkinURI: "/se2/SmartEditor2Skin.html",	
+				sSkinURI: "../se2/SmartEditor2Skin.html",	
 				htParams : {
 					// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 					bUseToolbar : true,
