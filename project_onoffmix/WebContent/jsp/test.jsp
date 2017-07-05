@@ -35,16 +35,7 @@
 
 </head>
 <body>
-<<<<<<< HEAD
-	<nav class="navbar-default">
-	<div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header navbar-right">
-			<ul class="nav navbar-nav">
-				<li><a href="#">Login</a></li>
-				<li><a href="#">My page</a></li>
-			</ul>
-=======
+
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -56,7 +47,6 @@
 					<li><a href="#">My page</a></li>
 				</ul>
 			</div>
->>>>>>> refs/remotes/origin/master
 		</div>
 	</nav>
 	<div class="search_header" id="jumbotron">
@@ -134,7 +124,7 @@
 						<h3>Thumbnail label</h3>
 						<p>Lorem Ipsum is simply dummy text of the printing and
 							typesetting industry.</p>
-						</div>
+					</div>
 				</div>
 			</div>
 			<div class="col-sm-4 col-md-3">

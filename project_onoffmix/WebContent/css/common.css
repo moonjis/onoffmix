@@ -6,6 +6,12 @@
 	color : #4195f5!important;
 	
 }
+.col-centered{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
 .search_header{
 	background-color : white!important;
 	width:100%;
