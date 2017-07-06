@@ -34,6 +34,11 @@
 <title>Insert title here</title>
 
 </head>
+<script type="text/javascript">
+	if ("${msg}" != "") {
+		alert("${msg}");		
+	}
+</script>
 <body>
 
 	<nav class="navbar navbar-inverse">
@@ -42,7 +47,7 @@
 			<div class="navbar-header">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#"><span
-							class="glyphicon glyphicon-user white"></span></a></li>
+							class="glyphicon glyphicon-user white"> ${member.name}님 </span></a></li>
 					<li><a href="#">login</a></li>
 					<li><a href="#">My page</a></li>
 				</ul>
@@ -117,7 +122,7 @@
 	<div class="container top-buffer">
 
 		<div class="row">
-			<div class="col-sm-4 col-md-3">
+			<div class="col-lg-3 col-sm-4 col-md-3">
 				<div class="thumbnail content_box">
 					<img src="${path}/images/onoffmix1.PNG" alt="...">
 					<div class="caption">
@@ -127,7 +132,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 col-md-3">
+			<div class="col-lg-3 col-sm-4 col-md-3">
 				<div class="thumbnail content_box">
 					<img src="${path}/images/onoffmix1.PNG" alt="...">
 					<div class="caption">
@@ -137,7 +142,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 col-md-3">
+			<div class="col-lg-3 col-sm-4 col-md-3">
 				<div class="thumbnail content_box">
 					<img src="${path}/images/onoffmix1.PNG" alt="...">
 					<div class="caption">
@@ -147,7 +152,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 col-md-3">
+			<div class="col-lg-3 col-sm-4 col-md-3">
 				<div class="thumbnail content_box">
 					<img src="${path}/images/onoffmix1.PNG" alt="...">
 					<div class="caption">

@@ -21,24 +21,13 @@
 	<div class="jumbotron"
 		style="margin-top: -20px; border-bottom: 0.5px solid #a6a6a6; padding-left: 30px">
 		<ul class="list-inline">
-			<li style="color: #4195f5;" class="h1">온오프믹스</li>
-			<li class="h2">에 오신것을 환영합니다</li>
+			<li style="color: #4195f5;" class="h1">Login</li>			
 		</ul>
-		<p>간단한 절차에 맞게 기본 정보를 입력해 주시면 회원가입이 완료됩니다.</p>
+		
 	</div>
 	<div class="container">
-
 		<div class="row text-center">
-			<form action="join" method="post" enctype="multipart/form-data" class="form-horizontal top-buffer center-block" id="joinForm" name="joinForm">
-				<div class="form-group">
-					<a href="#"><img src="${path}/images/basic.PNG"
-						class="img-rounded" alt="Cinque Terre" id="imgSetter" width="200"
-						height="200"></a>
-				</div>
-				<div class="hidden">
-					<input type="file" name="photo" id="btnPhoto"
-						accept="image/gif, image/jpeg, image/png">
-				</div>
+			<form action="login" method="post" class="form-horizontal top-buffer center-block" id="loginForm" name="loginForm">				
 				<div class="form-group">
 					<label class="col-xs-3 control-label">ID</label>
 					<div class="col-xs-6">
@@ -52,32 +41,10 @@
 						<input id="password" type="password"
 							class="form-control nessesary" name="pass" placeholder="Password">
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-xs-3 control-label">Name</label>
-					<div class="col-xs-6">
-						<input id="name" type="text" class="form-control nessesary"
-							name="name" placeholder="Name">
-					</div>
-				</div>
-				<hr>
-				<div class="form-group">
-					<label class="col-xs-3 control-label">Email</label>
-					<div class="col-xs-6">
-						<input id="email" type="text" class="form-control" name="email"
-							placeholder="Email">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-xs-3 control-label">Phone</label>
-					<div class="col-xs-6">
-						<input id="phone" type="text" class="form-control" name="phone"
-							placeholder="Phone">
-					</div> 
-				</div>
+				</div>				
 				<div class="form-group top-double-buffer">
 					<a href="#" class=" btn btn-md btn-primary col-xs-6" id="btnSubmit"
-						style="float: none" >Join</a>
+						style="float: none" >Login</a>
 
 				</div>
 			</form>
@@ -85,15 +52,9 @@
 	</div>
 </body>
 <script type="text/javascript">
-	$("#imgSetter").on("click", function() {
-		$("#btnPhoto").click();
-	});
-	$("#btnPhoto").on("change", function(response) {
-		var tmppath = URL.createObjectURL(this.files[0]);
-		console.log(tmppath);
-		$("#imgSetter").attr('src', tmppath);
-	//alert(this.files[0]);
-	});
+if ("${msg}" != "") {
+	alert("${msg}");		
+}
 	$("#btnSubmit").on("click", function() {
 		var bool_reject = false;
 		$("#joinForm").find('input.nessesary').each(function() {
@@ -105,26 +66,11 @@
 			}
 		});
 		if(!bool_reject){
-			var id = $("#data_id").val();			
-			idCheck(id);
+			//submit
+			$("#loginForm").submit();
 		}
 		
 	});
 	
-	function idCheck(id){
-		$.ajax({
-			url:"checkId",
-			data : {
-				"id":id
-			},
-			success:function(){				
-				$("#joinForm").submit();
-			},
-			error : function(){
-				alert("같은 아이디가 존재합니다.");
-				$("#data_id").parents('.form-group').addClass("has-error");				
-			}
-		});		
-	}
 </script>
 </html>

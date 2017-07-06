@@ -8,4 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	insert into member (id,pass,name,email,photo) values (#{id},#{pass},#{name},#{email},#{photo})
 </insert>
 
+<select id="selectOne" parameterType="String" resultType="Member">
+	select * from member where id = #{id}
+</select>
 </mapper>

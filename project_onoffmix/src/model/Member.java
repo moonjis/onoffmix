@@ -6,7 +6,7 @@ public class Member {
 	String id;
 	String pass;
 	String name;
-	int phone;
+	String phone;
 	String email;
 	String photo;
 	Date reg_date;
@@ -14,7 +14,7 @@ public class Member {
 	public Member() {
 		super();
 	}
-	public Member(String id, String pass, String name, int phone, String email, String photo, Date reg_date,
+	public Member(String id, String pass, String name, String phone, String email, String photo, Date reg_date,
 			String social) {
 		super();
 		this.id = id;
@@ -49,10 +49,10 @@ public class Member {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getEmail() {
