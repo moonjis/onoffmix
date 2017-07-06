@@ -32,6 +32,7 @@
 	background-color:#4195f5;
 }
 .top-buffer { margin-top:20px; }
+.top-double-buffer { margin-top:40px; }
 .white_bg{
 	background-color : white!important;
 }

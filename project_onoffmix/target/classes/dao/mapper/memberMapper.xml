@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="dao.IMemberDAO">
+<mapper namespace="dao.ImemberDao">
 
 <insert id="insertMember" parameterType="HashMap">
-	insert into member values (#{id},#{pw},#{name},#{email})
+	insert into member (id,pass,name,email,photo) values (#{id},#{pass},#{name},#{email},#{photo})
 </insert>
 
 </mapper>
