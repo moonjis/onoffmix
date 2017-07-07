@@ -19,6 +19,8 @@ import model.Room;
 @Service
 public class RoomServiceImpl implements RoomService {
 	
+	private static final String UPLOAD_PATH = "C:\\hanbit\\upload";
+	
 	@Autowired
 	private IroomDao iroomDao;
 	
@@ -54,10 +56,10 @@ public class RoomServiceImpl implements RoomService {
 			
 			String fullname = uploadFile(file.getOriginalFilename(),file.getBytes());
 			iroomDao.insertBoard(room);
-//			int num = board.getNum();
+			int room_num = room.getRoom_num();
 			
 			params.put("fullname", fullname);
-//			params.put("num", num);
+			params.put("room_num", room_num);
 			iroomDao.insertAttach(params);
 			return true;
 		} catch (Exception e) {
@@ -80,9 +82,9 @@ public class RoomServiceImpl implements RoomService {
 
 		//System.out.println(savedName);
 
-//		File target = new File(UPLOAD_PATH, savedName);
+		File target = new File(UPLOAD_PATH, savedName);
 
-//		FileCopyUtils.copy(fileData, target);
+		FileCopyUtils.copy(fileData, target);
 		return savedName;
 	}
 

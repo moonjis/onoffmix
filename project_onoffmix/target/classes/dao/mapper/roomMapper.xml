@@ -12,4 +12,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectOne" parameterType="int" resultType="room">
 		select * from room where room_num = #{num}
 	</select>
+	<insert id="insertAttach" parameterType="HashMap">
+		insert
+		into attach (fullname,num)
+		values (#{fullname},#{num})
+	</insert>
 </mapper>
