@@ -6,6 +6,10 @@
 	color : #4195f5!important;
 	
 }
+.navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
 .col-centered{
   display: block;
   margin-left: auto;
@@ -42,6 +46,7 @@
 .content_box:hover,.content_box:active{
 	 border: 1px solid #4195f5;
 }
+.container {height: auto}
 .col-centered{
     float: none;
     margin: 0 auto;
@@ -53,3 +58,12 @@
 {
     opacity:0.5 !important;
 }
+.nav > li .underline:hover 
+{
+    text-decoration: underline;
+}
+ footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+      margin-top:40px;
+    }

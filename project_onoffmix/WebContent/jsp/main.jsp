@@ -36,24 +36,11 @@
 </head>
 <script type="text/javascript">
 	if ("${msg}" != "") {
-		alert("${msg}");		
+		alert("${msg}");
 	}
 </script>
 <body>
-
-	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span
-							class="glyphicon glyphicon-user white"> ${member.name}님 </span></a></li>
-					<li><a href="#">login</a></li>
-					<li><a href="#">My page</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<%@include file="/jsp/common/navi.jsp"%>
 	<div class="search_header" id="jumbotron">
 		<div class="row">
 			<div class="col-xs-12 text-center">
@@ -70,13 +57,6 @@
 						</button>
 					</div>
 				</div>
-				<!-- <div class="col-lg-12 inner-addon right-addon">
-					<i class="glyphicon glyphicon-search"></i> 
-					<input type="text"
-						class="form-control search_input col-xs-12">
-
-				</div> -->
-				<!-- /input-group -->
 			</div>
 		</div>
 	</div>
@@ -164,6 +144,7 @@
 			</div>
 		</div>
 
-	</div>
+	</div>	
 </body>
+<%@include file="/jsp/common/footer.jsp"%>
 </html>

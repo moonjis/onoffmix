@@ -50,6 +50,13 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping(value="/logout",method=RequestMethod.GET)
+	public String logout(RedirectAttributes r_attr,HttpSession session){
+		session.invalidate();
+		r_attr.addFlashAttribute("msg", "로그아웃 되었습니다.");
+		return "redirect:/main";
+	}
+	
 	@RequestMapping(value="/join",method=RequestMethod.GET)
 	public String joinForm(){
 		return "member/join";

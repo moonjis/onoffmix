@@ -83,6 +83,7 @@
 			</form>
 		</div>
 	</div>
+	<%@include file="/jsp/common/footer.jsp"%>
 </body>
 <script type="text/javascript">
 	$("#imgSetter").on("click", function() {
