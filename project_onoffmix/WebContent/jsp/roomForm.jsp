@@ -1,18 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-<title>Insert title here</title>
-<link rel="stylesheet" href="${path}/css/room.css">
+<title>id : ${id }, name : ${name}, tel : ${tel }, email: ${email}</title>
+<link rel="stylesheet" href="../css/room.css">
 <script src=""></script>
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCr4twUOUTc8amgDmnzl6GkNPS6mBxqz94&callback=initMap"></script>
 <script src="https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyAyjPu8GiR7EEPLncsIaRfTmgS19CipPPI"></script>
-<script type="text/javascript" src="${path}/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="../se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 
 <script type="text/javascript">
 	//[1] 기본값 설정
@@ -49,7 +48,7 @@
 				oAppRef: oEditors,
 				elPlaceHolder: "ir1",
 				//SmartEditor2Skin.html 파일이 존재하는 경로
-				sSkinURI: "/se2/SmartEditor2Skin.html",	
+				sSkinURI: "../se2/SmartEditor2Skin.html",	
 				htParams : {
 					// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 					bUseToolbar : true,
@@ -94,6 +93,8 @@
 			
 			if($(this).is(":checked")){
 				$("#setup").attr("disabled",false);
+				
+			
 			}else{
 				$("#setup").attr("disabled",true);
 			}
@@ -246,7 +247,7 @@
 		<form action="" method="post">
 			<div id="roomImg">
 				<div id="step1">
-					<input type="file" id="logoFile">
+					<input type="file" id="logoFile" name ="image">
 				</div>
 			</div>
 			
@@ -260,21 +261,24 @@
 					
 					<tr>
 						<td>
-							<select name="">
-								<option>기타</option>
-								<option>교육</option>
-								<option>강연</option>
-								<option>세미나/레퍼런스</option>
-								<option>문화/예술</option>
-								<option>방송/연예</option>
-								<option>취미활동</option>
-								<option>소모임/친목행사</option>
-								<option>공모전</option>
-								<option>전시회/박람회</option>
-								<option>패션/뷰티</option>
-								<option>이벤트/파티</option>
-								<option>여행</option>
-								<option>후원금 모금</option>
+							<select name="category_name">
+							<c:forEach var="category" items="${categoryList}">
+											<option value="${category.category_name}">${category.category_name}</option>
+							</c:forEach>
+<!-- 								<option>기타</option> -->
+<!-- 								<option>교육</option> -->
+<!-- 								<option>강연</option> -->
+<!-- 								<option>세미나/레퍼런스</option> -->
+<!-- 								<option>문화/예술</option> -->
+<!-- 								<option>방송/연예</option> -->
+<!-- 								<option>취미활동</option> -->
+<!-- 								<option>소모임/친목행사</option> -->
+<!-- 								<option>공모전</option> -->
+<!-- 								<option>전시회/박람회</option> -->
+<!-- 								<option>패션/뷰티</option> -->
+<!-- 								<option>이벤트/파티</option> -->
+<!-- 								<option>여행</option> -->
+<!-- 								<option>후원금 모금</option> -->
 							</select>
 							<input type="text" name="" placeholder="모임명을 입력해 주세요.">
 						</td>
@@ -295,10 +299,10 @@
 							<font size="4">모임일시</font>
 						</td>
 						<td>
-							<input type="date" name="">
-							<input type="time" name=""> 부터 &nbsp;&nbsp;&nbsp;
-							<input type="date" class="time1">
-							<input type="time" class="time"> 까지
+							<input type="date" name="room_day1">
+							<input type="time" name="room_day2"> 부터 &nbsp;&nbsp;&nbsp;
+							<input type="date" class="time1" name="room_day3">
+							<input type="time" class="time" name="room_day4"> 까지
 						</td>
 					</tr>
 					
@@ -321,10 +325,10 @@
 						</td>
 					
 						<td>
-							<input style="background: #f8f8f8; border: 1px solid #cccccc; position: relative;" type="date" name="">
-							<input style="border: 1px solid #cccccc;" type="time" name=""> 부터 &nbsp;&nbsp;&nbsp;
-							<input style="background: #f8f8f8; border: 1px solid #cccccc; position: relative;" type="date" name="">
-							<input style="border: 1px solid #cccccc;" type="time" name=""> 까지
+							<input style="background: #f8f8f8; border: 1px solid #cccccc; position: relative;" type="date" name="recruit_day1">
+							<input style="border: 1px solid #cccccc;" type="time" name="recruit_day2"> 부터 &nbsp;&nbsp;&nbsp;
+							<input style="background: #f8f8f8; border: 1px solid #cccccc; position: relative;" type="date" name="recruit_day3">
+							<input style="border: 1px solid #cccccc;" type="time" name="recruit_day4"> 까지
 						</td>
 					</tr>
 					<tr>
@@ -342,7 +346,7 @@
 							<font size="4">모임장소</font> &nbsp;&nbsp;&nbsp;
 						</td>
 						<td>
-							<input type="text" id="place" name="place" placeholder="장소를 입력해 주세요.">
+							<input type="text" id="place" name="place" placeholder="장소를 입력해 주세요." name="location1">
 							<button id="searchBtn" type="button">검색</button>
 						</td>	
 					</tr>
@@ -357,7 +361,7 @@
 				<table>
 					<tr>
 						<td>
-							<input style=" border: 1px solid #cccccc; margin-left: 100px; "  type="text" id="place" name="place" placeholder="주소를 입력해 주세요.">
+							<input style=" border: 1px solid #cccccc; margin-left: 100px; "  type="text" id="place" name="place" placeholder="주소를 입력해 주세요." name="location2">
 						</td>
 					</tr>
 					<tr>
@@ -387,7 +391,7 @@
 							<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;총 인원 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
 						</td>
 						<td>
-							 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="text-align: center;"  size="5">명 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="text-align: center;"  size="5" name="group_capacity">명 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						</td>
 					</tr>
 				</table>
@@ -403,7 +407,7 @@
 						</tr>
 						<tr>
 							<td>
-								<textarea rows="20" cols="20" style=" width: 500px; height: 100px; resize: none; "></textarea>
+								<textarea name="room_introduce" rows="20" cols="20" style=" width: 500px; height: 100px; resize: none; "></textarea>
 							</td>
 						</tr>
 					</table>	
@@ -420,7 +424,7 @@
 					<table style="width: 700px; ">
 						<tr>
 							<td>
-								<textarea rows="10" cols="30" name="" id="ir1" style=" width:100%; "></textarea>
+								<textarea rows="10" cols="30" name="" id="ir1" style=" width:100%; " name="room_detail"></textarea>
 							</td>
 						</tr>					
 					</table>
@@ -434,21 +438,21 @@
 										       연락처 설정</font><font size="2" color="red">(필수)</font> &nbsp;&nbsp;&nbsp;
 						</td>
 						<td>
-							 <input type="text" style="text-align: center; border: 2px solid #cccccc; width: 100px; height: 25px; "  size="7" >
+							 <input type="text" style="text-align: center; border: 2px solid #cccccc; width: 100px; height: 25px; "  size="10"  value = "${tel }" readonly="readonly" name="owner_phone">
 						</td>
 						
-						<td>
-							<hr  style="width:40px; border: 1px solid #cccccc; "/>
-						</td>
-						<td>
-							<input type="text" style="text-align: center; border: 2px solid #cccccc; width: 100px; height: 25px;"  size="7"> 
-						</td>
-						<td>
-							<hr  style="width:40px; border: 1px solid #cccccc; "/>
-						</td>
-						<td>
-							<input type="text" style="text-align: center; border: 2px solid #cccccc; width: 100px; height: 25px;"  size="7"> 
-						</td>
+<!-- 						<td> -->
+<!-- 							<hr  style="width:40px; border: 1px solid #cccccc; "/> -->
+<!-- 						</td> -->
+<!-- 						<td> -->
+<!-- 							<input type="text" style="text-align: center; border: 2px solid #cccccc; width: 100px; height: 25px;"  size="7">  -->
+<!-- 						</td> -->
+<!-- 						<td> -->
+<!-- 							<hr  style="width:40px; border: 1px solid #cccccc; "/> -->
+<!-- 						</td> -->
+<!-- 						<td> -->
+<!-- 							<input type="text" style="text-align: center; border: 2px solid #cccccc; width: 100px; height: 25px;"  size="7">  -->
+<!-- 						</td> -->
 					</tr>
 				</table>
 			</div>
@@ -461,26 +465,14 @@
 										      에메일 설정</font><font size="2" color="red">(필수)</font> &nbsp;&nbsp;&nbsp;
 						</td>
 						<td>
-							<input type="text" style="width: 200px; height: 23px; border: 2px solid #cccccc;" > @
-							<select name="" onchange="" style=" width: 150px; height: 30px; border: 2px solid #cccccc;">
-								<option value="1">hanmail.net</option>
-								<option value="2">dreamwiz.com</option>
-								<option value="3">empal.com</option>
-								<option value="4">gmail.com</option>
-								<option value="5">hanmir.com</option>
-								<option value="6">hotmail.com</option>
-								<option value="7">korea.com</option>
-								<option value="8">lycos.co.kr</option>
-								<option value="9">msn.com</option>
-								<option value="10">nate.com</option>
-								<option value="11">naver.com</option>
-								<option value="12">paran.com</option>
-								<option value="13">yahoo.co.kr</option>
-							</select>
-						<td>
-					</td>
+							<input type="text" style="width: 300px; height: 22px; border: 2px solid #cccccc; text-align: center;" value = "${email}" readonly="readonly"  name="owner_email"> 
+<!-- 							@ -->
+<!-- 							<input type="text" style=" width: 150px; height: 22px; border: 2px solid #cccccc; text-align: center;"> -->
+						</td>
+					</tr>
 				</table>
 			</div>
+			
 			
 			<div id="roomstart">
 				<input type="submit" value="확인" style=" border-radius: 10px; margin-left: 600px; width: 80px; height: 50px; border: 1px outset #cccccc;">

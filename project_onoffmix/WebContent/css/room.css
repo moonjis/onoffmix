@@ -17,7 +17,7 @@
 #step1 {
 	width: 160px;
 	height: 160px;
-	background: url("/images/thumbnail_null.jpg") no-repeat;
+	background: url("../images/thumbnail_null.jpg") no-repeat;
 	background-size: cover;
 	overflow: hidden;
 }
