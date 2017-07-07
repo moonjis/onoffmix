@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-룸뷰 확인 : ${room.room_name}
+룸뷰 확인s : ${room.room_name} 
 </body>
 </html>
