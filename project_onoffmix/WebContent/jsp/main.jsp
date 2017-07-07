@@ -34,20 +34,13 @@
 <title>Insert title here</title>
 
 </head>
+<script type="text/javascript">
+	if ("${msg}" != "") {
+		alert("${msg}");
+	}
+</script>
 <body>
-	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span
-							class="glyphicon glyphicon-user white"></span></a></li>
-					<li><a href="#">login</a></li>
-					<li><a href="#">My page</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<%@include file="/jsp/common/navi.jsp"%>
 	<div class="search_header" id="jumbotron">
 		<div class="row">
 			<div class="col-xs-12 text-center">
@@ -64,13 +57,6 @@
 						</button>
 					</div>
 				</div>
-				<!-- <div class="col-lg-12 inner-addon right-addon">
-					<i class="glyphicon glyphicon-search"></i> 
-					<input type="text"
-						class="form-control search_input col-xs-12">
-
-				</div> -->
-				<!-- /input-group -->
 			</div>
 		</div>
 	</div>
@@ -116,17 +102,7 @@
 	<div class="container top-buffer">
 
 		<div class="row">
-			<div class="col-sm-4 col-md-3">
-				<div class="thumbnail content_box">
-					<img src="${path}/images/onoffmix1.PNG" alt="...">
-					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry.</p>
-						</div>
-				</div>
-			</div>
-			<div class="col-sm-4 col-md-3">
+			<div class="col-lg-3 col-sm-4 col-md-3">
 				<div class="thumbnail content_box">
 					<img src="${path}/images/onoffmix1.PNG" alt="...">
 					<div class="caption">
@@ -136,7 +112,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 col-md-3">
+			<div class="col-lg-3 col-sm-4 col-md-3">
 				<div class="thumbnail content_box">
 					<img src="${path}/images/onoffmix1.PNG" alt="...">
 					<div class="caption">
@@ -146,7 +122,17 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 col-md-3">
+			<div class="col-lg-3 col-sm-4 col-md-3">
+				<div class="thumbnail content_box">
+					<img src="${path}/images/onoffmix1.PNG" alt="...">
+					<div class="caption">
+						<h3>Thumbnail label</h3>
+						<p>Lorem Ipsum is simply dummy text of the printing and
+							typesetting industry.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-sm-4 col-md-3">
 				<div class="thumbnail content_box">
 					<img src="${path}/images/onoffmix1.PNG" alt="...">
 					<div class="caption">
@@ -157,8 +143,8 @@
 				</div>
 			</div>
 		</div>
-		
-		
-	</div>
+
+	</div>	
 </body>
+<%@include file="/jsp/common/footer.jsp"%>
 </html>

@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class TestController {
-	
-	@RequestMapping("/test")
+
+	@RequestMapping("/main")
 	public String testJsp(){
 		
-		return "test";
+		return "main";
 	}
 
 //	@RequestMapping("/createRoom")
