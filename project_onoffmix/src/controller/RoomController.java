@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import model.Room;
 import service.RoomService;
@@ -19,10 +22,10 @@ public class RoomController {
 	@Autowired
 	private RoomService roomService;
 	
-	@RequestMapping(value = "/createRoom")
+	@RequestMapping(value = "/roomForm")
 	public ModelAndView roomForm(HttpSession session) {
 		
-		System.out.println("테스트");
+//		System.out.println("테스트");
 		session.setAttribute("id", "sampleId");
 		session.setAttribute("name", "myName");
 		session.setAttribute("email", "sampleEmail@naver.com");
@@ -37,6 +40,18 @@ public class RoomController {
 		
 //		return "roomForm";
 	}
+	
+	@RequestMapping(value = "/createRoom")
+	public String createRoom(Room room, RedirectAttributes rttr,MultipartFile file) {
+		if (roomService.writeBoard(room,file)) {
+			
+			rttr.addFlashAttribute("msg", "SUCCESS");
+		} else {
+			rttr.addFlashAttribute("msg", "FAIL");
+		}
+		return "redirect:boardList";
+	}
+	
 	
 	@RequestMapping(value = "/roomList")
 	public ModelAndView roomList() {

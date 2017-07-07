@@ -21,6 +21,7 @@ public class Room {
 	private String room_detail;
 	private String owner_phone;
 	private String owner_email;
+	private String fullname;
 	
 	@Override
 	public String toString() {
@@ -30,7 +31,7 @@ public class Room {
 				+ ", recruit_day3=" + recruit_day3 + ", recruit_day4=" + recruit_day4 + ", location_1=" + location_1
 				+ ", location_2=" + location_2 + ", group_capacity=" + group_capacity + ", room_introduce="
 				+ room_introduce + ", room_detail=" + room_detail + ", owner_phone=" + owner_phone + ", owner_email="
-				+ owner_email + "]";
+				+ owner_email + ", fullname=" + fullname + "]";
 	}
 	
 	public int getRoom_num() {
@@ -147,4 +148,12 @@ public class Room {
 	public void setOwner_email(String owner_email) {
 		this.owner_email = owner_email;
 	}
+	public String getFullname() {
+		return fullname;
+	}
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+	
+	
 }

@@ -14,6 +14,14 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	var result = '${msg}';
+	if(result == "SUCCESS"){
+		alert("처리가 완료 되었습니다.");
+	}else if(result == "FAIL"){
+		alert("처리 실패");
+	}
+</script>
 </head>
 <body>
 	<c:forEach var = "room" items = "${roomList}">

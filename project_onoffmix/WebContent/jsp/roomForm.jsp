@@ -244,7 +244,7 @@
 <body>
 	
 	<div id="roomWrap">
-		<form action="" method="post">
+		<form action="" method="post" enctype="multipart/form-data">
 			<div id="roomImg">
 				<div id="step1">
 					<input type="file" id="logoFile" name ="image">
