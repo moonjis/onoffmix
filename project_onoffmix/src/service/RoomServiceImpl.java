@@ -19,7 +19,11 @@ import model.Room;
 @Service
 public class RoomServiceImpl implements RoomService {
 	
-	private static final String UPLOAD_PATH = "C:\\hanbit\\upload";
+	private static final String UPLOAD_PATH = "C:/Users/5CLASS-184/Dropbox/workspace2/onoffmix/project_onoffmix/WebContent/images/room";
+	
+
+	
+
 	
 	@Autowired
 	private IroomDao iroomDao;
@@ -49,22 +53,30 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public boolean writeBoard(Room room, MultipartFile file) {
+	public boolean createRoom(Room room, MultipartFile file) {
 		
 		HashMap<String, Object> params = new HashMap<String,Object>();
+		System.out.println("createroom : " + room);
+		
 		try {
 			
+			
 			String fullname = uploadFile(file.getOriginalFilename(),file.getBytes());
-			iroomDao.insertBoard(room);
+		
+			System.out.println("insert 후 : " + room);
+			iroomDao.insertRoom(room);
 			int room_num = room.getRoom_num();
 			
 			params.put("fullname", fullname);
-			params.put("room_num", room_num);
+			params.put("num", room_num);
+			
 			iroomDao.insertAttach(params);
 			return true;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
+	
 	}	
 	
 	private String uploadFile(String originalName, byte[] fileData) throws Exception {

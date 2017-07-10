@@ -3,6 +3,14 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.IroomDao">
+		<insert id="insertRoom" parameterType="room" useGeneratedKeys="true"
+		keyProperty="room_num">
+		insert into room values(
+		0,#{category_name},#{room_name},#{room_day1},#{room_day2},#{room_day3},#{room_day4},#{recruit_day1},
+		#{recruit_day2},#{recruit_day3},#{recruit_day4},#{location_1},#{location_2},#{group_capacity},0,#{room_introduce},
+		#{room_detail},#{owner_phone},#{owner_email}
+		)	
+	</insert>
 	<select id="selectAll" resultType="room">
 		select * from room
 	</select>
@@ -10,11 +18,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from category
 	</select>
 	<select id="selectOne" parameterType="int" resultType="room">
-		select * from room where room_num = #{num}
+		select
+		b.*, a.fullname from room b left join attach a
+		on b.room_num = a.room_num
+		where b.room_num = #{num};
+<!-- 		select * from room where room_num = #{num} -->
 	</select>
 	<insert id="insertAttach" parameterType="HashMap">
 		insert
-		into attach (fullname,num)
+		into attach (fullname,room_num)
 		values (#{fullname},#{num})
 	</insert>
 </mapper>

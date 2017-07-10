@@ -27,6 +27,7 @@
 	<c:forEach var = "room" items = "${roomList}">
 <%-- 	 ${room.room_name}  --%>
 	<a href="roomView?num=${room.room_num}">${room.room_name}</a>
+	리스트
 	
 	</c:forEach>
 	

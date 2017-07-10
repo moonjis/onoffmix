@@ -10,7 +10,7 @@ public interface IroomDao {
 	public List<Room> selectAll();
 	public List<Category> selectCategory();
 	public Room selectOne(int num);
-	public void insertBoard(Room room);
+	public void insertRoom(Room room);
 	public void insertAttach(HashMap<String, Object> params);
 	
 	

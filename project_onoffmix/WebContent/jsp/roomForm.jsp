@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <title>id : ${id }, name : ${name}, tel : ${tel }, email: ${email}</title>
 <link rel="stylesheet" href="../css/room.css">
 <script src=""></script>
@@ -57,7 +56,8 @@
 					// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
 					bUseModeChanger : true,			
 				},
-				fCreator: "createSEditor2"	
+				fCreator: "createSEditor2",
+				htParams: { fOnBeforeUnload : function(){}}	
 			});
 			
 		    //전송버튼
@@ -244,7 +244,7 @@
 <body>
 	
 	<div id="roomWrap">
-		<form action="" method="post" enctype="multipart/form-data">
+		<form action="createRoom" method="post" enctype="multipart/form-data" id="frm">
 			<div id="roomImg">
 				<div id="step1">
 					<input type="file" id="logoFile" name ="image">
@@ -280,7 +280,7 @@
 <!-- 								<option>여행</option> -->
 <!-- 								<option>후원금 모금</option> -->
 							</select>
-							<input type="text" name="" placeholder="모임명을 입력해 주세요.">
+							<input type="text" name="room_name" placeholder="모임명을 입력해 주세요.">
 						</td>
 					</tr>
 					
@@ -346,7 +346,7 @@
 							<font size="4">모임장소</font> &nbsp;&nbsp;&nbsp;
 						</td>
 						<td>
-							<input type="text" id="place" name="place" placeholder="장소를 입력해 주세요." name="location1">
+							<input type="text" id="place" placeholder="장소를 입력해 주세요." name="location_1">
 							<button id="searchBtn" type="button">검색</button>
 						</td>	
 					</tr>
@@ -361,7 +361,7 @@
 				<table>
 					<tr>
 						<td>
-							<input style=" border: 1px solid #cccccc; margin-left: 100px; "  type="text" id="place" name="place" placeholder="주소를 입력해 주세요." name="location2">
+							<input style=" border: 1px solid #cccccc; margin-left: 100px; "  type="text" id="place" placeholder="주소를 입력해 주세요." name="location_2">
 						</td>
 					</tr>
 					<tr>
@@ -424,7 +424,7 @@
 					<table style="width: 700px; ">
 						<tr>
 							<td>
-								<textarea rows="10" cols="30" name="" id="ir1" style=" width:100%; " name="room_detail"></textarea>
+								<textarea rows="10" cols="30" id="ir1" style=" width:100%; " name="room_detail"></textarea>
 							</td>
 						</tr>					
 					</table>
@@ -475,7 +475,7 @@
 			
 			
 			<div id="roomstart">
-				<input type="submit" value="확인" style=" border-radius: 10px; margin-left: 600px; width: 80px; height: 50px; border: 1px outset #cccccc;">
+				<input type="submit" id="savebutton" value="확인" style=" border-radius: 10px; margin-left: 600px; width: 80px; height: 50px; border: 1px outset #cccccc;">
 			</div>
 			
 			</form>

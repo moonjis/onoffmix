@@ -3,7 +3,6 @@ package model;
 public class Room {
 	
 	private int room_num;
-	private String image;
 	private String category_name;
 	private String room_name;
 	private String room_day1;
@@ -16,35 +15,19 @@ public class Room {
 	private String recruit_day4;
 	private String location_1;
 	private String location_2;
-	private String group_capacity;
+	private int group_capacity;
+	private int count;
 	private String room_introduce;
 	private String room_detail;
 	private String owner_phone;
 	private String owner_email;
 	private String fullname;
 	
-	@Override
-	public String toString() {
-		return "Room [room_num=" + room_num + ", image=" + image + ", category_name=" + category_name + ", room_name="
-				+ room_name + ", room_day1=" + room_day1 + ", room_day2=" + room_day2 + ", room_day3=" + room_day3
-				+ ", room_day4=" + room_day4 + ", recruit_day1=" + recruit_day1 + ", recruit_day2=" + recruit_day2
-				+ ", recruit_day3=" + recruit_day3 + ", recruit_day4=" + recruit_day4 + ", location_1=" + location_1
-				+ ", location_2=" + location_2 + ", group_capacity=" + group_capacity + ", room_introduce="
-				+ room_introduce + ", room_detail=" + room_detail + ", owner_phone=" + owner_phone + ", owner_email="
-				+ owner_email + ", fullname=" + fullname + "]";
-	}
-	
 	public int getRoom_num() {
 		return room_num;
 	}
 	public void setRoom_num(int room_num) {
 		this.room_num = room_num;
-	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
 	}
 	public String getCategory_name() {
 		return category_name;
@@ -118,11 +101,17 @@ public class Room {
 	public void setLocation_2(String location_2) {
 		this.location_2 = location_2;
 	}
-	public String getGroup_capacity() {
+	public int getGroup_capacity() {
 		return group_capacity;
 	}
-	public void setGroup_capacity(String group_capacity) {
+	public void setGroup_capacity(int group_capacity) {
 		this.group_capacity = group_capacity;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	public String getRoom_introduce() {
 		return room_introduce;
@@ -154,6 +143,20 @@ public class Room {
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
 	}
+	@Override
+	public String toString() {
+		return "Room [room_num=" + room_num + ", category_name=" + category_name + ", room_name=" + room_name
+				+ ", room_day1=" + room_day1 + ", room_day2=" + room_day2 + ", room_day3=" + room_day3 + ", room_day4="
+				+ room_day4 + ", recruit_day1=" + recruit_day1 + ", recruit_day2=" + recruit_day2 + ", recruit_day3="
+				+ recruit_day3 + ", recruit_day4=" + recruit_day4 + ", location_1=" + location_1 + ", location_2="
+				+ location_2 + ", group_capacity=" + group_capacity + ", count=" + count + ", room_introduce="
+				+ room_introduce + ", room_detail=" + room_detail + ", owner_phone=" + owner_phone + ", owner_email="
+				+ owner_email + ", fullname=" + fullname + "]";
+	}
+	
+
+	
+	
 	
 	
 }

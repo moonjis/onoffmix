@@ -12,7 +12,7 @@ public interface RoomService {
 	public List<Room> getRoomList();
 	public List<Category> getCategoryList();
 	public Room readRoom(int num);
-	public boolean writeBoard(Room room, MultipartFile file);
+	public boolean createRoom(Room room, MultipartFile file);
 
 
 }
