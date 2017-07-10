@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <title>id : ${id }, name : ${name}, tel : ${tel }, email: ${email}</title>
 <link rel="stylesheet" href="../css/room.css">
 <script src=""></script>
@@ -16,16 +17,18 @@
 	//[1] 기본값 설정
 	$(function(){
 		
-		$("#logoFile").hide("slow");
+		$("#file-upload").hide("fast");
 		
-		$("#step1").on({
-			"mouseover": function() {
-				$("#logoFile").show("slow");
-			},
-			"mouseleave": function() {
-				$("#logoFile").hide("slow");
-			}
+		$("#setup1").on("click", function() {
+			$("#file-upload").click();
 		});
+		$("#file-upload").on("change", function(response) {
+			var tmppath = URL.createObjectURL(this.files[0]);
+			console.log(tmppath);
+			$("#setup1").attr('src', tmppath);
+		//alert(this.files[0]);
+		});
+		
 		
 		$(".time").show(); //region 영역 보이기
 		$(".time1").hide(); //more...숨기기
@@ -65,7 +68,7 @@
 		        //id가 smarteditor인 textarea에 에디터에서 대입
 		        oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
 		        //폼 submit
-		        $("#frm").submit();
+		        $("#roomForm").submit();
 		    });
 		
   		
@@ -242,15 +245,16 @@
 </head>
 
 <body>
-	
 	<div id="roomWrap">
-		<form action="createRoom" method="post" enctype="multipart/form-data" id="frm">
+		<form action="createRoom" method="post" enctype="multipart/form-data" class="form-horizontal top-buffer center-block" id="roomForm" name="roomForm">
 			<div id="roomImg">
-				<div id="step1">
-					<input type="file" id="logoFile" name ="image">
+				<div>
+					<a href="#"><img src="../images/thumbnail_null.jpg" alt="photo" id="setup1" width="170" height="170"></a>
+				</div>
+				<div>
+					<input type="file" name="image" id="file-upload" accept="image/gif, image/jpeg, image/png">
 				</div>
 			</div>
-			
 			<div id="roomTitle">
 				<table>
 					<tr>
@@ -475,7 +479,7 @@
 			
 			
 			<div id="roomstart">
-				<input type="submit" id="savebutton" value="확인" style=" border-radius: 10px; margin-left: 600px; width: 80px; height: 50px; border: 1px outset #cccccc;">
+				<input type="submit" value="확인" style=" border-radius: 10px; margin-left: 600px; width: 80px; height: 50px; border: 1px outset #cccccc;">
 			</div>
 			
 			</form>

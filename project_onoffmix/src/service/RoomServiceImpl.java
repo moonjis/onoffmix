@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
@@ -19,9 +21,10 @@ import model.Room;
 @Service
 public class RoomServiceImpl implements RoomService {
 	
-	private static final String UPLOAD_PATH = "C:/Users/5CLASS-184/Dropbox/workspace2/onoffmix/project_onoffmix/WebContent/images/room";
 	
-
+	//private static final String UPLOAD_PATH = "C://hanbit//upload";
+	
+	private static String UPLOAD_PATH;
 	
 
 	
@@ -53,10 +56,12 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public boolean createRoom(Room room, MultipartFile file) {
+	public boolean createRoom(HttpServletRequest req, Room room, MultipartFile file) {
 		
 		HashMap<String, Object> params = new HashMap<String,Object>();
 		System.out.println("createroom : " + room);
+		
+		UPLOAD_PATH = req.getServletContext().getRealPath("images/room");
 		
 		try {
 			

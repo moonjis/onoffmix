@@ -1,5 +1,6 @@
 package controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,10 +44,10 @@ public class RoomController {
 	}
 	
 	@RequestMapping(value = "/createRoom")
-	public String createRoom(Room room, RedirectAttributes rttr,@RequestParam("image") MultipartFile file) {
+	public String createRoom(HttpServletRequest req, Room room, RedirectAttributes rttr,@RequestParam("image") MultipartFile file) {
 //		System.out.println("test");
 		System.out.println("file : " + file);
-		if (roomService.createRoom(room,file)) {
+		if (roomService.createRoom(req, room,file)) {
 			
 			rttr.addFlashAttribute("msg", "SUCCESS");
 		} else {

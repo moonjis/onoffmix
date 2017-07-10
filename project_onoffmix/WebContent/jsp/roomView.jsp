@@ -25,6 +25,6 @@ function getOriginalName(fileName){
 </head>
 <body>
 룸뷰 확인s : ${room.room_name} &nbsp; &nbsp; &nbsp; &nbsp;  ${room.fullname} 
-<img src="${path }/images/room/${room.fullname}"/>
+<img src="/project_onoffmix/images/room/${room.fullname}"/>
 </body>
 </html>

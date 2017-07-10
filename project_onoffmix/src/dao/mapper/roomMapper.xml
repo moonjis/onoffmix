@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)	
 	</insert>
 	<select id="selectAll" resultType="room">
-		select * from room
+		select b.*, a.fullname from room b left join attach a on b.room_num = a.room_num 
 	</select>
 	<select id="selectCategory" resultType="category">
 		select * from category
@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select
 		b.*, a.fullname from room b left join attach a
 		on b.room_num = a.room_num
-		where b.room_num = #{num};
+		where b.room_num = #{num}
 <!-- 		select * from room where room_num = #{num} -->
 	</select>
 	<insert id="insertAttach" parameterType="HashMap">

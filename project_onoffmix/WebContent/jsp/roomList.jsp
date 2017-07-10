@@ -14,25 +14,165 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	var result = '${msg}';
-	if(result == "SUCCESS"){
-		alert("처리가 완료 되었습니다.");
-	}else if(result == "FAIL"){
-		alert("처리 실패");
-	}
-</script>
+<link rel="stylesheet" href="../css/roomlist.css">
 </head>
 <body>
 	<c:forEach var = "room" items = "${roomList}">
 <%-- 	 ${room.room_name}  --%>
 	<a href="roomView?num=${room.room_num}">${room.room_name}</a>
-	리스트
-	
+	<img src="/project_onoffmix/images/room/${room.fullname}"/>
 	</c:forEach>
-	
-	
-
-	
+	<div id="roomwrop">
+	<div id="listtitle">
+	<table>
+		<tr>
+			<td>
+				<img alt="tilte" src="../images/onoffpoto1.png" width="600px;" height="200px;">
+			</td>
+		</tr>
+	</table>
+	</div>
+	<br>
+	<br>
+	<br>
+		<div class="row">
+			<div class="col-lg-3 col-sm-4 col-md-3">
+				<div class="thumbnail content_box">
+					<img src="${path}/images/onoffmix1.PNG" alt="...">
+					<div class="caption">
+						<h3>Thumbnail label</h3>
+						<input type="button" class="btn1" name="" value="신청하기"
+						style="border-radius: 20px; width: 150px; height: 40px; border: 1px solid #cccccc; 
+						background: #C7B8E4; font-weight: bold; border: 0; outline: 0; margin-left: 190px;">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-sm-4 col-md-3">
+				<div class="thumbnail content_box">
+					<img src="${path}/images/onoffmix1.PNG" alt="...">
+					<div class="caption">
+						<h3>Thumbnail label</h3>
+						<input type="button" class="btn1" name="" value="신청하기"
+						style="border-radius: 20px; width: 150px; height: 40px; border: 1px solid #cccccc; 
+						background: #C7B8E4; font-weight: bold; border: 0; outline: 0; margin-left: 190px;">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-sm-4 col-md-3">
+				<div class="thumbnail content_box">
+					<img src="${path}/images/onoffmix1.PNG" alt="...">
+					<div class="caption">
+						<h3>Thumbnail label</h3>
+						<input type="button" class="btn1" name="" value="신청하기"
+						style="border-radius: 20px; width: 150px; height: 40px; border: 1px solid #cccccc; 
+						background: #C7B8E4; font-weight: bold; border: 0; outline: 0; margin-left: 190px;">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-sm-4 col-md-3">
+				<div class="thumbnail content_box">
+					<img src="${path}/images/onoffmix1.PNG" alt="...">
+					<div class="caption">
+						<h3>Thumbnail label</h3>
+						<input type="button" class="btn1" name="" value="신청하기"
+						style="border-radius: 20px; width: 150px; height: 40px; border: 1px solid #cccccc; 
+						background: #C7B8E4; font-weight: bold; border: 0; outline: 0; margin-left: 190px;">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-sm-4 col-md-3">
+				<div class="thumbnail content_box">
+					<img src="${path}/images/onoffmix1.PNG" alt="...">
+					<div class="caption">
+						<h3>Thumbnail label</h3>
+						<input type="button" class="btn1" name="" value="신청하기"
+						style="border-radius: 20px; width: 150px; height: 40px; border: 1px solid #cccccc; 
+						background: #C7B8E4; font-weight: bold; border: 0; outline: 0; margin-left: 190px;">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-sm-4 col-md-3">
+				<div class="thumbnail content_box">
+					<img src="${path}/images/onoffmix1.PNG" alt="...">
+					<div class="caption">
+						<h3>Thumbnail label</h3>
+						<input type="button" class="btn1" name="" value="신청하기"
+						style="border-radius: 20px; width: 150px; height: 40px; border: 1px solid #cccccc; 
+						background: #C7B8E4; font-weight: bold; border: 0; outline: 0; margin-left: 190px;">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-sm-4 col-md-3">
+				<div class="thumbnail content_box">
+					<img src="${path}/images/onoffmix1.PNG" alt="...">
+					<div class="caption">
+						<h3>Thumbnail label</h3>
+						<input type="button" class="btn1" name="" value="신청하기"
+						style="border-radius: 20px; width: 150px; height: 40px; border: 1px solid #cccccc; 
+						background: #C7B8E4; font-weight: bold; border: 0; outline: 0; margin-left: 190px;">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-sm-4 col-md-3">
+				<div class="thumbnail content_box">
+					<img src="${path}/images/onoffmix1.PNG" alt="...">
+					<div class="caption">
+						<h3>Thumbnail label</h3>
+						<input type="button" class="btn1" name="" value="신청하기"
+						style="border-radius: 20px; width: 150px; height: 40px; border: 1px solid #cccccc; 
+						background: #C7B8E4; font-weight: bold; border: 0; outline: 0; margin-left: 190px;">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-sm-4 col-md-3">
+				<div class="thumbnail content_box">
+					<img src="${path}/images/onoffmix1.PNG" alt="...">
+					<div class="caption">
+						<h3>Thumbnail label</h3>
+						<input type="button" class="btn1" name="" value="신청하기"
+						style="border-radius: 20px; width: 150px; height: 40px; border: 1px solid #cccccc; 
+						background: #C7B8E4; font-weight: bold; border: 0; outline: 0; margin-left: 190px;">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-sm-4 col-md-3">
+				<div class="thumbnail content_box">
+					<img src="${path}/images/onoffmix1.PNG" alt="...">
+					<div class="caption">
+						<h3>Thumbnail label</h3>
+						<input type="button" class="btn1" name="" value="신청하기"
+						style="border-radius: 20px; width: 150px; height: 40px; border: 1px solid #cccccc; 
+						background: #C7B8E4; font-weight: bold; border: 0; outline: 0; margin-left: 190px;">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-sm-4 col-md-3">
+				<div class="thumbnail content_box">
+					<img src="${path}/images/onoffmix1.PNG" alt="...">
+					<div class="caption">
+						<h3>Thumbnail label</h3>
+						<input type="button" class="btn1" name="" value="신청하기"
+						style="border-radius: 20px; width: 150px; height: 40px; border: 1px solid #cccccc; 
+						background: #C7B8E4; font-weight: bold; border: 0; outline: 0; margin-left: 190px;">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-sm-4 col-md-3">
+				<div class="thumbnail content_box">
+					<img src="${path}/images/onoffmix1.PNG" alt="...">
+					<div class="caption">
+						<h3>Thumbnail label</h3>
+						<input type="button" class="btn1" name="" value="신청하기"
+						style="border-radius: 20px; width: 150px; height: 40px; border: 1px solid #cccccc; 
+						background: #C7B8E4; font-weight: bold; border: 0; outline: 0; margin-left: 190px;">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
 </body>
 </html>
