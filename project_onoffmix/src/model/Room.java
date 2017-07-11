@@ -21,6 +21,8 @@ public class Room {
 	private String room_detail;
 	private String owner_phone;
 	private String owner_email;
+	private String owner_name;
+	private String owner_id;
 	private String fullname;
 	
 	public int getRoom_num() {
@@ -137,6 +139,18 @@ public class Room {
 	public void setOwner_email(String owner_email) {
 		this.owner_email = owner_email;
 	}
+	public String getOwner_name() {
+		return owner_name;
+	}
+	public void setOwner_name(String owner_name) {
+		this.owner_name = owner_name;
+	}
+	public String getOwner_id() {
+		return owner_id;
+	}
+	public void setOwner_id(String owner_id) {
+		this.owner_id = owner_id;
+	}
 	public String getFullname() {
 		return fullname;
 	}
@@ -151,10 +165,23 @@ public class Room {
 				+ recruit_day3 + ", recruit_day4=" + recruit_day4 + ", location_1=" + location_1 + ", location_2="
 				+ location_2 + ", group_capacity=" + group_capacity + ", count=" + count + ", room_introduce="
 				+ room_introduce + ", room_detail=" + room_detail + ", owner_phone=" + owner_phone + ", owner_email="
-				+ owner_email + ", fullname=" + fullname + "]";
+				+ owner_email + ", owner_name=" + owner_name + ", owner_id=" + owner_id + ", fullname=" + fullname
+				+ ", getRoom_num()=" + getRoom_num() + ", getCategory_name()=" + getCategory_name()
+				+ ", getRoom_name()=" + getRoom_name() + ", getRoom_day1()=" + getRoom_day1() + ", getRoom_day2()="
+				+ getRoom_day2() + ", getRoom_day3()=" + getRoom_day3() + ", getRoom_day4()=" + getRoom_day4()
+				+ ", getRecruit_day1()=" + getRecruit_day1() + ", getRecruit_day2()=" + getRecruit_day2()
+				+ ", getRecruit_day3()=" + getRecruit_day3() + ", getRecruit_day4()=" + getRecruit_day4()
+				+ ", getLocation_1()=" + getLocation_1() + ", getLocation_2()=" + getLocation_2()
+				+ ", getGroup_capacity()=" + getGroup_capacity() + ", getCount()=" + getCount()
+				+ ", getRoom_introduce()=" + getRoom_introduce() + ", getRoom_detail()=" + getRoom_detail()
+				+ ", getOwner_phone()=" + getOwner_phone() + ", getOwner_email()=" + getOwner_email()
+				+ ", getOwner_name()=" + getOwner_name() + ", getOwner_id()=" + getOwner_id() + ", getFullname()="
+				+ getFullname() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
 	}
 	
-
+	
+	
 	
 	
 	

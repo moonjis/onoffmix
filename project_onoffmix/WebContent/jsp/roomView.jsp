@@ -25,16 +25,21 @@ function getOriginalName(fileName){
 </script>
 </head>
 <body>
-룸뷰 확인s : ${room.room_name}<br>
-<img src="/project_onoffmix/images/room/${room.fullname}"/><br>
- ${room.room_day1} ${room.room_day2} ~ 
+모임 제목 : ${room.room_name}<br>
+모임 기간 : ${room.room_day1} ${room.room_day2} ~ 
 	 <c:choose> 
 	 
 	 	<c:when test="${empty room.room_day3}"> ${room.room_day1}</c:when>
 	 	<c:otherwise>${room.room_day3}</c:otherwise>
 	 
 	 </c:choose> ${room.room_day4}<br>
-${room.room_detail}
+모임 장소 : ${room.location_1} &nbsp; ${room.location_2} <br> 
+왼쪽에 띄울 사진 : <img src="/project_onoffmix/images/room/${room.fullname}"/><br>
+간단소개 : ${room.room_introduce}<br>
+스마트에디터 : ${room.room_detail}
+
+ 
+
 
 </body>
 </html>

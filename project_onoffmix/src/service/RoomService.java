@@ -15,6 +15,7 @@ public interface RoomService {
 	public List<Category> getCategoryList();
 	public Room readRoom(int num);
 	public boolean createRoom(HttpServletRequest req, Room room, MultipartFile file);
+	public boolean updateBoard(Room room);
 
 
 }

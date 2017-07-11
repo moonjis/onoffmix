@@ -105,6 +105,18 @@ public class RoomServiceImpl implements RoomService {
 		return savedName;
 	}
 
+	@Override
+	public boolean updateBoard(Room room) {
+		try {
+			System.out.println(room);
+			iroomDao.updateRoom(room);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 
 //	@Override
 //	public void addStudent(Student student) {

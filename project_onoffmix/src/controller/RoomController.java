@@ -45,8 +45,10 @@ public class RoomController {
 	
 	@RequestMapping(value = "/createRoom")
 	public String createRoom(HttpServletRequest req, Room room, RedirectAttributes rttr,@RequestParam("image") MultipartFile file) {
-//		System.out.println("test");
+		System.out.println("createRoom test");
 //		System.out.println("file : " + file);
+		
+	
 		if (roomService.createRoom(req, room,file)) {
 			
 			rttr.addFlashAttribute("msg", "SUCCESS");
@@ -76,6 +78,38 @@ public class RoomController {
 		return "roomView";
 	}
 	
+	@RequestMapping(value = "modifyRoomForm")
+	public String modifyRoomForm(int num, Model model){
+		model.addAttribute("categoryList",roomService.getCategoryList());
+		model.addAttribute("room",roomService.readRoom(num));
+		return "modifyRoomForm";
+	}
+	
+	@RequestMapping(value = "/modify")
+	public String modify(Room room, RedirectAttributes rttr) {
+
+		System.out.println("update Board : " + room);
+		if (roomService.updateBoard(room)) {
+			rttr.addFlashAttribute("msg", "SUCCESS");
+		} else {
+//			System.out.println("WHY");
+			rttr.addFlashAttribute("msg", "FAIL");
+		}
+		return "redirect:roomList";
+	}
+	
+//	@RequestMapping(value = "/joinRoom")
+//	public String joinRoom(Room room, RedirectAttributes rttr) {
+
+//		if (roomService.joinRoom(room)) {
+//			
+//			rttr.addFlashAttribute("msg", "SUCCESS");
+//		} else {
+//			rttr.addFlashAttribute("msg", "FAIL");
+//		}
+//		return "redirect:roomList";
+
+//	}
 	
 	
 	
