@@ -442,7 +442,7 @@
 										       연락처 설정</font><font size="2" color="red">(필수)</font> &nbsp;&nbsp;&nbsp;
 						</td>
 						<td>
-							 <input type="text" style="text-align: center; border: 2px solid #cccccc; width: 100px; height: 25px; "  size="10"  value = "${tel }" readonly="readonly" name="owner_phone">
+							 <input type="text" style="text-align: center; border: 2px solid #cccccc; width: 100px; height: 25px; "  size="10"  value = "${member.phone}" readonly="readonly" name="owner_phone">
 						</td>
 						
 <!-- 						<td> -->
@@ -469,7 +469,7 @@
 										      에메일 설정</font><font size="2" color="red">(필수)</font> &nbsp;&nbsp;&nbsp;
 						</td>
 						<td>
-							<input type="text" style="width: 300px; height: 22px; border: 2px solid #cccccc; text-align: center;" value = "${email}" readonly="readonly"  name="owner_email"> 
+							<input type="text" style="width: 300px; height: 22px; border: 2px solid #cccccc; text-align: center;" value = "${member.email}" readonly="readonly"  name="owner_email"> 
 <!-- 							@ -->
 <!-- 							<input type="text" style=" width: 150px; height: 22px; border: 2px solid #cccccc; text-align: center;"> -->
 						</td>
@@ -479,7 +479,7 @@
 			
 			
 			<div id="roomstart">
-				<input type="submit" value="확인" style=" border-radius: 10px; margin-left: 600px; width: 80px; height: 50px; border: 1px outset #cccccc;">
+				<input type="submit" value="확인" style=" border-radius: 10px; margin-left: 600px; width: 80px; height: 50px; border: 1px outset #cccccc;" id = "savebutton">
 			</div>
 			
 			</form>

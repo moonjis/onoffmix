@@ -28,10 +28,10 @@ public class RoomController {
 	public ModelAndView roomForm(HttpSession session) {
 		
 //		System.out.println("테스트");
-		session.setAttribute("id", "sampleId");
-		session.setAttribute("name", "myName");
-		session.setAttribute("email", "sampleEmail@naver.com");
-		session.setAttribute("tel", "01012345678");
+//		session.setAttribute("id", "sampleId");
+//		session.setAttribute("name", "myName");
+//		session.setAttribute("email", "sampleEmail@naver.com");
+//		session.setAttribute("tel", "01012345678");
 			
 		ModelAndView mav = new ModelAndView();
 		
