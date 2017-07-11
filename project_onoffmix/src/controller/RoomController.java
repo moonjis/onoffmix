@@ -46,7 +46,7 @@ public class RoomController {
 	@RequestMapping(value = "/createRoom")
 	public String createRoom(HttpServletRequest req, Room room, RedirectAttributes rttr,@RequestParam("image") MultipartFile file) {
 //		System.out.println("test");
-		System.out.println("file : " + file);
+//		System.out.println("file : " + file);
 		if (roomService.createRoom(req, room,file)) {
 			
 			rttr.addFlashAttribute("msg", "SUCCESS");

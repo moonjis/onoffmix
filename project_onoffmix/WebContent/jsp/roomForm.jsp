@@ -479,10 +479,11 @@
 			
 			
 			<div id="roomstart">
-				<input type="submit" value="확인" style=" border-radius: 10px; margin-left: 600px; width: 80px; height: 50px; border: 1px outset #cccccc;" id = "savebutton">
+				<input type="submit" value="확인" style=" border-radius: 10px; margin-left: 600px; width: 80px; height: 50px; border: 1px outset #cccccc;" id ="savebutton">
 			</div>
 			
 			</form>
 		</div>	
+
 </body>
 </html>
