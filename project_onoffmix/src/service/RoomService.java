@@ -1,5 +1,6 @@
 package service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ public interface RoomService {
 	public Room readRoom(int num);
 	public boolean createRoom(HttpServletRequest req, Room room, MultipartFile file);
 	public boolean updateBoard(Room room);
+	public List<Room> selectMyRooms(HashMap<String, Object> map);
 
 
 }

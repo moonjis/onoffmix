@@ -15,7 +15,7 @@ public interface IroomDao {
 	public void updateRoom(Room room);
 	public void insertAttach(HashMap<String, Object> params);
 	public int getCount();
-
-	
+	public List<Room> selectMyRooms(HashMap<String, Object> map);
+	public int getCntAllMyRooms(String id);
 	
 }

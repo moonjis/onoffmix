@@ -50,7 +50,7 @@
               <c:if test="${room != null}">
                      <div class="col-lg-3 col-sm-4  col-md-3">
                         <div class="thumbnail content_box">
-                           <img src="/project_onoffmix/images/room/${room.fullname}"/>
+                           <img src="${path}/images/room/${room.fullname}"/>
                            <div class="caption">
                               <h3><a href="roomView?num=${room.room_num}">${room.room_name}</a></h3>
 <%--                               <a href="modifyRoomForm?num=${room.room_num}">수정</a></h3> --%>
