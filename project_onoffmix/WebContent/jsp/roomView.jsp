@@ -70,7 +70,8 @@ function getOriginalName(fileName){
       
       <div id="viewwrup">
          <div style=" margin-top: 80px;">
-            스마트에디터 : ${room.room_detail}
+            상세정보<br>
+         ${room.room_detail}
          </div>
          <div style=" clear: both; margin-top: 60px;">
             <table style="width: 1190px; height: 400px; border-spacing: 0; border: 1px solid #cccccc;  background: #D9F1FB; margin-left: -23px;">

@@ -52,7 +52,8 @@
                         <div class="thumbnail content_box">
                            <img src="/project_onoffmix/images/room/${room.fullname}"/>
                            <div class="caption">
-                              <h3><a href="roomView?num=${room.room_num}">${room.room_name}</a><a href="modifyRoomForm?num=${room.room_num}">수정</a></h3>
+                              <h3><a href="roomView?num=${room.room_num}">${room.room_name}</a></h3>
+<%--                               <a href="modifyRoomForm?num=${room.room_num}">수정</a></h3> --%>
             
                            </div>
                         </div>
