@@ -31,8 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where room_num = #{room_num}
 	</update>
 	<select id="selectAll" resultType="room">
-		select b.*, a.fullname from room b left join attach a on b.room_num =
-		a.room_num
+		select b.*, a.fullname from room b left join attach a on b.room_num = a.room_num where count != group_capacity;
 	</select>
 	<select id="selectCategory" resultType="category">
 		select * from category

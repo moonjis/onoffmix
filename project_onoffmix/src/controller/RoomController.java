@@ -18,7 +18,7 @@ import service.RoomService;
 
 
 @Controller
-@RequestMapping("/room/*")
+@RequestMapping("/room/")
 public class RoomController {
 	
 	@Autowired
