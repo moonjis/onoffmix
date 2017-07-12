@@ -18,7 +18,7 @@ import service.RoomService;
 
 
 @Controller
-@RequestMapping("/room/")
+@RequestMapping("/room/*")
 public class RoomController {
 	
 	@Autowired
@@ -89,7 +89,7 @@ public class RoomController {
 	public String modify(Room room, RedirectAttributes rttr) {
 
 		System.out.println("update Board : " + room);
-		if (roomService.updateBoard(room)) {
+		if (roomService.updateRoom(room)) {
 			rttr.addFlashAttribute("msg", "SUCCESS");
 		} else {
 //			System.out.println("WHY");
@@ -98,18 +98,32 @@ public class RoomController {
 		return "redirect:roomList";
 	}
 	
-//	@RequestMapping(value = "/joinRoom")
-//	public String joinRoom(Room room, RedirectAttributes rttr) {
+	@RequestMapping(value = "/joinRoom")
+	public String joinRoom(Room room, RedirectAttributes rttr, String id) {
 
-//		if (roomService.joinRoom(room)) {
-//			
-//			rttr.addFlashAttribute("msg", "SUCCESS");
-//		} else {
-//			rttr.addFlashAttribute("msg", "FAIL");
-//		}
-//		return "redirect:roomList";
+		if (roomService.joinRoom(id, room)) {
+			
+			rttr.addFlashAttribute("msg", "SUCCESS");
+		} else {
+			rttr.addFlashAttribute("msg", "FAIL");
+		}
+		return "redirect:roomList";
 
-//	}
+	}
+	
+	@RequestMapping(value = "/delete")
+	public String delete(int num, RedirectAttributes rttr) {
+
+//		System.out.println("delete Room : " + room);
+		if (roomService.deleteRoom(num)) {
+			rttr.addFlashAttribute("msg", "SUCCESS");
+		} else {
+//			System.out.println("WHY");
+			rttr.addFlashAttribute("msg", "FAIL");
+		}
+		return "redirect:roomList";
+	}
+	
 	
 	
 	

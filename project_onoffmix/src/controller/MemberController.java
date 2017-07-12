@@ -42,7 +42,8 @@ public class MemberController {
 			member.put("name", mem.getName());
 			member.put("email", mem.getEmail());
 			member.put("phone", mem.getPhone());
-			session.setAttribute("member", member);			
+			session.setAttribute("member", member);	
+			
 			return "redirect:/main";
 		} else {
 			attr.addFlashAttribute("msg", "id 또는 비밀번호가 잘못되었습니다.");

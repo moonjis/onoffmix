@@ -48,7 +48,7 @@ public class RoomServiceImpl implements RoomService {
 		
 		Room room = iroomDao.selectOne(num);
 		
-		System.out.println(room);
+//		System.out.println(room);
 		
 //		board.setReadCount(board.getReadCount() + 1);
 //		boardDao.updateBoard(board);
@@ -106,7 +106,7 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public boolean updateBoard(Room room) {
+	public boolean updateRoom(Room room) {
 		try {
 			System.out.println(room);
 			iroomDao.updateRoom(room);
@@ -115,6 +115,45 @@ public class RoomServiceImpl implements RoomService {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	public boolean joinRoom(String id, Room room) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		params.put("room_num", room.getRoom_num());
+//		System.out.println("room_num : "+ room.getRoom_num());
+		
+		try {		
+			iroomDao.joinRoom(params);		
+			room = iroomDao.selectOne(room.getRoom_num());
+		
+			room.setCount(room.getCount() + 1);
+			iroomDao.updateCount(room);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public boolean deleteRoom(int num) {
+		try {
+//			System.out.println(room);
+			iroomDao.outRoom(num);
+			iroomDao.deleteRoom(num);		
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	
+
+
+	
 	}
 
 
@@ -139,4 +178,4 @@ public class RoomServiceImpl implements RoomService {
 //		
 //		return studentDao.selectOne(num);
 //	}
-}
+

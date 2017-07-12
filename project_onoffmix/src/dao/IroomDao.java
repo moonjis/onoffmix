@@ -13,8 +13,16 @@ public interface IroomDao {
 	public Room selectOne(int num);
 	public void insertRoom(Room room);
 	public void updateRoom(Room room);
+	public void deleteRoom(int num);
+	public void updateCount(Room room);
+	public void joinRoom(HashMap<String, Object> params);
+	public void outRoom(int num);
 	public void insertAttach(HashMap<String, Object> params);
 	public int getCount();
+
+	
+
+
 
 	
 	

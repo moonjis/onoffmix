@@ -33,41 +33,69 @@ function getOriginalName(fileName){
             <div style="height: 320px; margin: 50px 0px;">
                <img  style="position: relative; display:inline-block; margin-left: 50px; width: 300px; height: 300px; float: left;" src="/project_onoffmix/images/room/${room.fullname}"/><br>
                
-               <div id="viewimg1" style="position: relative; float: right; margin: 0px 20px 0px 0px; line-height: 55px;">
-                  <div>
-                     <font size="8" color="green" style=" font-weight: bold; ">${room.room_name}</font><br>
+               <div id="viewimg1" style="position: relative; float: right; margin: 0px 40px 0px 0px; line-height: 40px;">
+                  <div style="margin: 0px 0px 15px 0px; font-size: 25px; font-weight: bold;">
+                     ${room.room_name}
                   </div>
                   
-                  <img alt="" src="../images/poto3.png" style="width: 30px; height: 25px; vertical-align: middle; ">
-                     <font size="4" style=" vertical-align: middle;">
-                              모임 기간 : ${room.room_day1} ${room.room_day2} ~
-                         <c:choose> 
-                   
-                            <c:when test="${empty room.room_day3}"> ${room.room_day1}</c:when>
-                            <c:otherwise>${room.room_day3}</c:otherwise>
-                   
-                         </c:choose> ${room.room_day4}
-                     </font>
-                     <br>
-                     <img alt="" src="../images/poto4.png" style="width: 26px; height: 23px; vertical-align: middle;"><font size="4" style=" vertical-align: bottom; "> 모임 장소 : ${room.location_1} &nbsp; ${room.location_2}</font>
-                     <br>
-                     <img alt="" src="../images/poto5.png" style="width: 30px; height: 25px; "><font size="4" style=" vertical-align: super; "> 신청 인원 : ${room.count}명</font>
+                  <div>
+                     <span style="display: inline-block; position: relative; top: 3px; margin-right: 7px; width: 13px; height: 16px; background: url(../images/icon_eventInfo.png) no-repeat 0px 0px;"></span>
+                     <span>
+                        모임 기간 : ${room.room_day1} ${room.room_day2} ~
+                  <c:choose> 
+                     <c:when test="${empty room.room_day3}"> ${room.room_day1}</c:when>
+                     <c:otherwise>${room.room_day3}</c:otherwise>
+                  </c:choose> 
+                  ${room.room_day4}
+               </span>
+                  </div>
+                  
+                  <div>
+                     <span style="display: inline-block; position: relative; top: 3px; margin-right: 7px; width: 13px; height: 16px; background: url(../images/icon_eventInfo.png) no-repeat -14px 0px;"></span>
+                     <span>
+                        모임 장소 : ${room.location_1} &nbsp; ${room.location_2}
+                     </span>
+                  </div>
+                  
+                  <div>
+                     <span style="display: inline-block; position: relative; top: 3px; margin-right: 7px; width: 13px; height: 16px; background: url(../images/icon_eventInfo.png) no-repeat -28px 0px;"></span>
+                     <span>
+                        신청 인원 : ${room.count}명
+                     </span>
+                  </div>
+                  
                </div>
                
-               <div style="width: 750px; position: relative; float: right; margin: 10px 20px 0px 0px;">간단소개 : ${room.room_introduce} </div>       
+               <div style="width: 750px; position: relative; float: right; margin: 10px 40px 0px 0px;">간단소개 : ${room.room_introduce} </div>       
             </div>
             
          <div id="viewimg2" style="clear: both;">
             <font size="5" style=" font-weight: bold; margin-left: 8px; font-style: normal;">개설자정보</font>
          </div>   
-         <div id="viewimg3">
-            <img alt="poto1" src="../images/poto1.png" style="width: 22px; height: 20px; margin-top: 60px;"><br>
-            <img alt="poto2" src="../images/poto2.png" style="width: 22px; height: 20px; margin-top: 16px;">
+         <div id="viewimg3" style=" line-height: 25px; ">
+            <font style="display: block; margin: 0 auto; margin-top: 20px; text-align: center;">${room.owner_name}</font><br>
+            
+            <div>
+               <span style="display: inline-block; width:10px; height: 9px; margin-right: 7px; background: url('../images/icon_host.png') no-repeat 0px -2px;"></span>
+               ${room.owner_email}   
+            </div>
+            
+            <div>
+               <span style="display: inline-block; width:10px; height: 9px; margin-right: 7px; background: url('../images/icon_host.png') no-repeat -11px -1px;"></span>
+               ${room.owner_phone}
+            </div>
+            
+<!--             <img alt="poto1" src="../images/poto1.png" style="border:1px solid red; width: 22px; height: 20px; "><font size="3" style="border: 1px solid red; font-weight: bold; display: inline-block; margin: 0px 0px 10px 0px;" ></font><br> -->
+<%--             <img alt="poto2" src="../images/poto2.png" style="width: 22px; height: 20px; ">${room.owner_phone} --%>
          </div>
             <font size="2" style=" margin-left: 50px;">· 문의사항은 메일 / 전화 / 댓글을 이용해주세요.</font>
-            <input type="button" value="신청하기" name="" style="margin-left: 990px; margin-bottom: 20px; width: 170px; height: 50px; border-radius: 10px; border: 0; outline: 0; background: #71B1FA; font-weight: bold; font-size: larger;">
+            <form action="joinRoom" method="post" name="joinRoom">
+            <input type="hidden" value ="${member.id}" name="id">
+            <input type="hidden" value ="${room.room_num}" name="room_num">
+            <input type="submit" value="신청하기" style="margin-left: 990px; margin-bottom: 20px; width: 170px; height: 50px; border-radius: 10px; border: 0; outline: 0; background: #71B1FA; font-weight: bold; font-size: larger;">
+      		</form>
       </div>
-      
+         
       <div id="viewwrup">
          <div style=" margin-top: 80px;">
             상세정보<br>
