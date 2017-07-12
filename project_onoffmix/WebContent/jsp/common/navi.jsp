@@ -17,7 +17,7 @@
 						<li><a href="member/login">login</a></li>
 					</c:otherwise>
 				</c:choose>
-				
+<!-- 				<li><a href="room/roomForm">모임 개설</a></li> -->
 			</ul>
 		</div>
 	</div>

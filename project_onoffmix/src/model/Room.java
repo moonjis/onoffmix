@@ -3,7 +3,6 @@ package model;
 public class Room {
 	
 	private int room_num;
-	private String image;
 	private String category_name;
 	private String room_name;
 	private String room_day1;
@@ -16,34 +15,21 @@ public class Room {
 	private String recruit_day4;
 	private String location_1;
 	private String location_2;
-	private String group_capacity;
+	private int group_capacity;
+	private int count;
 	private String room_introduce;
 	private String room_detail;
 	private String owner_phone;
 	private String owner_email;
-	
-	@Override
-	public String toString() {
-		return "Room [room_num=" + room_num + ", image=" + image + ", category_name=" + category_name + ", room_name="
-				+ room_name + ", room_day1=" + room_day1 + ", room_day2=" + room_day2 + ", room_day3=" + room_day3
-				+ ", room_day4=" + room_day4 + ", recruit_day1=" + recruit_day1 + ", recruit_day2=" + recruit_day2
-				+ ", recruit_day3=" + recruit_day3 + ", recruit_day4=" + recruit_day4 + ", location_1=" + location_1
-				+ ", location_2=" + location_2 + ", group_capacity=" + group_capacity + ", room_introduce="
-				+ room_introduce + ", room_detail=" + room_detail + ", owner_phone=" + owner_phone + ", owner_email="
-				+ owner_email + "]";
-	}
+	private String owner_name;
+	private String owner_id;
+	private String fullname;
 	
 	public int getRoom_num() {
 		return room_num;
 	}
 	public void setRoom_num(int room_num) {
 		this.room_num = room_num;
-	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
 	}
 	public String getCategory_name() {
 		return category_name;
@@ -117,11 +103,17 @@ public class Room {
 	public void setLocation_2(String location_2) {
 		this.location_2 = location_2;
 	}
-	public String getGroup_capacity() {
+	public int getGroup_capacity() {
 		return group_capacity;
 	}
-	public void setGroup_capacity(String group_capacity) {
+	public void setGroup_capacity(int group_capacity) {
 		this.group_capacity = group_capacity;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	public String getRoom_introduce() {
 		return room_introduce;
@@ -147,4 +139,51 @@ public class Room {
 	public void setOwner_email(String owner_email) {
 		this.owner_email = owner_email;
 	}
+	public String getOwner_name() {
+		return owner_name;
+	}
+	public void setOwner_name(String owner_name) {
+		this.owner_name = owner_name;
+	}
+	public String getOwner_id() {
+		return owner_id;
+	}
+	public void setOwner_id(String owner_id) {
+		this.owner_id = owner_id;
+	}
+	public String getFullname() {
+		return fullname;
+	}
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+	@Override
+	public String toString() {
+		return "Room [room_num=" + room_num + ", category_name=" + category_name + ", room_name=" + room_name
+				+ ", room_day1=" + room_day1 + ", room_day2=" + room_day2 + ", room_day3=" + room_day3 + ", room_day4="
+				+ room_day4 + ", recruit_day1=" + recruit_day1 + ", recruit_day2=" + recruit_day2 + ", recruit_day3="
+				+ recruit_day3 + ", recruit_day4=" + recruit_day4 + ", location_1=" + location_1 + ", location_2="
+				+ location_2 + ", group_capacity=" + group_capacity + ", count=" + count + ", room_introduce="
+				+ room_introduce + ", room_detail=" + room_detail + ", owner_phone=" + owner_phone + ", owner_email="
+				+ owner_email + ", owner_name=" + owner_name + ", owner_id=" + owner_id + ", fullname=" + fullname
+				+ ", getRoom_num()=" + getRoom_num() + ", getCategory_name()=" + getCategory_name()
+				+ ", getRoom_name()=" + getRoom_name() + ", getRoom_day1()=" + getRoom_day1() + ", getRoom_day2()="
+				+ getRoom_day2() + ", getRoom_day3()=" + getRoom_day3() + ", getRoom_day4()=" + getRoom_day4()
+				+ ", getRecruit_day1()=" + getRecruit_day1() + ", getRecruit_day2()=" + getRecruit_day2()
+				+ ", getRecruit_day3()=" + getRecruit_day3() + ", getRecruit_day4()=" + getRecruit_day4()
+				+ ", getLocation_1()=" + getLocation_1() + ", getLocation_2()=" + getLocation_2()
+				+ ", getGroup_capacity()=" + getGroup_capacity() + ", getCount()=" + getCount()
+				+ ", getRoom_introduce()=" + getRoom_introduce() + ", getRoom_detail()=" + getRoom_detail()
+				+ ", getOwner_phone()=" + getOwner_phone() + ", getOwner_email()=" + getOwner_email()
+				+ ", getOwner_name()=" + getOwner_name() + ", getOwner_id()=" + getOwner_id() + ", getFullname()="
+				+ getFullname() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
+	
+	
+	
+	
+	
+	
+	
 }

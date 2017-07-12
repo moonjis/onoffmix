@@ -17,30 +17,32 @@
 	//[1] 기본값 설정
 	$(function(){
 		
-		$("#logoFile").hide("slow");
+		$("#file-upload").hide("fast");
 		
-		$("#step1").on({
-			"mouseover": function() {
-				$("#logoFile").show("slow");
-			},
-			"mouseleave": function() {
-				$("#logoFile").hide("slow");
-			}
+		$("#setup1").on("click", function() {
+			$("#file-upload").click();
+		});
+		$("#file-upload").on("change", function(response) {
+			var tmppath = URL.createObjectURL(this.files[0]);
+			console.log(tmppath);
+			$("#setup1").attr('src', tmppath);
+		//alert(this.files[0]);
 		});
 		
-		$(".time").show(); //region 영역 보이기
-		$(".time1").hide(); //more...숨기기
+		
+// 		$(".time").show(); //region 영역 보이기
+// 		$(".time1").hide(); //more...숨기기
 		
 		//[2] more...클릭시 보이기 및 숨기기
-		$(".so").change(function() {
+// 		$(".so").change(function() {
 			
-			if($(this).is(":checked")){
-				 $(".time1").show('3000');
-			}else{
-				$(".time1").hide('3000');
-			}
+// 			if($(this).is(":checked")){
+// 				 $(".time1").show('3000');
+// 			}else{
+// 				$(".time1").hide('3000');
+// 			}
 		
-		});
+// 		});
 	
 		var oEditors = [];
 			   // 에디터
@@ -57,7 +59,8 @@
 					// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
 					bUseModeChanger : true,			
 				},
-				fCreator: "createSEditor2"	
+				fCreator: "createSEditor2",
+				htParams: { fOnBeforeUnload : function(){}}	
 			});
 			
 		    //전송버튼
@@ -65,7 +68,7 @@
 		        //id가 smarteditor인 textarea에 에디터에서 대입
 		        oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
 		        //폼 submit
-		        $("#frm").submit();
+		        $("#roomForm").submit();
 		    });
 		
   		
@@ -242,15 +245,19 @@
 </head>
 
 <body>
-	
 	<div id="roomWrap">
-		<form action="" method="post">
+		<form action="modify" method="post" enctype="multipart/form-data" class="form-horizontal top-buffer center-block" id="roomForm" name="roomForm">
+			<input type = "hidden" value ="${member.name}" name="owner_name">
+			<input type = "hidden" value ="${member.id}" name="owner_id">
+			<input type= "hidden" name = "room_num" value = "${room.room_num}">
 			<div id="roomImg">
-				<div id="step1">
-					<input type="file" id="logoFile" name ="image">
+				<div>
+					<a href="#"><img src="/project_onoffmix/images/room/${room.fullname}" alt="photo" id="setup1" width="170" height="170"></a>
+				</div>
+				<div>
+					<input type="file" name="image" id="file-upload" accept="image/gif, image/jpeg, image/png">
 				</div>
 			</div>
-			
 			<div id="roomTitle">
 				<table>
 					<tr>
@@ -280,7 +287,7 @@
 <!-- 								<option>여행</option> -->
 <!-- 								<option>후원금 모금</option> -->
 							</select>
-							<input type="text" name="" placeholder="모임명을 입력해 주세요.">
+							<input type="text" name="room_name" placeholder="모임명을 입력해 주세요." value ="${room.room_name}">
 						</td>
 					</tr>
 					
@@ -299,21 +306,21 @@
 							<font size="4">모임일시</font>
 						</td>
 						<td>
-							<input type="date" name="room_day1">
-							<input type="time" name="room_day2"> 부터 &nbsp;&nbsp;&nbsp;
-							<input type="date" class="time1" name="room_day3">
-							<input type="time" class="time" name="room_day4"> 까지
+							<input type="date" name="room_day1" value ="${room.room_day1}">
+							<input type="time" name="room_day2" value ="${room.room_day2}"> 부터 &nbsp;&nbsp;&nbsp;							
+							<input type="date" class="time1" name="room_day3" value ="${room.room_day3}">
+							<input type="time" class="time" name="room_day4" value ="${room.room_day4}"> 까지
 						</td>
 					</tr>
 					
-					<tr>
-						<td>
-							<label>
-								<input type="checkbox" class="so">
-								<font size="2">모임기간이 하루이상일 경우</font>
-							</label>
-						</td>
-					</tr>
+<!-- 					<tr> -->
+<!-- 						<td> -->
+<!-- 							<label> -->
+<!-- 								<input type="checkbox" class="so"> -->
+<!-- 								<font size="2">모임기간이 하루이상일 경우</font> -->
+<!-- 							</label> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
 				</table>
 			</div>
 			
@@ -325,10 +332,10 @@
 						</td>
 					
 						<td>
-							<input style="background: #f8f8f8; border: 1px solid #cccccc; position: relative;" type="date" name="recruit_day1">
-							<input style="border: 1px solid #cccccc;" type="time" name="recruit_day2"> 부터 &nbsp;&nbsp;&nbsp;
-							<input style="background: #f8f8f8; border: 1px solid #cccccc; position: relative;" type="date" name="recruit_day3">
-							<input style="border: 1px solid #cccccc;" type="time" name="recruit_day4"> 까지
+							<input style="background: #f8f8f8; border: 1px solid #cccccc; position: relative;" type="date" name="recruit_day1" value ="${room.recruit_day1}">
+							<input style="border: 1px solid #cccccc;" type="time" name="recruit_day2" value ="${room.recruit_day2}"> 부터 &nbsp;&nbsp;&nbsp;
+							<input style="background: #f8f8f8; border: 1px solid #cccccc; position: relative;" type="date" name="recruit_day3" value ="${room.recruit_day3}">
+							<input style="border: 1px solid #cccccc;" type="time" name="recruit_day4" value ="${room.recruit_day4}"> 까지
 						</td>
 					</tr>
 					<tr>
@@ -343,10 +350,10 @@
 				<table>
 					<tr>
 						<td rowspan="2">
-							<font size="4">모임장소</font> &nbsp;&nbsp;&nbsp;
+							<font size="4">모임장소(다시 검색 버튼 누르세요)</font> &nbsp;&nbsp;&nbsp;
 						</td>
 						<td>
-							<input type="text" id="place" name="place" placeholder="장소를 입력해 주세요." name="location1">
+							<input type="text" id="place" placeholder="장소를 입력해 주세요." name="location_1" value ="${room.location_1}">
 							<button id="searchBtn" type="button">검색</button>
 						</td>	
 					</tr>
@@ -361,7 +368,7 @@
 				<table>
 					<tr>
 						<td>
-							<input style=" border: 1px solid #cccccc; margin-left: 100px; "  type="text" id="place" name="place" placeholder="주소를 입력해 주세요." name="location2">
+							<input style=" border: 1px solid #cccccc; margin-left: 100px; "  type="text" id="place" placeholder="주소를 입력해 주세요." name="location_2" value ="${room.location_2}">
 						</td>
 					</tr>
 					<tr>
@@ -391,7 +398,7 @@
 							<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;총 인원 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
 						</td>
 						<td>
-							 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="text-align: center;"  size="5" name="group_capacity">명 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="text-align: center;"  size="5" name="group_capacity" value ="${room.group_capacity}">명 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						</td>
 					</tr>
 				</table>
@@ -407,7 +414,7 @@
 						</tr>
 						<tr>
 							<td>
-								<textarea name="room_introduce" rows="20" cols="20" style=" width: 500px; height: 100px; resize: none; "></textarea>
+								<textarea name="room_introduce" rows="20" cols="20" style=" width: 500px; height: 100px; resize: none; " >${room.room_introduce}</textarea>
 							</td>
 						</tr>
 					</table>	
@@ -424,7 +431,7 @@
 					<table style="width: 700px; ">
 						<tr>
 							<td>
-								<textarea rows="10" cols="30" name="" id="ir1" style=" width:100%; " name="room_detail"></textarea>
+								<textarea rows="10" cols="30" id="ir1" style=" width:100%; " name="room_detail">${room.room_detail}</textarea>
 							</td>
 						</tr>					
 					</table>
@@ -438,7 +445,7 @@
 										       연락처 설정</font><font size="2" color="red">(필수)</font> &nbsp;&nbsp;&nbsp;
 						</td>
 						<td>
-							 <input type="text" style="text-align: center; border: 2px solid #cccccc; width: 100px; height: 25px; "  size="10"  value = "${tel }" readonly="readonly" name="owner_phone">
+							 <input type="text" style="text-align: center; border: 2px solid #cccccc; width: 100px; height: 25px; "  size="10"  value = "${member.phone}" readonly="readonly" name="owner_phone">
 						</td>
 						
 <!-- 						<td> -->
@@ -465,7 +472,7 @@
 										      에메일 설정</font><font size="2" color="red">(필수)</font> &nbsp;&nbsp;&nbsp;
 						</td>
 						<td>
-							<input type="text" style="width: 300px; height: 22px; border: 2px solid #cccccc; text-align: center;" value = "${email}" readonly="readonly"  name="owner_email"> 
+							<input type="text" style="width: 300px; height: 22px; border: 2px solid #cccccc; text-align: center;" value = "${member.email}" readonly="readonly"  name="owner_email"> 
 <!-- 							@ -->
 <!-- 							<input type="text" style=" width: 150px; height: 22px; border: 2px solid #cccccc; text-align: center;"> -->
 						</td>
@@ -475,10 +482,11 @@
 			
 			
 			<div id="roomstart">
-				<input type="submit" value="확인" style=" border-radius: 10px; margin-left: 600px; width: 80px; height: 50px; border: 1px outset #cccccc;">
+				<input type="submit" value="확인" style=" border-radius: 10px; margin-left: 600px; width: 80px; height: 50px; border: 1px outset #cccccc;" id ="savebutton">
 			</div>
 			
 			</form>
 		</div>	
+
 </body>
 </html>
