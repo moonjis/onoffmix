@@ -169,8 +169,6 @@ public class RoomServiceImpl implements RoomService {
 			return false;
 		}
 	}
-	}
-
 	
 
 
@@ -196,7 +194,7 @@ public class RoomServiceImpl implements RoomService {
 		System.out.println(list.get(0));		
 		return list;
 	}
-	
+}
 	
 
 
