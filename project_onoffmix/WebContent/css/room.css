@@ -1,11 +1,12 @@
 @CHARSET "UTF-8";
 
 #roomWrap {
-	width: 900px;
+	width: 990px;
 	margin: 0 auto;
-	min-height: 1610px;
+	min-height: 1540px;
 	border: 1px solid gray;
 	padding: 30px;
+	margin-bottom: 20px;
 }
 
 #roomImg {
@@ -157,4 +158,8 @@
 	float: right;
 	padding-bottom: 20px;
 }
-
+footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+      margin-top:40px;
+}

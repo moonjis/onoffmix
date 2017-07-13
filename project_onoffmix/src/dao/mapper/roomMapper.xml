@@ -32,7 +32,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{recruit_day2},
 		recruit_day3 = #{recruit_day3},
 		recruit_day4 =
-		#{recruit_day4},
+		#{recruit_da
+
+4},
 		location_1 = #{location_1},
 		location_2 = #{location_2},
 		group_capacity = #{group_capacity},
