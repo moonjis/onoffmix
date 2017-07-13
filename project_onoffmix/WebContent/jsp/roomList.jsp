@@ -32,6 +32,13 @@
 <%--    <a href="roomView?num=${room.room_num}">${room.room_name}</a> --%>
 <%--    <img src="/project_onoffmix/images/room/${room.fullname}"/> --%>
 <%--    </c:forEach> --%>
+
+
+<%--  <a href="outRoom?num=${room.room_num}">신청자만삭제</a> 개인삭제 --%>
+<%--  <a href="modifyRoomForm?num=${room.room_num}">수정</a> --%>
+<%--  <a href="deleteRoom?num=${room.room_num}">모임 전체삭제</a> 게시자 삭제--%>
+
+
    <div id="roomwrop">
    <div id="listtitle">
    <table>
@@ -53,10 +60,8 @@
                         <div style=" border: 1px solid gray; border-radius: 7px;" class="thumbnail content_box">
                            <img style=" width: 300px; height: 250px; padding-top: 20px;" src="/project_onoffmix/images/room/${room.fullname}"/>
                            <div class="caption">
-                              <h3><a style="border: clear: both; margin-left: 120px; " href="roomView?num=${room.room_num}">${room.room_name}</a></h3>
-<%--                               <a href="modifyRoomForm?num=${room.room_num}">수정</a></h3> --%>
-            
-                           </div>
+						<h3><a style="border: clear: both; margin-left: 120px; " href="roomView?num=${room.room_num}">${room.room_name}</a></h3>
+					 </div>
                         </div>
                      </div>
               </c:if>

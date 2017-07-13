@@ -31,10 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		recruit_day2 =
 		#{recruit_day2},
 		recruit_day3 = #{recruit_day3},
-		recruit_day4 =
-		#{recruit_da
-
-4},
+		recruit_day4 = #{recruit_day4},
 		location_1 = #{location_1},
 		location_2 = #{location_2},
 		group_capacity = #{group_capacity},
@@ -68,11 +65,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		'Y'
 		where room_num = #{room_num}
 	</update>
-<!-- 	<delete id="outRoom" parameterType="int"> -->
-<!-- 		delete from joinRoom where -->
-<!-- 		room_num -->
-<!-- 		= #{num} -->
-<!-- 	</delete> -->
+	<!-- <delete id="outRoom" parameterType="int"> -->
+	<!-- delete from joinRoom where -->
+	<!-- room_num -->
+	<!-- = #{num} -->
+	<!-- </delete> -->
 	<select id="selectAll" resultType="room">
 		select b.*, a.fullname from
 		room b left join attach a on b.room_num = a.room_num where count !=

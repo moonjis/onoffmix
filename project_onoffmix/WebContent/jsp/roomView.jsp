@@ -105,7 +105,7 @@ function getOriginalName(fileName){
          
       <div id="viewwrup">
          <div style="margin: 40px 0px 0px 60px;">
-            상세정보<br>
+            <h1>상세정보</h1><br><br>
          ${room.room_detail}
          </div>
          <div style=" clear: both; margin-top: 60px;">

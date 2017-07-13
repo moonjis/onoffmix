@@ -51,7 +51,7 @@ public class RoomController {
 	
 		if (roomService.createRoom(req, room,file)) {
 			
-			rttr.addFlashAttribute("msg", "SUCCESS");
+//			rttr.addFlashAttribute("msg", "SUCCESS");
 		} else {
 			rttr.addFlashAttribute("msg", "FAIL");
 		}
@@ -77,20 +77,22 @@ public class RoomController {
 		model.addAttribute("room", room);
 		return "roomView";
 	}
-	
+
+// 모임 수정 폼
 	@RequestMapping(value = "modifyRoomForm")
 	public String modifyRoomForm(int num, Model model){
 		model.addAttribute("categoryList",roomService.getCategoryList());
 		model.addAttribute("room",roomService.readRoom(num));
 		return "modifyRoomForm";
 	}
-	
+
+// 모임 수정 실행
 	@RequestMapping(value = "/modify")
 	public String modify(Room room, RedirectAttributes rttr) {
 
 		System.out.println("update Board : " + room);
 		if (roomService.updateRoom(room)) {
-			rttr.addFlashAttribute("msg", "SUCCESS");
+//			rttr.addFlashAttribute("msg", "SUCCESS");
 		} else {
 //			System.out.println("WHY");
 			rttr.addFlashAttribute("msg", "FAIL");
@@ -98,12 +100,13 @@ public class RoomController {
 		return "redirect:roomList";
 	}
 	
+// 모임 신청하기	
 	@RequestMapping(value = "/joinRoom")
 	public String joinRoom(Room room, RedirectAttributes rttr, String id) {
 
 		if (roomService.joinRoom(id, room)) {
 			
-			rttr.addFlashAttribute("msg", "SUCCESS");
+//			rttr.addFlashAttribute("msg", "SUCCESS");
 		} else {
 			rttr.addFlashAttribute("msg", "FAIL");
 		}
@@ -111,12 +114,27 @@ public class RoomController {
 
 	}
 	
-	@RequestMapping(value = "/delete")
-	public String delete(int num, RedirectAttributes rttr) {
+	//전체 모임 삭제
+	@RequestMapping(value = "/deleteRoom")
+	public String deleteRoom(int num, RedirectAttributes rttr) {
 
 //		System.out.println("delete Room : " + room);
 		if (roomService.deleteRoom(num)) {
-			rttr.addFlashAttribute("msg", "SUCCESS");
+//			rttr.addFlashAttribute("msg", "SUCCESS");
+		} else {
+//			System.out.println("WHY");
+			rttr.addFlashAttribute("msg", "FAIL");
+		}
+		return "redirect:roomList";
+	}
+	
+	//개인 사용자 모임 신청 취소
+	@RequestMapping(value = "/outRoom")
+	public String outRoom(int num, RedirectAttributes rttr) {
+
+//		System.out.println("delete Room : " + room);
+		if (roomService.outRoom(num)) {
+//			rttr.addFlashAttribute("msg", "SUCCESS");
 		} else {
 //			System.out.println("WHY");
 			rttr.addFlashAttribute("msg", "FAIL");

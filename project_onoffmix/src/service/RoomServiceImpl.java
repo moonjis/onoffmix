@@ -150,11 +150,31 @@ public class RoomServiceImpl implements RoomService {
 		}
 	}
 
-	
+	@Override
+	public boolean outRoom(int num) {
+		try {
 
-
-	
+//			System.out.println(room);
+			iroomDao.outRoom(num);
+			Room room;
+			room = iroomDao.selectOne(num);
+			System.out.println("delete : " + room);
+			room.setCount(room.getCount() - 1);
+			iroomDao.updateCount(room);
+		
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
+	}
+
+	
+
+
+	
+
 
 
 //	@Override
