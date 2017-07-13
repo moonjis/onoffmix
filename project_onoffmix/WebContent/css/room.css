@@ -1,0 +1,165 @@
+@CHARSET "UTF-8";
+
+#roomWrap {
+	width: 990px;
+	margin: 0 auto;
+	min-height: 1540px;
+	border: 1px solid gray;
+	padding: 30px;
+	margin-bottom: 20px;
+}
+
+#roomImg {
+	width: 160px;
+	height: 570px;
+	float: left;
+}
+
+#step1 {
+	width: 160px;
+	height: 160px;
+	background: url("../images/thumbnail_null.jpg") no-repeat;
+	background-size: cover;
+	overflow: hidden;
+}
+
+#logoFile {
+	position: relative;
+	top: 40%;
+}
+
+#step1 img {
+	position: relative;
+	width: 100%;
+}
+
+#roomTitle {
+	width: 700px;
+	margin-left: 30px;
+	float: right;
+	border-bottom: 2px solid #cccccc;
+	padding-bottom: 20px;
+}
+
+#roomTitle table {
+	width: 100%;
+	height: 100%;
+	border-spacing: 0;
+}
+
+#roomTitle table select {
+	width: 108px;
+	height: 28px;
+}
+
+#roomTitle table input {
+	width: 472px;
+	height: 24px;
+	background: #f8f8f8;
+	border: 1px solid #cccccc;
+	position: relative;
+	top: -2px;
+}
+
+#roomTime {
+	width: 700px;
+	margin-left: 30px;
+	margin-top: 20px;
+	float: right;
+	border-bottom: 2px solid #cccccc;
+	padding-bottom: 20px;
+}
+
+#roomTime table {
+	width: 100%;
+	height: 100%;
+	border-spacing: 0;
+}
+
+#roomDate {
+	width: 700px;
+	margin-left: 30px;
+	margin-top: 20px;
+	float: right;
+	border-bottom: 2px solid #cccccc;
+	padding-bottom: 20px;
+}
+
+#roomDate table {
+	width: 100%;
+	height: 100%;
+	border-spacing: 0;
+}
+
+#roomplace {
+	width: 700px;
+	margin-left: 30px;
+	margin-top: 20px;
+	float: right;
+	border-bottom: 2px solid #cccccc;
+	padding-bottom: 20px;
+}
+
+#roomplace table input {
+	width: 472px;
+	height: 24px;
+	background: #f8f8f8;
+	border: 1px solid #cccccc;
+	position: relative;
+	top: -2px;
+}
+#roommember {
+	width: 700px;
+	margin-left: 30px;
+	margin-top: 30px;
+	float: right;
+	border-bottom: 2px solid #cccccc;
+	padding-bottom: 20px;
+}
+
+#roommeeting {
+	width: 700px;
+	margin-left: 30px;
+	margin-top: 20px;
+	float: right;
+	border-bottom: 2px solid #cccccc;
+	padding-bottom: 20px;
+}
+
+#roomdetail {
+	width: 700px;
+	margin-left: 30px;
+	margin-top: 30px;
+	float: right;
+	border-bottom: 2px solid #cccccc;
+	padding-bottom: 20px;
+}
+
+#roomnumver {
+	width: 700px;
+	margin-left: 30px;
+	margin-top: 30px;
+	float: right;
+	border-bottom: 2px solid #cccccc;
+	padding-bottom: 20px;
+}
+#roomemail{
+	width: 700px;
+	margin-left: 30px;
+	margin-top: 30px;
+	float: right;
+	border-bottom: 2px solid #cccccc;
+	padding-bottom: 20px;
+}
+#roomstart {
+	width: 700px;
+	margin-left: 30px;
+	margin-top: 30px;
+	float: right;
+	padding-bottom: 20px;
+}
+footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+      margin-top:40px;
+}
