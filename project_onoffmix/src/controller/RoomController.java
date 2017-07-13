@@ -115,6 +115,19 @@ public class RoomController {
 	}
 	
 	//전체 모임 삭제
+//	@RequestMapping(value = "/deleteRoom")
+//	public String deleteRoom(int num, RedirectAttributes rttr) {
+
+//		System.out.println("delete Room : " + room);
+//		if (roomService.deleteRoom(num)) {
+//			rttr.addFlashAttribute("msg", "SUCCESS");
+//		} else {
+//			System.out.println("WHY");
+//			rttr.addFlashAttribute("msg", "FAIL");
+//		}
+//		return "redirect:roomList";
+//	}
+	
 	@RequestMapping(value = "/deleteRoom")
 	public String deleteRoom(int num, RedirectAttributes rttr) {
 
@@ -122,7 +135,7 @@ public class RoomController {
 		if (roomService.deleteRoom(num)) {
 //			rttr.addFlashAttribute("msg", "SUCCESS");
 		} else {
-//			System.out.println("WHY");
+			System.out.println("WHY");
 			rttr.addFlashAttribute("msg", "FAIL");
 		}
 		return "redirect:roomList";

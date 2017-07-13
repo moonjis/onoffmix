@@ -46,34 +46,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{count}
 		where room_num = #{room_num}
 	</update>
-	<update id="deleteRoom" parameterType="int">
-		update room
-		set
-		del =
-		'Y'
-		where room_num = #{room_num}
-	</update>
-	<!-- <delete id="deleteRoom" parameterType="int"> -->
-	<!-- delete from room where -->
-	<!-- room_num -->
-	<!-- = #{num} -->
-	<!-- </delete> -->
-	<update id="outRoom" parameterType="int">
-		update joinRoom
-		set
-		del =
-		'Y'
-		where room_num = #{room_num}
-	</update>
-	<!-- <delete id="outRoom" parameterType="int"> -->
-	<!-- delete from joinRoom where -->
-	<!-- room_num -->
-	<!-- = #{num} -->
-	<!-- </delete> -->
+<!-- 	<update id="deleteRoom" parameterType="int"> -->
+<!-- 		update room -->
+<!-- 		set -->
+<!-- 		del = -->
+<!-- 		'Y' -->
+<!-- 		where room_num = #{room_num} -->
+<!-- 	</update> -->
+	<delete id="deleteRoom" parameterType="int">
+	delete from room where
+	room_num
+	= #{num}
+	</delete>
+	<delete id="deleteAttach" parameterType="int">
+	delete from attach where
+	room_num
+	= #{num}
+	</delete>	
+<!-- 	<update id="outRoom" parameterType="int"> -->
+<!-- 		update joinRoom -->
+<!-- 		set -->
+<!-- 		del = -->
+<!-- 		'Y' -->
+<!-- 		where room_num = #{room_num} -->
+<!-- 	</update> -->
+	<delete id="outRoom" parameterType="int">
+	delete from joinRoom where
+	room_num
+	= #{num}
+	</delete>
 	<select id="selectAll" resultType="room">
 		select b.*, a.fullname from
 		room b left join attach a on b.room_num = a.room_num where count !=
-		group_capacity and del = 'N'
+		group_capacity
 	</select>
 	<select id="selectCategory" resultType="category">
 		select * from category

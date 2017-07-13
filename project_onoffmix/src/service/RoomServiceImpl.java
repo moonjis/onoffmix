@@ -142,6 +142,7 @@ public class RoomServiceImpl implements RoomService {
 		try {
 //			System.out.println(room);
 			iroomDao.outRoom(num);
+			iroomDao.deleteAttach(num);
 			iroomDao.deleteRoom(num);		
 			return true;
 		} catch (Exception e) {
