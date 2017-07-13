@@ -8,30 +8,77 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into room values(
 		0,#{category_name},#{room_name},#{room_day1},#{room_day2},#{room_day3},#{room_day4},#{recruit_day1},
 		#{recruit_day2},#{recruit_day3},#{recruit_day4},#{location_1},#{location_2},#{group_capacity},0,#{room_introduce},
-		#{room_detail},#{owner_phone},#{owner_email},#{owner_name},#{owner_id}
+		#{room_detail},#{owner_phone},#{owner_email},#{owner_name},#{owner_id},'N'
+		)
+	</insert>
+	<insert id="joinRoom" parameterType="HashMap" useGeneratedKeys="true"
+		keyProperty="join_num">
+		insert into joinRoom values(
+		0,#{id},#{room_num},'N'
 		)
 	</insert>
 	<update id="updateRoom" parameterType="room">
 		update room
-		set category_name= #{category_name},
+		set
+		category_name= #{category_name},
 		room_name = #{room_name},
-		room_day1 = #{room_day1},
-		room_day2 = #{room_day2}, 
-		room_day3 = #{room_day3}, 
+		room_day1 =
+		#{room_day1},
+		room_day2 = #{room_day2},
+		room_day3 = #{room_day3},
 		room_day4 = #{room_day4},
-		recruit_day1 = #{recruit_day1}, 
-		recruit_day2 = #{recruit_day2},
+		recruit_day1 = #{recruit_day1},
+		recruit_day2 =
+		#{recruit_day2},
 		recruit_day3 = #{recruit_day3},
 		recruit_day4 = #{recruit_day4},
 		location_1 = #{location_1},
 		location_2 = #{location_2},
 		group_capacity = #{group_capacity},
 		room_introduce = #{room_introduce},
-		room_detail = #{room_detail}		
+		room_detail = #{room_detail}
 		where room_num = #{room_num}
 	</update>
+	<update id="updateCount" parameterType="room">
+		update room
+		set
+		count =
+		#{count}
+		where room_num = #{room_num}
+	</update>
+<!-- 	<update id="deleteRoom" parameterType="int"> -->
+<!-- 		update room -->
+<!-- 		set -->
+<!-- 		del = -->
+<!-- 		'Y' -->
+<!-- 		where room_num = #{room_num} -->
+<!-- 	</update> -->
+	<delete id="deleteRoom" parameterType="int">
+	delete from room where
+	room_num
+	= #{num}
+	</delete>
+	<delete id="deleteAttach" parameterType="int">
+	delete from attach where
+	room_num
+	= #{num}
+	</delete>	
+<!-- 	<update id="outRoom" parameterType="int"> -->
+<!-- 		update joinRoom -->
+<!-- 		set -->
+<!-- 		del = -->
+<!-- 		'Y' -->
+<!-- 		where room_num = #{room_num} -->
+<!-- 	</update> -->
+	<delete id="outRoom" parameterType="int">
+	delete from joinRoom where
+	room_num
+	= #{num}
+	</delete>
 	<select id="selectAll" resultType="room">
-		select b.*, a.fullname from room b left join attach a on b.room_num = a.room_num where count != group_capacity;
+		select b.*, a.fullname from
+		room b left join attach a on b.room_num = a.room_num where count !=
+		group_capacity
 	</select>
 	<select id="selectCategory" resultType="category">
 		select * from category
@@ -39,7 +86,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectOne" parameterType="int" resultType="room">
 		select
 		b.*, a.fullname from room b left join attach a
-		on b.room_num = a.room_num
+		on b.room_num =
+		a.room_num
 		where b.room_num = #{num}
 		<!-- select * from room where room_num = #{num} -->
 	</select>
@@ -54,7 +102,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<insert id="insertAttach" parameterType="HashMap">
 		insert
-		into attach (fullname,room_num)
+		into attach
+		(fullname,room_num)
 		values (#{fullname},#{num})
 	</insert>
 </mapper>

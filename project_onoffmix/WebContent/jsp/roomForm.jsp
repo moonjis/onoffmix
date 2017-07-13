@@ -3,9 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript"
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-<title>id : ${id }, name : ${name}, tel : ${tel }, email: ${email}</title>
+<title></title>
 <link rel="stylesheet" href="../css/room.css">
 <script src=""></script>
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
@@ -245,6 +251,7 @@
 </head>
 
 <body>
+<%@include file="/jsp/common/navi.jsp"%>
 	<div id="roomWrap">
 		<form action="createRoom" method="post" enctype="multipart/form-data" class="form-horizontal top-buffer center-block" id="roomForm" name="roomForm">
 			<input type = "hidden" value ="${member.name}" name="owner_name">
@@ -486,6 +493,6 @@
 			
 			</form>
 		</div>	
-
 </body>
+   <%@include file="/jsp/common/footer.jsp"%>
 </html>
