@@ -21,7 +21,7 @@
 		<property name="typeAliasesPackage" value="model"></property>
 	</bean>
 	
-	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="roomDao">
+	 <bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="roomDao">
 		<property name="sqlSessionFactory" ref="sqlsession"></property>
 		<property name="mapperInterface" value="dao.IroomDao"></property>
 	</bean>
@@ -29,6 +29,6 @@
 	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="memberDao">
 		<property name="sqlSessionFactory" ref="sqlsession"></property>
 		<property name="mapperInterface" value="dao.ImemberDao"></property>
-	</bean>
+	</bean> 
 	
 </beans>
