@@ -177,6 +177,28 @@ public class RoomServiceImpl implements RoomService {
 	
 
 
+	@Override
+	public List<Room> selectMyRooms(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		String id = map.get("id").toString();
+		
+		int allRows = iroomDao.getCntAllMyRooms(id);
+		int nowPage = (Integer)map.get("page");
+		nowPage = nowPage-1;
+		int rows = 10;
+		int allPage = allRows / rows;
+		int firstPage = (nowPage) / 10;// 1~10까지만 표시할 경우
+		int lastPage = (nowPage) / 10 + 9;
+		lastPage = allPage < lastPage ? allPage : lastPage; //마지막 페이지가 모든 페이지 갯수보다 큰 경우에
+		map.put("idx", rows*nowPage);
+		map.put("rows", rows);
+		List<Room> list = iroomDao.selectMyRooms(map);
+		System.out.println(list.get(0));		
+		return list;
+	}
+	
+	
+
 
 //	@Override
 //	public void addStudent(Student student) {

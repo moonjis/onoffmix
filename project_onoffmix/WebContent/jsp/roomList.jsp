@@ -58,11 +58,16 @@
               <c:if test="${room != null}">
                      <div class="col-lg-3 col-sm-4  col-md-3">
                         <div style=" border: 1px solid gray; border-radius: 7px;" class="thumbnail content_box">
-                           <img style=" width: 300px; height: 250px; padding-top: 20px;" src="/project_onoffmix/images/room/${room.fullname}"/>
-                           <div class="caption">
-						<h3><a style="border: clear: both; margin-left: 120px; " href="roomView?num=${room.room_num}">${room.room_name}</a><a href="deleteRoom?num=${room.room_num}">모임 전체삭제</a></h3>
-					 </div>
-                        </div>
+                           <img style=" width: 300px; height: 250px; padding-top: 20px;" src="${path}/images/room/${room.fullname}"/>
+
+							<div class="caption">
+								<h3>
+									<a style="border: clear: both; margin-left: 120px;"
+										href="roomView?num=${room.room_num}">${room.room_name}</a><a
+										href="deleteRoom?num=${room.room_num}">모임 전체삭제</a>
+								</h3>
+							</div>
+						</div>
                      </div>
               </c:if>
             </c:forEach>

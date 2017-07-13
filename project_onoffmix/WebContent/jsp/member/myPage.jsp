@@ -14,77 +14,116 @@
 <script type="text/javascript"
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="${path}/css/common.css" />
-<style type="text/css">
-footer {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-}
-</style>
+
 </head>
 
 <body>
 	<%@include file="/jsp/common/navi.jsp"%>
 	<div class="container">
 
-		
+
 		<div class="row text-center top-double-buffer">
-		<div class="col-sm-5 sidenav top-double-buffer">
-			<form action="edit" method="post" enctype="multipart/form-data" class="form-horizontal top-buffer center-block" id="joinForm" name="joinForm">
-				<div class="form-group">
-					<a href="#"><img src="${path}/images/basic.PNG"
-						class="img-rounded" alt="Cinque Terre" id="imgSetter" width="150"
-						height="150"></a>
-				</div>
-				<div class="hidden">
-					<input type="file" name="photo" id="btnPhoto"
-						accept="image/gif, image/jpeg, image/png">
-				</div>
-				<div class="form-group">
-					<label class="col-xs-3 control-label">Name</label>
-					<div class="col-xs-6">
-						<input id="data_name" type="text" value="${attr_member.name}" class="form-control nessesary"
-							name="name" placeholder="Name">
+			<div class="col-sm-5 sidenav top-double-buffer">
+				<form action="edit" method="post" enctype="multipart/form-data"
+					class="form-horizontal top-buffer center-block" id="joinForm"
+					name="joinForm">
+					<div class="form-group">
+						<a href="#"><img src="${path}/images/basic.PNG"
+							class="img-rounded" alt="Cinque Terre" id="imgSetter" width="150"
+							height="150"></a>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-xs-3 control-label">Password</label>
-					<div class="col-xs-6">
-						<input id="password" type="password"
-							class="form-control nessesary" name="pass" placeholder="Password">
+					<div class="hidden">
+						<input type="file" name="photo" id="btnPhoto"
+							accept="image/gif, image/jpeg, image/png">
 					</div>
-				</div>				
-				<div class="form-group">
-					<label class="col-xs-3 control-label">Email</label>
-					<div class="col-xs-6">
-						<input id="email" type="text" value="${attr_member.email}" class="form-control" name="email"
-							placeholder="Email">
+					<div class="form-group">
+						<label class="col-xs-3 control-label">Name</label>
+						<div class="col-xs-6">
+							<input id="data_name" type="text" value="${attr_member.name}"
+								class="form-control nessesary" name="name" placeholder="Name">
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-xs-3 control-label">Phone</label>
-					<div class="col-xs-6">
-						<input id="phone" type="text" value="${attr_member.phone}" class="form-control" name="phone"
-							placeholder="Phone">
-					</div> 
-				</div>
-				<div class="form-group top-double-buffer">
-					<a href="#" class=" btn btn-md btn-primary col-xs-6" id="btnSubmit"
-						style="float: none">Edit</a>
-				</div>
-			</form>
+					<div class="form-group">
+						<label class="col-xs-3 control-label">Password</label>
+						<div class="col-xs-6">
+							<input id="password" type="password"
+								class="form-control nessesary" name="pass"
+								placeholder="Password">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 control-label">Email</label>
+						<div class="col-xs-6">
+							<input id="email" type="text" value="${attr_member.email}"
+								class="form-control" name="email" placeholder="Email">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 control-label">Phone</label>
+						<div class="col-xs-6">
+							<input id="phone" type="text" value="${attr_member.phone}"
+								class="form-control" name="phone" placeholder="Phone">
+						</div>
+					</div>
+					<div class="form-group top-double-buffer">
+						<a href="#" class=" btn btn-md btn-primary col-xs-6"
+							id="btnSubmit" style="float: none">Edit</a>
+					</div>
+				</form>
 			</div>
 			<div class="col-sm-7">
 				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#create">개설한 모임</a></li>
+					<li class="active"><a data-toggle="tab" href="#create">개설한
+							모임</a></li>
 					<li><a data-toggle="tab" href="#join">참여한 모임</a></li>
 				</ul>
 				<div class="tab-content">
-					<div id="create" class="tab-pane fade in active top-double-buffer">
-						<h3>create</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-							sed do eiusmod tempor incididunt ut labore et dolore magna
-							aliqua.</p>
+					<div id="create" class="tab-pane fade in active top-double-buffer">						
+						<div class="top-buffer">
+							<div class="row">
+								<div class="col-lg-4 ">
+									<div class="thumbnail content_box">
+										<img src="${path}/images/onoffmix1.PNG" alt="...">
+										<div class="caption">
+											<h3>Thumbnail label</h3>
+											<p>Lorem Ipsum is simply dummy text of the printing and
+												typesetting industry.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="thumbnail content_box">
+										<img src="${path}/images/onoffmix1.PNG" alt="...">
+										<div class="caption">
+											<h3>Thumbnail label</h3>
+											<p>Lorem Ipsum is simply dummy text of the printing and
+												typesetting industry.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-4 ">
+									<div class="thumbnail content_box">
+										<img src="${path}/images/onoffmix1.PNG" alt="...">
+										<div class="caption">
+											<h3>Thumbnail label</h3>
+											<p>Lorem Ipsum is simply dummy text of the printing and
+												typesetting industry.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="thumbnail content_box">
+										<img src="${path}/images/onoffmix1.PNG" alt="...">
+										<div class="caption">
+											<h3>Thumbnail label</h3>
+											<p>Lorem Ipsum is simply dummy text of the printing and
+												typesetting industry.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
 					</div>
 					<div id="join" class="tab-pane fade top-double-buffer">
 						<h3>join</h3>

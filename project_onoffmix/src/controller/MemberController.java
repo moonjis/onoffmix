@@ -3,6 +3,7 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -20,6 +21,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dao.ImemberDao;
 import model.Member;
+import model.Room;
+import service.RoomService;
 
 @RequestMapping("/member")
 @Controller
@@ -27,6 +30,9 @@ public class MemberController {
 	private final static String MEMBER_DS = "member/";
 	@Autowired
 	ImemberDao memDao;
+	
+	@Autowired
+	RoomService roomService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginForm() {
@@ -105,10 +111,28 @@ public class MemberController {
 			model.addAttribute("attr_member", member);
 		} else {
 			r_attr.addFlashAttribute("msg", "로그인 해주세요.");
-			return "redirect:/login";
+			return "redirect:login";
 		}
 
 		return MEMBER_DS + "myPage";
+	}
+	
+	@RequestMapping(value="/myroomlist")
+	public ResponseEntity<List<Room>> getMyRoomList(HttpSession session){
+		ResponseEntity<List<Room>> entity = null;
+		List<Room> list = null;
+		HashMap<String,Object> member = (HashMap<String,Object>)session.getAttribute("member");
+		if(member != null){
+			String id = (String)member.get("id");
+			HashMap<String,Object> map = new HashMap<>();
+			map.put("id", id);
+			map.put("page",1);
+			//list = roomService.selectMyRooms(map);			
+			entity = new ResponseEntity<List<Room>>(list,HttpStatus.OK);
+		} else {
+			entity = new ResponseEntity<List<Room>>(list,HttpStatus.BAD_REQUEST);
+		}		
+		return entity;
 	}
 
 	private String uploader(MultipartFile uploadfile, HttpSession session) {
@@ -130,6 +154,8 @@ public class MemberController {
 		}
 		return null;
 	}
+	
+	
 
 	public String getUuid() {
 		return UUID.randomUUID().toString().replaceAll("-", "");
