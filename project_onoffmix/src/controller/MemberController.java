@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -117,16 +118,18 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/myroomlist")
-	public ResponseEntity<List<Room>> getMyRoomList(HttpSession session){
+	@ResponseBody
+	public ResponseEntity<List<Room>> getMyRoomList(HttpSession session,@RequestParam(required = false,defaultValue = "1") int page){
 		ResponseEntity<List<Room>> entity = null;
 		List<Room> list = null;
 		HashMap<String,Object> member = (HashMap<String,Object>)session.getAttribute("member");
 		if(member != null){
 			String id = (String)member.get("id");
-			HashMap<String,Object> map = new HashMap<>();
+			HashMap<String,Object> map = new HashMap<>();			
 			map.put("id", id);
-			map.put("page",1);
-			//list = roomService.selectMyRooms(map);			
+			map.put("page",page);
+			
+			list = roomService.selectMyRooms(map);			
 			entity = new ResponseEntity<List<Room>>(list,HttpStatus.OK);
 		} else {
 			entity = new ResponseEntity<List<Room>>(list,HttpStatus.BAD_REQUEST);

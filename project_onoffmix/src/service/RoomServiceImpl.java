@@ -133,7 +133,7 @@ public class RoomServiceImpl implements RoomService {
 		map.put("idx", rows*nowPage);
 		map.put("rows", rows);
 		List<Room> list = iroomDao.selectMyRooms(map);
-		System.out.println(list.get(0));		
+//		System.out.println(list.get(0));		
 		return list;
 	}
 	
