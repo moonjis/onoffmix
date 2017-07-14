@@ -20,17 +20,9 @@ public interface IroomDao {
 	public void outRoom(int num);
 	public void insertAttach(HashMap<String, Object> params);
 	public int getCount();
-<<<<<<< HEAD
+
 	public List<Room> selectMyRooms(HashMap<String, Object> map);
 	public int getCntAllMyRooms(String id);
-=======
 
-
-	
-
-
-
-	
->>>>>>> branch 'Nam' of https://github.com/moonjis/onoffmix.git
 	
 }

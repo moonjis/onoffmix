@@ -169,7 +169,6 @@ public class RoomServiceImpl implements RoomService {
 			return false;
 		}
 	}
-	}
 
 	
 
@@ -197,7 +196,7 @@ public class RoomServiceImpl implements RoomService {
 		return list;
 	}
 	
-	
+}
 
 
 //	@Override

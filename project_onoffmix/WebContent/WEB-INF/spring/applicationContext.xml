@@ -32,4 +32,12 @@
 		<property name="mapperInterface" value="dao.ImemberDao"></property>
 	</bean>
 	
+	
+	<bean id="replyDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="sqlsession"></property>
+		<property name="mapperInterface" value="dao.IReplyDao"></property>
+	</bean>
+
+	
+	
 </beans>
