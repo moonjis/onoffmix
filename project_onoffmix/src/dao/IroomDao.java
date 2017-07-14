@@ -20,12 +20,6 @@ public interface IroomDao {
 	public void outRoom(int num);
 	public void insertAttach(HashMap<String, Object> params);
 	public int getCount();
-
-
-	
-
-
-
-	
-	
+	public List<Room> selectMyRooms(HashMap<String, Object> map);
+	public int getCntAllMyRooms(String id);	
 }
