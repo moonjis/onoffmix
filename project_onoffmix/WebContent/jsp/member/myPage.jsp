@@ -15,14 +15,12 @@
 <script type="text/javascript"
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="${path}/css/common.css" />
-
+<link rel="stylesheet" href="${path}/css/mypage.css"/>
 </head>
 
 <body>
 	<%@include file="/jsp/common/navi.jsp"%>
 	<div class="container">
-
-
 		<div class="row text-center top-double-buffer">
 			<div class="col-sm-5 sidenav top-double-buffer">
 				<form action="edit" method="post" enctype="multipart/form-data"
@@ -95,8 +93,8 @@
 		</div>
 	</div>
 
-	<div class="col-lg-4 hidden" id="template_room" style="cursor:pointer">
-		<div class="thumbnail content_box">
+	<div class="col-lg-4 hidden" id="template_room">
+		<div class="thumbnail content_box roomBox">
 			<img class="tr_image" src="${path}/images/onoffmix1.PNG" alt="...">
 			<div class="caption">
 				<h3 class="tr_title">Thumbnail label</h3>

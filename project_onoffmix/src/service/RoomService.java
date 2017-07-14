@@ -16,7 +16,7 @@ public interface RoomService {
 	public List<Category> getCategoryList();
 	public Room readRoom(int num);
 	public boolean createRoom(HttpServletRequest req, Room room, MultipartFile file);
-	public List<Room> selectMyRooms(HashMap<String, Object> map);
+	public HashMap<String,Object> selectMyRooms(HashMap<String, Object> map);
 	public boolean joinRoom(String id, Room room);
 	public boolean deleteRoom(int num);
 	public boolean updateRoom(Room room);
