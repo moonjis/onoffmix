@@ -16,6 +16,7 @@ import dao.IroomDao;
 import model.Category;
 import model.Room;
 
+
 @Service
 public class RoomServiceImpl implements RoomService {
 
@@ -186,6 +187,9 @@ public class RoomServiceImpl implements RoomService {
 		// System.out.println(list.get(0));
 		return result;
 	}
+
+	
+
 
 }
 
