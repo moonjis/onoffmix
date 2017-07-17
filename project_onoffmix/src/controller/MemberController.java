@@ -123,8 +123,7 @@ public class MemberController {
 	public ResponseEntity<HashMap<String,Object>> getMyRoomList(HttpSession session,
 			@RequestParam(required = false,defaultValue = "1") int page,
 			@RequestParam(required = false,defaultValue = "create") String type){
-		ResponseEntity<HashMap<String,Object>> entity = null;
-		List<Room> list = null;
+		ResponseEntity<HashMap<String,Object>> entity = null;		
 		HashMap<String,Object> member = (HashMap<String,Object>)session.getAttribute("member");
 		HashMap<String,Object> result = new HashMap<>();
 		if(member != null){
@@ -144,7 +143,25 @@ public class MemberController {
 		}		
 		return entity;
 	}
-
+	@RequestMapping(value="/edit")
+	@ResponseBody
+	public ResponseEntity<String> edit(HttpSession session,@RequestParam HashMap<String,Object> member){
+		System.out.println(member);
+		ResponseEntity<String> result = null;		
+		HashMap<String,Object> h_member = (HashMap<String,Object>)session.getAttribute("member");
+		if(h_member!= null){
+			String id = (String)h_member.get("id");
+			member.put("id", id);
+			if(id != null && memDao.updateOne(member) > 0){
+				//업데이트 성공
+				result = new ResponseEntity<String>("ok",HttpStatus.OK);
+			}		
+		}else {
+			result = new ResponseEntity<String>("nope",HttpStatus.BAD_REQUEST);			
+		}		
+		return result;
+	}
+	
 	private String uploader(MultipartFile uploadfile, HttpSession session) {
 		System.out.println("uploadfile!");
 		if (uploadfile != null) {

@@ -25,8 +25,8 @@
 		<div class="row text-center top-double-buffer">
 			<div class="col-sm-5 sidenav top-double-buffer">
 				<form action="edit" method="post" enctype="multipart/form-data"
-					class="form-horizontal top-buffer center-block" id="joinForm"
-					name="joinForm">
+					class="form-horizontal top-buffer center-block" id="editForm"
+					name="editForm">
 					<div class="form-group">
 						<a href="#"><img src="${path}/images/member/${attr_member.photo}"
 						onError="this.src='${path}/images/basic.PNG'"
@@ -129,7 +129,7 @@
 	//텝누르면 리스트 바뀌는지 확인!!!
 	$("#btnSubmit").on("click", function() {
 		var bool_reject = false;
-		$("#joinForm").find('input.nessesary').each(function() {
+		$("#editForm").find('input.nessesary').each(function() {
 			if ($(this).val() == "") {
 				$(this).parents('.form-group').addClass("has-error");
 				bool_reject = true;
@@ -139,9 +139,21 @@
 		});
 		if (!bool_reject) {
 			//submit
-			$("#loginForm").submit();
+			updateMember();
 		}
 	});
+	
+	function updateMember(){
+		var $editForm = $("#editForm");
+		$.ajax({
+			url:'edit',
+			data : $editForm.serialize(),
+			method : 'POST',
+			success : function(response){
+				alert("업데이트 되었습니다."); <li data-num= "br_num1">  $(this).parent().attr("data-rno")
+			}
+		});
+	}
 	
 	$("#tab_list").on("click","li",function(){
 		listType = $(this).attr("data-type");
