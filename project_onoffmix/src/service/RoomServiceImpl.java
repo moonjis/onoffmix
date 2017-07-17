@@ -173,22 +173,55 @@ public class RoomServiceImpl implements RoomService {
 		int allRows = iroomDao.getCntAllMyRooms(id);
 		int nowPage = (Integer) map.get("page");
 		nowPage = nowPage - 1;
-		int rows = 10;
-		int allPage = allRows / rows;
-		int firstPage = (nowPage) / 10;// 1~10까지만 표시할 경우
-		int lastPage = (nowPage) / 10 + 9;
+		int rows = 6;
+		/*int allPage = allRows / rows + 1;
+		int firstPage = (nowPage/10)*10 + 1;// 1~10까지만 표시할 경우
+		int lastPage = firstPage + 9;
 		lastPage = allPage < lastPage ? allPage : lastPage; // 마지막 페이지가 모든 페이지
 															// 갯수보다 큰 경우에
-		map.put("idx", rows * nowPage);
-		map.put("rows", rows);
+*/		map.put("idx", rows * nowPage);
+		map.put("rows", rows);		
 		HashMap<String,Object> result = new HashMap<>();
 		List<Room> list = iroomDao.selectMyRooms(map);
+		result.putAll(getPageInfo(allRows,rows,nowPage));
 		result.put("list", list);
-		// System.out.println(list.get(0));
+//		result.put("firstPage", firstPage);
+//		result.put("lastPage", lastPage);
+		result.put("nowPage", nowPage+1);
+		 
 		return result;
 	}
-
 	
+	private HashMap<String,Object> getPageInfo(int allRows, int rows, int nowPage){
+		HashMap<String,Object> pagingInfo = new HashMap<>();
+		int allPage = allRows / rows + 1;
+		int firstPage = (nowPage/10)*10 + 1;// 1~10까지만 표시할 경우
+		int lastPage = firstPage + 9;
+		lastPage = allPage < lastPage ? allPage : lastPage; // 마지막 페이지가 모든 페이지
+															// 갯수보다 큰 경우에
+		pagingInfo.put("firstPage", firstPage);
+		pagingInfo.put("lastPage", lastPage);
+		pagingInfo.put("firstPage", firstPage);
+		return pagingInfo;
+	}
+
+	@Override
+	public HashMap<String,Object> selectJoinRooms(HashMap<String, Object> params) {
+		String id = params.get("id").toString();
+
+		int allRows = iroomDao.getCntAllJoinRooms(id);
+		int nowPage = (Integer) params.get("page");
+		nowPage = nowPage - 1;
+		int rows = 6;
+		params.put("rows", rows);		
+		HashMap<String,Object> result = new HashMap<>();
+		List<Room> list = iroomDao.selectJoinRooms(params);
+		result.putAll(getPageInfo(allRows,rows,nowPage));
+		result.put("list", list);
+		result.put("nowPage", nowPage+1);
+		 
+		return result;
+	}
 
 
 }

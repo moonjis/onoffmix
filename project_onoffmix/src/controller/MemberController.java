@@ -120,7 +120,9 @@ public class MemberController {
 	
 	@RequestMapping(value="/myroomlist")
 	@ResponseBody
-	public ResponseEntity<HashMap<String,Object>> getMyRoomList(HttpSession session,@RequestParam(required = false,defaultValue = "1") int page){
+	public ResponseEntity<HashMap<String,Object>> getMyRoomList(HttpSession session,
+			@RequestParam(required = false,defaultValue = "1") int page,
+			@RequestParam(required = false,defaultValue = "create") String type){
 		ResponseEntity<HashMap<String,Object>> entity = null;
 		List<Room> list = null;
 		HashMap<String,Object> member = (HashMap<String,Object>)session.getAttribute("member");
@@ -130,9 +132,12 @@ public class MemberController {
 			HashMap<String,Object> map = new HashMap<>();			
 			map.put("id", id);
 			map.put("page",page);			
-			result = roomService.selectMyRooms(map);
-			//result에다가 페이징 정보 넣기! 
 			
+			if(type.equals("create")){	//개설한 모임 리스트 출력
+				result = roomService.selectMyRooms(map); 
+			}else if(type.equals("join")){	//참여한 모임 리스트 출력
+				result = roomService.selectJoinRooms(map); 
+			}			
 			entity = new ResponseEntity<HashMap<String,Object>>(result,HttpStatus.OK);
 		} else {
 			entity = new ResponseEntity<HashMap<String,Object>>(result,HttpStatus.BAD_REQUEST);

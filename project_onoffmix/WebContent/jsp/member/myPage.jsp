@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-<c:set var="room_img_path" value="${pageContext.request.contextPath }/images/room/" />
+<c:set var="room_img_path"
+	value="${pageContext.request.contextPath }/images/room/" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,7 +16,7 @@
 <script type="text/javascript"
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="${path}/css/common.css" />
-<link rel="stylesheet" href="${path}/css/mypage.css"/>
+<link rel="stylesheet" href="${path}/css/mypage.css" />
 </head>
 
 <body>
@@ -71,16 +72,15 @@
 				</form>
 			</div>
 			<div class="col-sm-7">
-				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#create">개설한
+				<ul class="nav nav-tabs" id="tab_list">
+					<li class="active"><a data-toggle="tab" href="#create" data-type="create">개설한
 							모임</a></li>
-					<li><a data-toggle="tab" href="#join">참여한 모임</a></li>
+					<li><a data-toggle="tab" href="#join" data-type="join">참여한 모임</a></li>
 				</ul>
 				<div class="tab-content">
-					<div id="create" class="tab-pane fade in active top-double-buffer">						
+					<div id="create" class="tab-pane fade in active top-double-buffer">
 						<div class="top-buffer">
-							<div class="row" id="listDiv">								
-							</div>
+							<div class="row" id="listDiv"></div>
 						</div>
 					</div>
 					<div id="join" class="tab-pane fade top-double-buffer">
@@ -88,6 +88,9 @@
 						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco
 							laboris nisi ut aliquip ex ea commodo consequat.</p>
 					</div>
+					<ul id="pagination" class="pagination">
+
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -98,15 +101,15 @@
 			<img class="tr_image" src="${path}/images/onoffmix1.PNG" alt="...">
 			<div class="caption">
 				<h3 class="tr_title">Thumbnail label</h3>
-				<p class="tr_description">Lorem Ipsum is simply dummy text of the printing and
-					typesetting industry.</p>
+				<p class="tr_description">Lorem Ipsum is simply dummy text of
+					the printing and typesetting industry.</p>
 			</div>
 		</div>
 	</div>
 </body>
 <%@include file="/jsp/common/footer.jsp"%>
 <script type="text/javascript">
-	
+	//텝누르면 리스트 바뀌는지 확인!!!
 	$("#btnSubmit").on("click", function() {
 		var bool_reject = false;
 		$("#joinForm").find('input.nessesary').each(function() {
@@ -123,32 +126,74 @@
 		}
 	});
 	
-	$(function(){
-		getList(1);		
+	$("#tab_list").on("click","li",function(){
+		listType = $(this).attr("data-type");
+		console.log(listType);
+		getList(1);
 	});
-		
-	function getList(page){
+	$(function() {
+		getList(1);
+	});
+	var listType = "create";
+	function getList(page) {
 		$.ajax({
 			url : "myroomlist",
-			data : {page : page},
-			success : function(response){
+			data : {
+				page : page,
+				type : listType
+			},
+			success : function(response) {
 				console.log(response);
-				$listDiv = $("#listDiv");				
-				for(var idx in response){
-					
-					$listDiv.append(makeRow(response[idx]));	
+				$listDiv = $("#listDiv");
+				$listDiv.empty();
+				for (var idx in response.list) {
+					$listDiv.append(makeRow(response.list[idx]));
 				}
+				//페이징 처리하기
+				makePagination(response.firstPage, response.lastPage,response.nowPage);
 			}
 		});
 	}
-	
-	function makeRow(row_info){
+
+	function makePagination(firstPage, lastPage,nowPage) {
+		var $pagination = $("#pagination");
+		$pagination.empty();
+		for (var i = firstPage; i <= lastPage; i++) {
+			var $li = $('<li />',{
+				click : function(e) {
+					e.preventDefault();
+					if ($(this).hasClass("active")) {
+						$(this).removeClass("active");
+					} else {
+						$(this).addClass("active");
+					}
+				}
+			});
+			$pagination.append($li);
+			var $a = $('<a />', {
+				href : '#',
+				text : i,
+				click : function(e) {
+					getList($(this).text());
+				}
+			});
+			if (nowPage == i) {	
+				$li.addClass("active");
+			}
+			$li.append($a);
+
+		}
+	}
+
+	function makeRow(row_info) {
 		var $newRow = $("#template_room").clone();
-		$newRow.find(".tr_image").attr("src","${room_img_path}"+row_info.fullname);
+		$newRow.find(".tr_image").attr("src", "${room_img_path}" + row_info.fullname);
 		$newRow.find(".tr_title").text(row_info.room_name);
 		$newRow.find(".tr_description").text(row_info.room_introduce);
-		$newRow.on("click",function(){location.href="${path}/room/roomView?num="+row_info.room_num})
-		
+		$newRow.on("click", function() {
+			location.href = "${path}/room/roomView?num=" + row_info.room_num
+		})
+
 		$newRow.removeClass("hidden");
 		return $newRow;
 	}

@@ -21,7 +21,6 @@ public interface RoomService {
 	public boolean deleteRoom(int num);
 	public boolean updateRoom(Room room);
 	public boolean outRoom(int num);
-
-
-
+	public HashMap<String,Object> selectJoinRooms(HashMap<String, Object> params);
+	
 }
