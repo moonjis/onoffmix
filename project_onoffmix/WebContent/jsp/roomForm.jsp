@@ -27,7 +27,32 @@
 	//[1] 기본값 설정
 	$(function() {
 	
-
+	    var now = new Date();
+	    var month = (now.getMonth() + 1);               
+	    var day = now.getDate();
+	    var hour = now.getHours();
+	    var min = now.getMinutes();
+	    
+	    if(hour < 10)
+			hour = "0" + hour;
+	    if(min < 10)
+	    	min = "0" + min;
+	    if(month < 10) 
+	        month = "0" + month;
+	    if(day < 10) 
+	        day = "0" + day;
+	    
+	    var today = now.getFullYear() + '-' + month + '-' + day;
+	    var nowtime = hour + ':' + min;
+	    
+	    $("#room_day1").val(today);
+	    $("#room_day2").val(nowtime);
+	    $("#room_day4").val(nowtime);
+	    $("#recruit_day1").val(today);
+	    $("#recruit_day2").val(nowtime);
+	    $("#recruit_day3").val(today);
+	    $("#recruit_day4").val(nowtime);
+	    
 		$("#file-upload").hide("fast");
 
 		$("#setup1").on("click", function() {
@@ -399,9 +424,9 @@
 						</td>
 						<td>
 							<input type="date" name="room_day1" id ="room_day1">
-							<input type="time" name="room_day2" id ="room_day2"> 부터 &nbsp;&nbsp;&nbsp;
+							<input type="time" name="room_day2" id ="room_day2" step="300"> 부터 &nbsp;&nbsp;&nbsp;
 							<input type="date" class="time1" name="room_day3" id ="room_day3">
-							<input type="time" class="time" name="room_day4" id ="room_day4"> 까지
+							<input type="time" class="time" name="room_day4" id ="room_day4" step="300"> 까지
 						</td>
 					</tr>
 					
@@ -425,9 +450,9 @@
 					
 						<td>
 							<input style="background: #f8f8f8; border: 1px solid #cccccc; position: relative;" type="date" name="recruit_day1" id="recruit_day1">
-							<input style="border: 1px solid #cccccc;" type="time" name="recruit_day2" id="recruit_day2"> 부터 &nbsp;&nbsp;&nbsp;
+							<input style="border: 1px solid #cccccc;" type="time" name="recruit_day2" id="recruit_day2" step="300"> 부터 &nbsp;&nbsp;&nbsp;
 							<input style="background: #f8f8f8; border: 1px solid #cccccc; position: relative;" type="date" name="recruit_day3" id="recruit_day3">
-							<input style="border: 1px solid #cccccc;" type="time" name="recruit_day4" id="recruit_day4"> 까지
+							<input style="border: 1px solid #cccccc;" type="time" name="recruit_day4" id="recruit_day4" step="300"> 까지
 						</td>
 					</tr>
 					<tr>
