@@ -82,7 +82,7 @@ table.cherry th {
 }
 table.cherry td {
     width: 820px;
-    
+    height: 84px;
     padding: 10px;
     vertical-align: top;
     border-bottom: 1px solid #ccc;
@@ -171,7 +171,7 @@ function getOriginalName(fileName){
 			dataTyape:"json",
 			success : function(result){
 				console.log(result);
-				console.log(${reply.replyer});
+				
 				var output = "<table class='cherry'>";
 				for(var i in result){
 					
@@ -179,10 +179,8 @@ function getOriginalName(fileName){
 					output += "<th>"+result[i].replyer+"<br>";
 					output += "("+changeDate(result[i].regdate)+")<br>";
 					output += "<td data-rno='"+result[i].rno+"'>"+result[i].replytext
-				//	output += "<c:if test='"+${sessionScope.member.id !=null}+"'><div id='btnModify'><a href='#listReply'>수정</a></div></c:if>";
-
-						
-					if(${(sessionScope.member.id !=null)} && ${sessionScope.member.id}.equals(${sessionScope.reply.replyer})){
+				
+				if(${sessionScope.member.id !=null} && "${sessionScope.member.id}"==(result[i].replyer)){
 				
 					output+=	"<div id='btnModify'><a href='#listReply'>수정</a></div>";
 					}
@@ -204,7 +202,7 @@ function getOriginalName(fileName){
 		var reply = $(this).parent(); 
 		var replytext = reply.text();
 		  var le = $("#replytext").val().length-2;
-	      var result2 = replytext.slice(1,le);
+	      var result2 = replytext.slice(0,le);
 	      
 		console.log(reply.attr("data-rno"));
 		var rno = reply.attr("data-rno");
