@@ -65,6 +65,16 @@
 .content_box:hover{
 	border : 0.5px solid #4195f5;
 }
+.roomBox {
+	cursor: pointer;
+	height: 280px;
+}
+
+@media ( max-width : 1200px) {
+	.roomBox {
+		height: auto;
+	}
+}
  footer {
       background-color: #f2f2f2;
       padding: 25px;

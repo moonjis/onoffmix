@@ -76,15 +76,15 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="${path}/images/1.PNG" alt="Los Angeles">
+					<img src="${path}/images/1.png" alt="Los Angeles">
 				</div>
 
 				<div class="item">
-					<img src="${path}/images/2.PNG" alt="Chicago">
+					<img src="${path}/images/2.png" alt="Chicago">
 				</div>
 
 				<div class="item">
-					<img src="${path}/images/3.PNG" alt="New York">
+					<img src="${path}/images/3.png" alt="New York">
 				</div>
 			</div>
 
@@ -102,7 +102,7 @@
 	<div class="container top-buffer">
 
 		<div class="row">
-			<div class="col-lg-3 col-sm-4 col-md-3">
+			<%-- <div class="col-lg-3 col-sm-4 col-md-3">
 				<div class="thumbnail content_box">
 					<img src="${path}/images/onoffmix1.PNG" alt="...">
 					<div class="caption">
@@ -131,17 +131,18 @@
 							typesetting industry.</p>
 					</div>
 				</div>
-			</div>
-			<div class="col-lg-3 col-sm-4 col-md-3">
-				<div class="thumbnail content_box">
-					<img src="${path}/images/onoffmix1.PNG" alt="...">
-					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry.</p>
+			</div> --%>
+			<c:forEach var="room" items="${list}">
+				<div class="col-lg-3 col-sm-4 col-md-3">
+					<div class="thumbnail content_box roomBox" onclick="location.href='room/roomView?num=${room.room_num}'">
+						<img src="${path}/images/room/${room.fullname}" onError="this.src='${path}/images/onoffmix1.PNG'" alt="...">
+						<div class="caption">
+							<h3>${room.room_name}</h3>
+							<p>${room.room_introduce}</p>
+						</div>
 					</div>
 				</div>
-			</div>
+			</c:forEach>			
 		</div>
 
 	</div>	

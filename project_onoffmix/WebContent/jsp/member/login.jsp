@@ -15,11 +15,11 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="${path}/css/common.css" />
 <style type="text/css">
-footer {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-}
+	@media (min-height:670px){
+		.container {
+		height: 450px;		
+		} 
+	}
 </style>
 </head>
 

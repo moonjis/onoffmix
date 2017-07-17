@@ -24,4 +24,5 @@ public interface IroomDao {
 	public int getCntAllMyRooms(String id);	
 	public List<Room> selectJoinRooms(HashMap<String, Object> params);
 	public int getCntAllJoinRooms(String id);
+	public List<Room> getMainRooms();
 }

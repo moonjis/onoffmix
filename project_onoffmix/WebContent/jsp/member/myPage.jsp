@@ -16,7 +16,11 @@
 <script type="text/javascript"
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="${path}/css/common.css" />
-<link rel="stylesheet" href="${path}/css/mypage.css" />
+<style type="text/css">
+.container{
+		height:680px;
+	}
+</style>
 </head>
 
 <body>
@@ -150,7 +154,7 @@
 			data : $editForm.serialize(),
 			method : 'POST',
 			success : function(response){
-				alert("업데이트 되었습니다."); <li data-num= "br_num1">  $(this).parent().attr("data-rno")
+				alert("업데이트 되었습니다."); 
 			}
 		});
 	}
