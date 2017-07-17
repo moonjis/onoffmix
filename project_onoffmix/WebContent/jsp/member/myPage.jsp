@@ -28,7 +28,8 @@
 					class="form-horizontal top-buffer center-block" id="joinForm"
 					name="joinForm">
 					<div class="form-group">
-						<a href="#"><img src="${path}/images/basic.PNG"
+						<a href="#"><img src="${path}/images/member/${attr_member.photo}"
+						onError="this.src='${path}/images/basic.PNG'"
 							class="img-rounded" alt="Cinque Terre" id="imgSetter" width="150"
 							height="150"></a>
 					</div>
@@ -73,20 +74,36 @@
 			</div>
 			<div class="col-sm-7">
 				<ul class="nav nav-tabs" id="tab_list">
-					<li class="active"><a data-toggle="tab" href="#create" data-type="create">개설한
+					<li class="active" data-type="create"><a data-toggle="tab"
+						href="#create">개설한 모임</a></li>
+					<li data-type="join"><a data-toggle="tab" href="#join">참여한
 							모임</a></li>
-					<li><a data-toggle="tab" href="#join" data-type="join">참여한 모임</a></li>
 				</ul>
 				<div class="tab-content">
 					<div id="create" class="tab-pane fade in active top-double-buffer">
 						<div class="top-buffer">
-							<div class="row" id="listDiv"></div>
+							<div class="row" id="listDivCreate">
+								
+							</div>
+							<div class="row hidden emptyDiv">
+									<h3>생성한 모임이 없습니다.</h3>
+									<p>
+										많은 사람들과 함께할 <a href="${path}/room/roomForm">다양한 모임</a>을 만들어보세요!
+									</p>
+								</div>
 						</div>
 					</div>
 					<div id="join" class="tab-pane fade top-double-buffer">
-						<h3>join</h3>
-						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco
-							laboris nisi ut aliquip ex ea commodo consequat.</p>
+						<div class="row" id="listDivJoin">
+							
+						</div>
+						<div class="row hidden emptyDiv">
+								<h3>참여한 모임이 없습니다.</h3>
+								<p>
+									지금 모임에 참여해보세요! <a href="${path}/room/roomList">다양한 모임</a>이 준비되어
+									있습니다.
+								</p>
+							</div>
 					</div>
 					<ul id="pagination" class="pagination">
 
@@ -98,11 +115,11 @@
 
 	<div class="col-lg-4 hidden" id="template_room">
 		<div class="thumbnail content_box roomBox">
-			<img class="tr_image" src="${path}/images/onoffmix1.PNG" alt="...">
+			<img class="tr_image" onError="${path}/images/onoffmix1.PNG" alt="...">
 			<div class="caption">
-				<h3 class="tr_title">Thumbnail label</h3>
-				<p class="tr_description">Lorem Ipsum is simply dummy text of
-					the printing and typesetting industry.</p>
+				<h3 class="tr_title"></h3>
+				<p class="tr_description">
+				</p>
 			</div>
 		</div>
 	</div>
@@ -143,11 +160,19 @@
 				type : listType
 			},
 			success : function(response) {
-				console.log(response);
-				$listDiv = $("#listDiv");
+				var $listDiv;
+				if(listType == 'create'){
+					$listDiv = $("#listDivCreate");
+				}else if(listType == 'join'){
+					$listDiv = $("#listDivJoin");
+				}
 				$listDiv.empty();
 				for (var idx in response.list) {
 					$listDiv.append(makeRow(response.list[idx]));
+				}
+				//empty시 처리
+				if(response.list.length == 0){
+					$listDiv.next('.emptyDiv').removeClass("hidden");
 				}
 				//페이징 처리하기
 				makePagination(response.firstPage, response.lastPage,response.nowPage);

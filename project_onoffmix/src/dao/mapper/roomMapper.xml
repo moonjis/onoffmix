@@ -98,12 +98,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) as cnt from room where owner_id = #{id}
 	</select>
 	<select id="selectJoinRooms" parameterType="HashMap" resultType="room">
-		select b.*, a.fullname from join_room j 
+		select b.*, a.fullname from joinroom j 
 		left join room b on j.room_num = b.room_num 
 		left join attach a on b.room_num = a.room_num where j.id = #{id} and j.del = 'N' limit ${idx},${rows}
 	</select>
 	<select id="getCntAllJoinRooms" parameterType="String" resultType="int">
-		select count(*) as cnt from join_room where id = #{id} and del = 'N'
+		select count(*) as cnt from joinroom where id = #{id} and del = 'N'
 	</select>
 	<select id="getCount" resultType="int">
 		select count(*) from room

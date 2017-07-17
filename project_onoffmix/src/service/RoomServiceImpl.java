@@ -213,7 +213,8 @@ public class RoomServiceImpl implements RoomService {
 		int nowPage = (Integer) params.get("page");
 		nowPage = nowPage - 1;
 		int rows = 6;
-		params.put("rows", rows);		
+		params.put("rows", rows);	
+		params.put("idx", rows * nowPage);	
 		HashMap<String,Object> result = new HashMap<>();
 		List<Room> list = iroomDao.selectJoinRooms(params);
 		result.putAll(getPageInfo(allRows,rows,nowPage));

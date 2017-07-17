@@ -104,11 +104,11 @@ public class MemberController {
 		if (hm_member != null) {
 			String id = (String) hm_member.get("id");
 			Member member = memDao.selectOne(id);			
-			if(member.getPhoto()!=null){//사진 경로 넣기
+			/*if(member.getPhoto()!=null){//사진 경로 넣기
 				String root_path = session.getServletContext().getRealPath("/");
 				String save_path = root_path + "images/member/";
 				member.setPhoto(save_path + member.getPhoto());
-			}
+			}*/
 			model.addAttribute("attr_member", member);
 		} else {
 			r_attr.addFlashAttribute("msg", "로그인 해주세요.");
