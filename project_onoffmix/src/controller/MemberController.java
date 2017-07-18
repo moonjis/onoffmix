@@ -160,6 +160,8 @@ public class MemberController {
 			if (photo.getSize() > 0) {
 				member.put("photo", uploader(photo, session));
 				System.out.println("p: " + member.get("photo"));
+			}else {
+				member.put("photo", null);
 			}
 			if(id != null && memDao.updateOne(member) > 0){
 				//업데이트 성공
