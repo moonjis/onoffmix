@@ -17,9 +17,9 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="${path}/css/common.css" />
 <style type="text/css">
-.container{
-		height:680px;
-	}
+@media ( min-height : 798px) {
+	
+}
 </style>
 </head>
 
@@ -32,10 +32,10 @@
 					class="form-horizontal top-buffer center-block" id="editForm"
 					name="editForm">
 					<div class="form-group">
-						<a href="#"><img src="${path}/images/member/${attr_member.photo}"
-						onError="this.src='${path}/images/basic.PNG'"
-							class="img-rounded" alt="Cinque Terre" id="imgSetter" width="150"
-							height="150"></a>
+						<a href="#"><img
+							src="${path}/images/member/${attr_member.photo}"
+							onError="this.src='${path}/images/basic.PNG'" class="img-rounded"
+							alt="Cinque Terre" id="imgSetter" width="150" height="150"></a>
 					</div>
 					<div class="hidden">
 						<input type="file" name="photo" id="btnPhoto"
@@ -86,28 +86,24 @@
 				<div class="tab-content">
 					<div id="create" class="tab-pane fade in active top-double-buffer">
 						<div class="top-buffer">
-							<div class="row" id="listDivCreate">
-								
-							</div>
+							<div class="row" id="listDivCreate"></div>
 							<div class="row hidden emptyDiv">
-									<h3>생성한 모임이 없습니다.</h3>
-									<p>
-										많은 사람들과 함께할 <a href="${path}/room/roomForm">다양한 모임</a>을 만들어보세요!
-									</p>
-								</div>
+								<h3>생성한 모임이 없습니다.</h3>
+								<p>
+									많은 사람들과 함께할 <a href="${path}/room/roomForm">다양한 모임</a>을 만들어보세요!
+								</p>
+							</div>
 						</div>
 					</div>
 					<div id="join" class="tab-pane fade top-double-buffer">
-						<div class="row" id="listDivJoin">
-							
-						</div>
+						<div class="row" id="listDivJoin"></div>
 						<div class="row hidden emptyDiv">
-								<h3>참여한 모임이 없습니다.</h3>
-								<p>
-									지금 모임에 참여해보세요! <a href="${path}/room/roomList">다양한 모임</a>이 준비되어
-									있습니다.
-								</p>
-							</div>
+							<h3>참여한 모임이 없습니다.</h3>
+							<p>
+								지금 모임에 참여해보세요! <a href="${path}/room/roomList">다양한 모임</a>이 준비되어
+								있습니다.
+							</p>
+						</div>
 					</div>
 					<ul id="pagination" class="pagination">
 
@@ -119,11 +115,11 @@
 
 	<div class="col-lg-4 hidden" id="template_room">
 		<div class="thumbnail content_box roomBox">
-			<img class="tr_image" onError="${path}/images/onoffmix1.PNG" alt="...">
+			<img class="tr_image" onError="${path}/images/onoffmix1.PNG"
+				alt="...">
 			<div class="caption">
 				<h3 class="tr_title"></h3>
-				<p class="tr_description">
-				</p>
+				<p class="tr_description"></p>
 			</div>
 		</div>
 	</div>
@@ -147,19 +143,34 @@
 		}
 	});
 	
-	function updateMember(){
-		var $editForm = $("#editForm");
+	$("#imgSetter").on("click", function() {
+		$("#btnPhoto").click();
+	});
+	$("#btnPhoto").on("change", function(response) {
+		var tmppath = URL.createObjectURL(this.files[0]);
+		console.log(tmppath);
+		$("#imgSetter").attr('src', tmppath);	
+	});
+	
+	function updateMember() {
+		var frm = $('#editForm')[0];
+	    var fileData = new FormData(frm);	    
+	    fileData.append("photo",$("#btnPhoto")[0].files[0]);
+	    	    
 		$.ajax({
-			url:'edit',
-			data : $editForm.serialize(),
+			url : 'edit',
+			enctype:'multipart/form-data',
+			processData: false,
+            contentType: false,
 			method : 'POST',
-			success : function(response){
-				alert("업데이트 되었습니다."); 
+			data : fileData,
+			success : function(response) {
+				alert("업데이트 되었습니다.");
 			}
 		});
 	}
-	
-	$("#tab_list").on("click","li",function(){
+
+	$("#tab_list").on("click", "li", function() {
 		listType = $(this).attr("data-type");
 		console.log(listType);
 		getList(1);
@@ -177,9 +188,9 @@
 			},
 			success : function(response) {
 				var $listDiv;
-				if(listType == 'create'){
+				if (listType == 'create') {
 					$listDiv = $("#listDivCreate");
-				}else if(listType == 'join'){
+				} else if (listType == 'join') {
 					$listDiv = $("#listDivJoin");
 				}
 				$listDiv.empty();
@@ -187,20 +198,20 @@
 					$listDiv.append(makeRow(response.list[idx]));
 				}
 				//empty시 처리
-				if(response.list.length == 0){
+				if (response.list.length == 0) {
 					$listDiv.next('.emptyDiv').removeClass("hidden");
 				}
 				//페이징 처리하기
-				makePagination(response.firstPage, response.lastPage,response.nowPage);
+				makePagination(response.firstPage, response.lastPage, response.nowPage);
 			}
 		});
 	}
 
-	function makePagination(firstPage, lastPage,nowPage) {
+	function makePagination(firstPage, lastPage, nowPage) {
 		var $pagination = $("#pagination");
 		$pagination.empty();
 		for (var i = firstPage; i <= lastPage; i++) {
-			var $li = $('<li />',{
+			var $li = $('<li />', {
 				click : function(e) {
 					e.preventDefault();
 					if ($(this).hasClass("active")) {
@@ -218,7 +229,7 @@
 					getList($(this).text());
 				}
 			});
-			if (nowPage == i) {	
+			if (nowPage == i) {
 				$li.addClass("active");
 			}
 			$li.append($a);
