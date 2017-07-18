@@ -13,6 +13,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>
 
 <update id="updateOne" parameterType="HashMap">
-	update member set name=#{name},phone=#{phone},email=#{email} where id = #{id} and pass = #{pass}
+	update member set 
+	<if test="photo!=null">
+		photo=#{photo}, 
+	</if>
+	name=#{name},phone=#{phone},email=#{email} where id = #{id} and pass = #{pass}
 </update>
 </mapper>

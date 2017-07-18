@@ -145,13 +145,24 @@ public class MemberController {
 	}
 	@RequestMapping(value="/edit")
 	@ResponseBody
-	public ResponseEntity<String> edit(HttpSession session,@RequestParam HashMap<String,Object> member){
+	public ResponseEntity<String> edit(HttpSession session,
+			@RequestParam HashMap<String,Object> member,
+			@RequestParam MultipartFile photo) {
+				
 		System.out.println(member);
 		ResponseEntity<String> result = null;		
 		HashMap<String,Object> h_member = (HashMap<String,Object>)session.getAttribute("member");
 		if(h_member!= null){
 			String id = (String)h_member.get("id");
 			member.put("id", id);
+			System.out.println(member);
+			//사진이 있으면 업로드 후 member에 추가 
+			if (photo.getSize() > 0) {
+				member.put("photo", uploader(photo, session));
+				System.out.println("p: " + member.get("photo"));
+			}else {
+				member.put("photo", null);
+			}
 			if(id != null && memDao.updateOne(member) > 0){
 				//업데이트 성공
 				result = new ResponseEntity<String>("ok",HttpStatus.OK);

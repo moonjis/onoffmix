@@ -13,8 +13,7 @@
 		<property name="url" value="jdbc:mysql://10.10.10.177:3306/board"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="test123"></property>
-	</bean> 
-
+	</bean>
 	
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlsession">
 		<property name="dataSource" ref="datasource"></property>
@@ -22,7 +21,7 @@
 		<property name="typeAliasesPackage" value="model"></property>
 	</bean>
 	
-	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="roomDao">
+	 <bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="roomDao">
 		<property name="sqlSessionFactory" ref="sqlsession"></property>
 		<property name="mapperInterface" value="dao.IroomDao"></property>
 	</bean>
@@ -30,7 +29,7 @@
 	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="memberDao">
 		<property name="sqlSessionFactory" ref="sqlsession"></property>
 		<property name="mapperInterface" value="dao.ImemberDao"></property>
-	</bean>
+	</bean> 
 	
 	
 	<bean id="replyDao" class="org.mybatis.spring.mapper.MapperFactoryBean">

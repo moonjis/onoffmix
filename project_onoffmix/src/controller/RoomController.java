@@ -59,16 +59,18 @@ public class RoomController {
 	}
 	
 	
-	@RequestMapping(value = "/roomList")
-	public ModelAndView roomList() {
-		
-		ModelAndView mav = new ModelAndView();
+	   @RequestMapping(value = "/roomList")
+	   public ModelAndView roomList(@RequestParam(value="page", defaultValue="1") int page) {
+	      
+	      ModelAndView mav = new ModelAndView();
 
-		mav.addObject("roomList",roomService.getRoomList());
-		System.out.println(roomService.getRoomList());
-		mav.setViewName("roomList");
-		return mav;
-	}
+	      //mav.addObject("roomList",roomService.getRoomList(page));
+	      //System.out.println(roomService.getRoomList());
+	      mav.addAllObjects(roomService.getRoomList(page));
+	      
+	      mav.setViewName("roomList");
+	      return mav;
+	   }
 	
 	@RequestMapping(value = "/roomView")
 		public String roomView(int num, Model model) {
