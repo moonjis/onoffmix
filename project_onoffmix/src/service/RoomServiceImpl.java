@@ -28,10 +28,24 @@ public class RoomServiceImpl implements RoomService {
 	private IroomDao iroomDao;
 
 	@Override
-	public List<Room> getRoomList() {
+	   public HashMap<String, Object> getRoomList(int page) {
 
-		return iroomDao.selectAll();
-	}
+	      int totalCount = iroomDao.roomTotalCount();
+	      
+	      RoomPaging rp = new RoomPaging(totalCount, page);
+	      
+	      HashMap<String, Object> params = new HashMap<>();
+	      params.put("start", rp.getSkip());
+	      params.put("end", rp.getQty());
+	      
+	      List<Room> rList = iroomDao.selectAll(params);
+	      
+	      HashMap<String, Object> result = new HashMap<>();
+	      result.put("p", rp);
+	      result.put("rList", rList);
+	      
+	      return result;
+	   }
 
 	@Override
 	public List<Category> getCategoryList() {
