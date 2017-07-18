@@ -17,8 +17,10 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="${path}/css/common.css" />
 <style type="text/css">
-@media ( min-height : 798px) {
-	
+.footerResizing{
+	position : absolute;
+	bottom : 0px;
+	width : 100%;
 }
 </style>
 </head>
@@ -176,7 +178,7 @@
 		getList(1);
 	});
 	$(function() {
-		getList(1);
+		getList(1);		
 	});
 	var listType = "create";
 	function getList(page) {
@@ -203,8 +205,17 @@
 				}
 				//페이징 처리하기
 				makePagination(response.firstPage, response.lastPage, response.nowPage);
+				
+				console.log($listDiv.height());
+				//container 크기에 맞춰, footer영역 잡기
+				if(response.list.length < 4){
+					$("footer").addClass("footerResizing");
+				}else {
+					$("footer").removeClass("footerResizing");
+				}
 			}
 		});
+		
 	}
 
 	function makePagination(firstPage, lastPage, nowPage) {
