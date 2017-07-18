@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -103,11 +104,11 @@ public class MemberController {
 		if (hm_member != null) {
 			String id = (String) hm_member.get("id");
 			Member member = memDao.selectOne(id);			
-			if(member.getPhoto()!=null){//사진 경로 넣기
+			/*if(member.getPhoto()!=null){//사진 경로 넣기
 				String root_path = session.getServletContext().getRealPath("/");
 				String save_path = root_path + "images/member/";
 				member.setPhoto(save_path + member.getPhoto());
-			}
+			}*/
 			model.addAttribute("attr_member", member);
 		} else {
 			r_attr.addFlashAttribute("msg", "로그인 해주세요.");
@@ -118,23 +119,49 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/myroomlist")
-	public ResponseEntity<List<Room>> getMyRoomList(HttpSession session){
-		ResponseEntity<List<Room>> entity = null;
-		List<Room> list = null;
+	@ResponseBody
+	public ResponseEntity<HashMap<String,Object>> getMyRoomList(HttpSession session,
+			@RequestParam(required = false,defaultValue = "1") int page,
+			@RequestParam(required = false,defaultValue = "create") String type){
+		ResponseEntity<HashMap<String,Object>> entity = null;		
 		HashMap<String,Object> member = (HashMap<String,Object>)session.getAttribute("member");
+		HashMap<String,Object> result = new HashMap<>();
 		if(member != null){
 			String id = (String)member.get("id");
-			HashMap<String,Object> map = new HashMap<>();
+			HashMap<String,Object> map = new HashMap<>();			
 			map.put("id", id);
-			map.put("page",1);
-			//list = roomService.selectMyRooms(map);			
-			entity = new ResponseEntity<List<Room>>(list,HttpStatus.OK);
+			map.put("page",page);			
+			
+			if(type.equals("create")){	//개설한 모임 리스트 출력
+				result = roomService.selectMyRooms(map); 
+			}else if(type.equals("join")){	//참여한 모임 리스트 출력
+				result = roomService.selectJoinRooms(map); 
+			}			
+			entity = new ResponseEntity<HashMap<String,Object>>(result,HttpStatus.OK);
 		} else {
-			entity = new ResponseEntity<List<Room>>(list,HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<HashMap<String,Object>>(result,HttpStatus.BAD_REQUEST);
 		}		
 		return entity;
 	}
-
+	@RequestMapping(value="/edit")
+	@ResponseBody
+	public ResponseEntity<String> edit(HttpSession session,@RequestParam HashMap<String,Object> member){
+		System.out.println(member);
+		ResponseEntity<String> result = null;		
+		HashMap<String,Object> h_member = (HashMap<String,Object>)session.getAttribute("member");
+		if(h_member!= null){
+			String id = (String)h_member.get("id");
+			member.put("id", id);
+			if(id != null && memDao.updateOne(member) > 0){
+				//업데이트 성공
+				result = new ResponseEntity<String>("ok",HttpStatus.OK);
+			}		
+		}else {
+			result = new ResponseEntity<String>("nope",HttpStatus.BAD_REQUEST);			
+		}		
+		return result;
+	}
+	
 	private String uploader(MultipartFile uploadfile, HttpSession session) {
 		System.out.println("uploadfile!");
 		if (uploadfile != null) {

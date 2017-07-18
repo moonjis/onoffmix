@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,81 @@
 <script type="text/javascript"
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="../css/roomview.css">
+
+ <style>
+
+   #btnReply{
+  	width: 70px;
+    height: 85px;
+    border: 1px solid #b8b8b8;
+    background: #f6f6f6;
+    font-size: 11px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    letter-spacing: -1px;
+    text-indent: 0;
+    
+  }  
+  
+  #btnModify{
+  	 text-align:right; 
+   
+  }
+  
+  
+  #btnModify a{
+  	font: Normal 12px NanumGothic;
+  	color:#8C8C8C;
+  	text-decoration:none;
+  	
+  }
+    #modDiv {
+ 	width: 300px;
+		height : 100px;
+		background-color: gray;
+		position: relative;
+		top: 50%; 
+		left: 50%;
+		margin-top : -50px;
+		margin-left: -150px;
+		padding : 10px;
+		z-index: 1000;
+    }
+    
+    
+    #modal-replytext{
+	width:284px;
+	height:40px;
+}
+    
+table.cherry {
+     border-collapse: separate;
+    border-spacing: 1px;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    margin: 40px auto;
+   
+}
+table.cherry th {
+    width: 150px;
+    padding: 10px;
+    font: Normal NanumGothic;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #efefef;
+}
+table.cherry td {
+    width: 820px;
+    
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
+</style>
 <script type="text/javascript">
 
 function getOriginalName(fileName){
@@ -30,6 +106,195 @@ function getOriginalName(fileName){
 //    var fileName = getOriginalName("${room.fullname}");
 // });
 </script>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		var num = ${room.room_num};  
+		var replyer = "${member.id}";
+		listReply();
+		
+		$("#btnReply").click(function(e){
+			 e.preventDefault();
+			// $("#replyer").append(replyer);
+			//var replyer = $("#replyer").append(replyer);
+			var replyer =  $("#replyer").val();
+			var replytext = $("#replytext").val();
+		
+			
+			if($("#replytext").val().length == 0){
+	               alert("댓글을 입력하세요.");
+	                return false;
+	         }
+			 if($("#replyer").val().length==0){
+	           
+	        	  alert("로그인 후 이용하세요.");
+		             return false;
+			 }
+			
+			$.ajax({
+				url:"../replies",
+				type:"POST",
+				data:{
+					num : num,
+					replyer : replyer,
+					replytext : replytext
+					},
+					datatype : "text", 
+					success: function(result) {
+						
+					 if (result == "SUCCESS") {
+							console.log(result)
+							alert("등록되었습니다.");
+							listReply();
+							
+						} 
+
+					},
+					error: function(request,status,error){
+						
+						alert("댓글등록 실패");
+						
+					}
+					
+				});
+		return false;
+	});
+		
+		//});
+	
+	
+	function listReply(){
+		$.ajax({
+			url:"../replies/all/" + num,
+			type:"GET",
+			dataTyape:"json",
+			success : function(result){
+				console.log(result);
+				console.log(${reply.replyer});
+				var output = "<table class='cherry'>";
+				for(var i in result){
+					
+					output += "<tr>";
+					output += "<th>"+result[i].replyer+"<br>";
+					output += "("+changeDate(result[i].regdate)+")<br>";
+					output += "<td data-rno='"+result[i].rno+"'>"+result[i].replytext
+				//	output += "<c:if test='"+${sessionScope.member.id !=null}+"'><div id='btnModify'><a href='#listReply'>수정</a></div></c:if>";
+
+						
+					if(${(sessionScope.member.id !=null)} && ${sessionScope.member.id}.equals(${sessionScope.reply.replyer})){
+				
+					output+=	"<div id='btnModify'><a href='#listReply'>수정</a></div>";
+					}
+					output += "</td></tr>";
+				}
+				
+				output+="</table>";
+				
+				$("#listReply").html(output);
+				
+			}
+			});
+			
+	}
+
+
+	
+	$("#listReply").on("click","#btnModify",function(){
+		var reply = $(this).parent(); 
+		var replytext = reply.text();
+		  var le = $("#replytext").val().length-2;
+	      var result2 = replytext.slice(1,le);
+	      
+		console.log(reply.attr("data-rno"));
+		var rno = reply.attr("data-rno");
+		$(".modal-title").html(rno);
+		$("#modal-replytext").val(result2);
+		
+		$("#modDiv").show("slow");
+		
+	});
+	
+	
+	$("#replyModBtn").click(function(){
+		var rno = $(".modal-title").html();
+		var replytext = $("#modal-replytext").val();
+		
+		$.ajax({
+			type : "post",
+			url  : "../replies/"+rno,
+			datatype : "text",
+			data : {
+				replytext : replytext
+			},
+			success : function(result){
+				if(result =="SUCCESS"){
+					alert("수정 되었습니다.");
+					$("#modDiv").hide("slow");
+					listReply();
+				}
+			},
+			error : function(){
+				alert("실패");
+				$("#modDiv").hide("slow");
+			}
+	});
+	});
+	
+	$("#closeBtn").on("click",function(){
+		$("#modDiv").hide("slow");
+	});
+	
+	
+	$("#replyDelBtn").on("click",function(){
+		//삭제요청을 보내고 결과에 대한 응답을 받는다. 
+		var rno = $(".modal-title").html();
+		if(confirm("삭제하시겠습니까?")){
+		$.ajax({
+			type : "delete",
+			url  : "../replies/" + rno,
+			datatype : "text",
+			success : function(result){
+				if(result == "SUCCESS"){
+					alert("삭제 되었습니다.");
+					$("#modDiv").hide("slow");
+					listReply();
+				}
+			
+			},
+			error : function(){
+				alert("실패");
+				$("#modDiv").hide("slow");
+			}
+		
+		});
+			
+	}
+	
+	
+	
+	
+
+	});
+});
+	function changeDate(date){
+				 var date = new Date(parseInt(date));
+				
+				   var d = date.getDate();
+				   var m =  date.getMonth();
+				   m += 1;  // JavaScript months are 0-11
+				   var y = date.getFullYear();
+				  var hour = date.getHours();
+			       var minute = date.getMinutes();
+			       var second = date.getSeconds();
+				   
+		return y+"-"+m+"-"+d+" "+hour+":"+minute+":"+second;
+	}
+	
+
+</script>
+
+
 </head>
 <body>
 <%@include file="/jsp/common/navi.jsp"%>
@@ -130,20 +395,62 @@ function getOriginalName(fileName){
                      <font size="2" style="margin-left: 34px;"> 모임 내용과 관련한 사항은 모임 개설자에게 문의 바랍니다.</font>
                   </td>
                </tr>
+               
             </table>
-            <div>
+            <!-- <div>
                <img alt="poto6" src="../images/poto6.png" style="clear: both; float: right; margin-top: -10px;">
-            </div>
+            </div> --> 
          </div>
       </div>
       
-      
-      
-      
-      
-      
-   
 
+
+<div id = "modDiv" style="display: none;"  >
+
+		<div class = "modal-title"></div>
+		<div>
+			<input type = "text" id = "modal-replytext">
+		</div>
+		<div>
+		
+	<%-- 	<c:if test="${sessionScope.member.id != null} "> --%>
+			<button type = "button" id = "replyModBtn">수정</button>
+			<button type = "button" id = "replyDelBtn">삭제</button>
+<%-- 		</c:if> --%>
+			<button type = "button" id = "closeBtn">닫기</button>
+			
+		</div>
+		
+	</div>
+
+	
+<form name = "replyForm" id ="replyForm">
+	<input type="hidden" value="${member.id}" id="replyer">
+	<!-- 	REPLYER<input type ="text" name = "replyer" id = "replyer"/><br><br> -->
+		<%-- 	REPLYER :${member.id}<br><br> --%>
+
+<table style="margin:auto;">
+    <tr>
+   <!--  <div style="width:800px; height: 85px;"> -->
+        
+        <td>
+         <textarea rows="4" cols="130" id="replytext" placeholder="댓글을 작성해주세요"></textarea>
+       </td>
+         <td>
+       <button type="button" id="btnReply">내용 입력</button>
+       </td>
+  <!--   </div> -->
+   </table>
+      
+    </form>
+    
+    <div id="listReply" >
+    	
+    </div>
+      
+     
+      
+      
  
 
 

@@ -13,8 +13,8 @@
 			<ref bean="loginCheckInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
-	
-		<mvc:interceptors>
+
+	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/room/joinRoom" />
 			<ref bean="loginCheckInterceptor" />
@@ -26,6 +26,9 @@
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="maxUploadSize" value="10485760" />
 	</bean>
+	
+	<context:component-scan base-package="controller"></context:component-scan>
+
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -38,6 +41,5 @@
 
 	<mvc:annotation-driven></mvc:annotation-driven>
 
-	<context:component-scan base-package="controller"></context:component-scan>
 
 </beans>

@@ -5,9 +5,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-	<context:component-scan base-package="service"/>
+	 <context:component-scan base-package="service"/>
 	
-	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+	 <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		id="datasource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://10.10.10.177:3306/board"></property>
@@ -30,5 +30,13 @@
 		<property name="sqlSessionFactory" ref="sqlsession"></property>
 		<property name="mapperInterface" value="dao.ImemberDao"></property>
 	</bean> 
+	
+	
+	<bean id="replyDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="sqlsession"></property>
+		<property name="mapperInterface" value="dao.IReplyDao"></property>
+	</bean>
+
+	
 	
 </beans>

@@ -7,14 +7,16 @@
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">
+				<li><a href="${path}"><strong>OnOffmix.com</strong></a></li>
+				<li><a href="${path}/room/roomList">
 				<span class="glyphicon glyphicon-th-list"></span></a></li>
 				<c:choose>
 					<c:when test="${member.name != null}">
-						<li><a href="#"><span class="white underline">"${member.name}" 님</span></a></li>
+						<li><a href="${path}/member/mypage"><span class="white underline">"${member.name}" 님</span></a></li>
 						<li><a href="${path}/member/logout">logout</a></li>
 					</c:when>
 					<c:otherwise>
+						<li><a href="${path}/member/join">join</a></li>
 						<li><a href="${path}/member/login">login</a></li>
 					</c:otherwise>
 				</c:choose>
