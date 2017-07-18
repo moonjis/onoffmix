@@ -194,6 +194,12 @@ public class RoomServiceImpl implements RoomService {
 		System.out.println(list.get(0));		
 		return list;
 	}
+
+	@Override
+	public boolean updateBoard(Room room) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
 	
 
