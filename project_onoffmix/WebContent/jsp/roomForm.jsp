@@ -117,10 +117,10 @@
 			var recruit_day3 = $.trim($("#recruit_day3").val());
 			var recruit_day4 = $.trim($("#recruit_day4").val());
 			var location_1 = $.trim($("#location_1").val());
-			var location_1 = $.trim($("#location_2").val());
+			var location_2 = $.trim($("#location_2").val());
 			var group_capacity = $.trim($("#group_capacity").val());
 			var room_introduce = $.trim($("#room_introduce").val());
-			var room_detail = $.trim($("#room_detail").val());
+			var room_detail = $.trim($("#ir1").val());
 
 			if (room_name == "") {
 				//  if($.trim($("#id").val()) == ""){
@@ -144,7 +144,7 @@
 				$("#location_1").focus();
 				return false;
 			} else if (location_2 == "") {
-				alert("모임장소를 입력 하세요");
+				alert("상세주소를 입력 하세요");
 				$("#location_2").focus();
 				return false;
 			} else if (recruit_day1 == "") {
@@ -173,7 +173,7 @@
 				return false;
 			} else if (room_detail == "") {
 				alert("모임 상새 소개를 입력 하세요");
-				$("#room_detail").focus();
+				$("#ir1").focus();
 				return false;
 			} else {
 				$("#roomForm").submit();
@@ -293,7 +293,7 @@
 					https://developers.google.com/maps/documentation/geocoding/intro?hl=ko
 				3. drawMap('api로 받아온 위도,경도 배열')을 호출 한다. -> drawMap({lat: 37.317625, lng :126.836988})
 			 */
-			var addr = $("#place").val();
+			var addr = $("#location_1").val();
 			// 			drawMap(geoCode(addr));
 
 			var geocoder;
@@ -470,7 +470,7 @@
 							<font size="4">모임장소</font> &nbsp;&nbsp;&nbsp;
 						</td>
 						<td>
-							<input type="text" placeholder="장소를 입력해 주세요." name="location_1" id="lovation_1">
+							<input type="text" placeholder="장소를 입력해 주세요." name="location_1" id="location_1">
 							<button id="searchBtn" type="button">검색</button>
 						</td>	
 					</tr>
@@ -485,7 +485,7 @@
 				<table>
 					<tr>
 						<td>
-							<input style=" border: 1px solid #cccccc; margin-left: 100px; "  type="text" placeholder="주소를 입력해 주세요." name="location_2"  id="loaction_2">
+							<input style=" border: 1px solid #cccccc; margin-left: 100px; "  type="text" placeholder="주소를 입력해 주세요." name="location_2"  id="location_2">
 						</td>
 					</tr>
 					<tr>
@@ -548,7 +548,7 @@
 					<table style="width: 700px; ">
 						<tr>
 							<td>
-								<textarea rows="10" cols="30" id="ir1" style=" width:100%; " name="room_detail" id="room_detail"></textarea>
+								<textarea rows="10" cols="30" id="ir1" style=" width:100%; " name="room_detail"></textarea>
 							</td>
 						</tr>					
 					</table>

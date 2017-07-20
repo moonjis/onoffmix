@@ -180,7 +180,7 @@ function getOriginalName(fileName){
 					output += "("+changeDate(result[i].regdate)+")<br>";
 					output += "<td data-rno='"+result[i].rno+"'>"+result[i].replytext
 				
-				if(${sessionScope.member.id !=null} && "${sessionScope.member.id}"==(result[i].replyer)){
+				if("${sessionScope.member.id !=null}" && "${sessionScope.member.id}"==(result[i].replyer)){
 				
 					output+=	"<div id='btnModify'><a href='#listReply'>수정</a></div>";
 					}

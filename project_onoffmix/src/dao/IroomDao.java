@@ -44,4 +44,6 @@ public interface IroomDao {
 
 	public int roomTotalCount();
 
+	public int selectCount(HashMap<String, Object> params); 
+
 }

@@ -19,9 +19,9 @@
 
 	var result = '${msg}';
 	if (result == "SUCCESS") {
-		alert("처리가 완료 되었습니다.");
+		alert("등록이 완료 되었습니다.");
 	} else if (result == "FAIL") {
-		alert("처리 실패");
+		alert("이미 등록했거나 본인이 모임 개설자입니다.");
 	}
 </script>
 <link rel="stylesheet" href="../css/roomlist.css">
