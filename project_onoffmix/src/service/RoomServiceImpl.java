@@ -233,14 +233,15 @@ public class RoomServiceImpl implements RoomService {
 
 	private HashMap<String, Object> getPageInfo(int allRows, int rows, int nowPage) {
 		HashMap<String, Object> pagingInfo = new HashMap<>();
-		int allPage = allRows / rows + 1;
+		
+		int allPage = (allRows % rows == 0) ? allRows / rows : allRows / rows +1;
+				
 		int firstPage = (nowPage / 10) * 10 + 1;// 1~10까지만 표시할 경우
 		int lastPage = firstPage + 9;
 		lastPage = allPage < lastPage ? allPage : lastPage; // 마지막 페이지가 모든 페이지
 															// 갯수보다 큰 경우에
 		pagingInfo.put("firstPage", firstPage);
 		pagingInfo.put("lastPage", lastPage);
-		pagingInfo.put("firstPage", firstPage);
 		return pagingInfo;
 	}
 

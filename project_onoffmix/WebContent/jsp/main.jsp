@@ -20,6 +20,16 @@
 	height: 365px;
 }
 
+.room-title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2; /* 라인수 */
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+	text-align : center;
+}
+
 @media screen and (max-width : 767px) {
 	#myCarousel {
 		display: none;
@@ -135,10 +145,10 @@
 			<c:forEach var="room" items="${list}">
 				<div class="col-lg-3 col-sm-4 col-md-3">
 					<div class="thumbnail content_box roomBox" onclick="location.href='room/roomView?num=${room.room_num}'">
-						<img src="${path}/images/room/${room.fullname}" onError="this.src='${path}/images/onoffmix1.PNG'" alt="...">
+						<img style="height: 70%;" src="${path}/images/room/${room.fullname}" onError="this.src='${path}/images/onoffmix1.PNG'" alt="...">
 						<div class="caption">
-							<h3>${room.room_name}</h3>
-							<p>${room.room_introduce}</p>
+							<h4 class="room-title">${room.room_name}</h4>
+							<%-- <p>${room.room_introduce}</p> --%>
 						</div>
 					</div>
 				</div>

@@ -82,6 +82,8 @@
 						href="#create">개설한 모임</a></li>
 					<li data-type="join"><a data-toggle="tab" href="#join">참여한
 							모임</a></li>
+					<li><a href="${path}/room/roomForm">새로운 모임
+					</a></li>
 				</ul>
 				<div class="tab-content">
 					<div id="create" class="tab-pane fade in active top-double-buffer">
@@ -118,8 +120,8 @@
 			<img class="tr_image" onError="${path}/images/onoffmix1.PNG"
 				alt="...">
 			<div class="caption">
-				<h3 class="tr_title"></h3>
-				<p class="tr_description"></p>
+				<h4 class="tr_title" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis; "></h4>
+				<!-- <p class="tr_description"></p> -->
 			</div>
 		</div>
 	</div>
@@ -203,6 +205,7 @@
 				}
 				//페이징 처리하기
 				makePagination(response.firstPage, response.lastPage, response.nowPage);
+				
 			}
 		});
 	}
@@ -241,7 +244,7 @@
 		var $newRow = $("#template_room").clone();
 		$newRow.find(".tr_image").attr("src", "${room_img_path}" + row_info.fullname);
 		$newRow.find(".tr_title").text(row_info.room_name);
-		$newRow.find(".tr_description").text(row_info.room_introduce);
+		//$newRow.find(".tr_description").text(row_info.room_introduce);
 		$newRow.on("click", function() {
 			location.href = "${path}/room/roomView?num=" + row_info.room_num
 		})

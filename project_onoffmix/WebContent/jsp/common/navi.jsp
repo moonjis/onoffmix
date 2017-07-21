@@ -13,6 +13,7 @@
 				<c:choose>
 					<c:when test="${member.name != null}">
 						<li><a href="${path}/member/mypage"><span class="white underline">"${member.name}" 님</span></a></li>
+						<li><a href="${path}/room/roomForm">MAKE</a></li>
 						<li><a href="${path}/member/logout">logout</a></li>
 					</c:when>
 					<c:otherwise>

@@ -62,7 +62,7 @@
                           <img style=" width: 300px; height: 250px; padding-top: 20px;" src="/project_onoffmix/images/room/${room.fullname}"/>
 
                         <div class="caption">
-                     <h3><a href="roomView?num=${room.room_num}">${room.room_name}</a></h3>
+                     <h3 style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"><a href="roomView?num=${room.room_num}">${room.room_name}</a></h3>
                    </div>
                      </div>
                   </div>
