@@ -127,51 +127,51 @@
 				alert("모임이름을 입력 하세요");
 				$("#room_name").focus();
 				return false;
-			} else if (room_day1 == "") {
+			} else if (room_day1 == 0) {
 				alert("모임일시를 입력 하세요");
 				$("#room_day1").focus();
 				return false;
-			} else if (room_day2 == "") {
+			} else if (room_day2 == 0) {
 				alert("모임일시를 입력 하세요");
 				$("#room_day2").focus();
 				return false;
-			} else if (room_day4 == "") {
+			} else if (room_day4 == 0) {
 				alert("모임일시를 입력 하세요");
 				$("#room_day4").focus();
 				return false;
-			} else if (location_1 == "") {
+			} else if (location_1 == 0) {
 				alert("모임장소를 입력 하세요");
 				$("#location_1").focus();
 				return false;
-			} else if (location_2 == "") {
+			} else if (location_2 == 0) {
 				alert("상세주소를 입력 하세요");
 				$("#location_2").focus();
 				return false;
-			} else if (recruit_day1 == "") {
+			} else if (recruit_day1 == 0) {
 				alert("신청일시를 입력 하세요");
 				$("#recruit_day1").focus();
 				return false;
-			} else if (recruit_day2 == "") {
+			} else if (recruit_day2 == 0) {
 				alert("신청일시를 입력 하세요");
 				$("#recruit_day2").focus();
 				return false;
-			} else if (recruit_day3 == "") {
+			} else if (recruit_day3 == 0) {
 				alert("신청일시를 입력 하세요");
 				$("#recruit_day3").focus();
 				return false;
-			} else if (recruit_day4 == "") {
+			} else if (recruit_day4 == 0) {
 				alert("모임일시를 입력 하세요");
 				$("#recruit_day4").focus();
 				return false;
-			} else if (group_capacity == "") {
+			} else if (group_capacity == 0) {
 				alert("인원수를 입력 하세요");
 				$("#group_capacity").focus();
 				return false;
-			} else if (room_introduce == "") {
+			} else if (room_introduce == 0) {
 				alert("모임 간단 소개를 입력 하세요");
 				$("#room_introduce").focus();
 				return false;
-			} else if (room_detail == "") {
+			} else if (room_detail == 0) {
 				alert("모임 상새 소개를 입력 하세요");
 				$("#ir1").focus();
 				return false;
@@ -287,44 +287,59 @@
 
 		//searchBtn버튼을 누르면 위도와 경도를 다시 세팅
 		$("#searchBtn").click(function() {
+			searchbtn();
+		});
+		$("#location_1").keyup(function(e){
+			if(e.keyCode == 13){
+				searchbtn();
+			}
+		});
+		
+		function searchbtn(){
+		
 			/*
-				1. 주소를 검색한다. |           검색form        ||검색버튼|
-				2. 검색 버튼을 누르면 위도,경도를 받아오는 api를 이용하여 lat와 lng를 구한다. ->변수로 저장됨
-					https://developers.google.com/maps/documentation/geocoding/intro?hl=ko
-				3. drawMap('api로 받아온 위도,경도 배열')을 호출 한다. -> drawMap({lat: 37.317625, lng :126.836988})
-			 */
-			var addr = $("#location_1").val();
-			// 			drawMap(geoCode(addr));
+			1. 주소를 검색한다. |           검색form        ||검색버튼|
+			2. 검색 버튼을 누르면 위도,경도를 받아오는 api를 이용하여 lat와 lng를 구한다. ->변수로 저장됨
+				https://developers.google.com/maps/documentation/geocoding/intro?hl=ko
+			3. drawMap('api로 받아온 위도,경도 배열')을 호출 한다. -> drawMap({lat: 37.317625, lng :126.836988})
+		 */
+		var addr = $("#location_1").val();
+		// 			drawMap(geoCode(addr));
 
-			var geocoder;
+		var geocoder;
 
-			geocoder = new google.maps.Geocoder();
+		geocoder = new google.maps.Geocoder();
 
-			geocoder.geocode({
-				'address' : addr
-			}, function(results, status) {
+		geocoder.geocode({
+			'address' : addr
+		}, function(results, status) {
 
-				if (status == google.maps.GeocoderStatus.OK) {
+			if (status == google.maps.GeocoderStatus.OK) {
 
-					var lat = results[0].geometry.location.lat(); //위도
-					var lng = results[0].geometry.location.lng(); //경도
-					drawMap({
-						lat : lat,
-						lng : lng
-					});
-				} else {
-					alert("실패!");
-					return;
-				}
-
-			});
-
-			//검색 api 이용하는 부분 변수
+				var lat = results[0].geometry.location.lat(); //위도
+				var lng = results[0].geometry.location.lng(); //경도
+				drawMap({
+					lat : lat,
+					lng : lng
+				});
+			} else {
+				alert("실패!");
+				return;
+			}
 
 		});
 
-	});
+		//검색 api 이용하는 부분 변수
 
+	
+		}
+		
+		
+		
+		
+		
+		
+		
 	function geoCode(addr) {
 
 		var geocoder;
@@ -357,6 +372,7 @@
 		return latlng;
 
 	}
+});
 </script>
 
 </head>
@@ -599,7 +615,7 @@
 			
 			
 			<div id="roomstart">
-				<input type="submit" value="확인" style=" border-radius: 10px; margin-left: 600px; width: 80px; height: 50px; border: 1px outset #cccccc;" id ="savebutton">
+				<input type="button" value="확인" style=" border-radius: 10px; margin-left: 600px; width: 80px; height: 50px; border: 1px outset #cccccc;" id ="savebutton">
 
 			</div>
 			
