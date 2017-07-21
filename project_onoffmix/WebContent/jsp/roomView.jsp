@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
@@ -13,12 +14,15 @@
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript"
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCr4twUOUTc8amgDmnzl6GkNPS6mBxqz94&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyAyjPu8GiR7EEPLncsIaRfTmgS19CipPPI"></script>
 <link rel="stylesheet" href="../css/roomview.css">
+
 
  <style>
 
    #btnReply{
-  	width: 70px;
+     width: 70px;
     height: 85px;
     border: 1px solid #b8b8b8;
     background: #f6f6f6;
@@ -32,34 +36,34 @@
   }  
   
   #btnModify{
-  	 text-align:right; 
+      text-align:right; 
    
   }
   
   
   #btnModify a{
-  	font: Normal 12px NanumGothic;
-  	color:#8C8C8C;
-  	text-decoration:none;
-  	
+     font: Normal 12px NanumGothic;
+     color:#8C8C8C;
+     text-decoration:none;
+     
   }
     #modDiv {
- 	width: 300px;
-		height : 100px;
-		background-color: gray;
-		position: relative;
-		top: 50%; 
-		left: 50%;
-		margin-top : -50px;
-		margin-left: -150px;
-		padding : 10px;
-		z-index: 1000;
+    width: 300px;
+      height : 100px;
+      background-color: gray;
+      position: relative;
+      top: 50%; 
+      left: 50%;
+      margin-top : -50px;
+      margin-left: -150px;
+      padding : 10px;
+      z-index: 1000;
     }
     
     
     #modal-replytext{
-	width:284px;
-	height:40px;
+   width:284px;
+   height:40px;
 }
     
 table.cherry {
@@ -109,186 +113,247 @@ function getOriginalName(fileName){
 
 <script type="text/javascript">
 
-	$(document).ready(function(){
-		var num = ${room.room_num};  
-		var replyer = "${member.id}";
-		listReply();
-		
-		$("#btnReply").click(function(e){
-			 e.preventDefault();
-			// $("#replyer").append(replyer);
-			//var replyer = $("#replyer").append(replyer);
-			var replyer =  $("#replyer").val();
-			var replytext = $("#replytext").val();
-		
-			
-			if($("#replytext").val().length == 0){
-	               alert("댓글을 입력하세요.");
-	                return false;
-	         }
-			 if($("#replyer").val().length==0){
-	           
-	        	  alert("로그인 후 이용하세요.");
-		             return false;
-			 }
-			
-			$.ajax({
-				url:"../replies",
-				type:"POST",
-				data:{
-					num : num,
-					replyer : replyer,
-					replytext : replytext
-					},
-					datatype : "text", 
-					success: function(result) {
-						
-					 if (result == "SUCCESS") {
-							console.log(result)
-							alert("등록되었습니다.");
-							listReply();
-							
-						} 
+   function drawMap(latlng) {
+      //map 객체 생성후, 요소에 출력하기   
+      var myOptions = {
+         zoom : 16,
+         center : latlng,
+         myTypeId : google.maps.MapTypeId.ROADMAP
+      }
+      var map = new google.maps.Map(
+            document.getElementById("map_canvas"), myOptions);
+      var marker = new google.maps.Marker({
+   
+         position : latlng,
+         map : map,
+         title : ""
+      });
+   
+   }
 
-					},
-					error: function(request,status,error){
-						
-						alert("댓글등록 실패");
-						
-					}
-					
-				});
-		return false;
-	});
-		
-		//});
-	
-	
-	function listReply(){
-		$.ajax({
-			url:"../replies/all/" + num,
-			type:"GET",
-			dataTyape:"json",
-			success : function(result){
-				console.log(result);
-				
-				var output = "<table class='cherry'>";
-				for(var i in result){
-					
-					output += "<tr>";
-					output += "<th>"+result[i].replyer+"<br>";
-					output += "("+changeDate(result[i].regdate)+")<br>";
-					output += "<td data-rno='"+result[i].rno+"'>"+result[i].replytext
-				
-				if("${sessionScope.member.id !=null}" && "${sessionScope.member.id}"==(result[i].replyer)){
-				
-					output+=	"<div id='btnModify'><a href='#listReply'>수정</a></div>";
-					}
-					output += "</td></tr>";
-				}
-				
-				output+="</table>";
-				
-				$("#listReply").html(output);
-				
-			}
-			});
-			
-	}
+   function lodingGeo(addr){
+      
+      /*
+      1. 주소를 검색한다. |           검색form        ||검색버튼|
+      2. 검색 버튼을 누르면 위도,경도를 받아오는 api를 이용하여 lat와 lng를 구한다. ->변수로 저장됨
+         https://developers.google.com/maps/documentation/geocoding/intro?hl=ko
+      3. drawMap('api로 받아온 위도,경도 배열')을 호출 한다. -> drawMap({lat: 37.317625, lng :126.836988})
+    */
+    var addr = addr;
+   //          drawMap(geoCode(addr));
+   
+    var geocoder;
+   
+    geocoder = new google.maps.Geocoder();
+   
+    geocoder.geocode({
+       'address' : addr
+    }, function(results, status) {
+   
+    if (status == google.maps.GeocoderStatus.OK) {
+   
+       var lat = results[0].geometry.location.lat(); //위도
+      var lng = results[0].geometry.location.lng(); //경도
+         
+         drawMap({
+            lat : lat,
+            lng : lng
+         });
+      } else {
+         alert("실패!");
+         return;
+      }
+   
+   });
+   
+   }
+
+   $(document).ready(function(){
+      
+      var addr = "${room.location_1}";
+      
+      lodingGeo(addr);
+      
+      var num = ${room.room_num};  
+      var replyer = "${member.id}";
+      listReply();
+      
+      $("#btnReply").click(function(e){
+          e.preventDefault();
+         // $("#replyer").append(replyer);
+         //var replyer = $("#replyer").append(replyer);
+         var replyer =  $("#replyer").val();
+         var replytext = $("#replytext").val();
+      
+         
+         if($("#replytext").val().length == 0){
+                  alert("댓글을 입력하세요.");
+                   return false;
+            }
+          if($("#replyer").val().length==0){
+              
+                alert("로그인 후 이용하세요.");
+                   return false;
+          }
+         
+         $.ajax({
+            url:"../replies",
+            type:"POST",
+            data:{
+               num : num,
+               replyer : replyer,
+               replytext : replytext
+               },
+               datatype : "text", 
+               success: function(result) {
+                  
+                if (result == "SUCCESS") {
+                     console.log(result)
+                     alert("등록되었습니다.");
+                     $("#replytext").val("");
+                     listReply();
+                     
+                  } 
+
+               },
+               error: function(request,status,error){
+                  
+                  alert("댓글등록 실패");
+                  
+               }
+               
+            });
+      return false;
+   });
+      
+      //});
+   
+   
+   function listReply(){
+      $.ajax({
+         url:"../replies/all/" + num,
+         type:"GET",
+         dataTyape:"json",
+         success : function(result){
+            console.log(result);
+            
+            var output = "<table class='cherry'>";
+            for(var i in result){
+               
+               output += "<tr>";
+               output += "<th>"+result[i].replyer+"<br>";
+               output += "("+changeDate(result[i].regdate)+")<br>";
+               output += "<td data-rno='"+result[i].rno+"'>"+result[i].replytext
+            
+            if("${sessionScope.member.id !=null}" && "${sessionScope.member.id}"==(result[i].replyer)){
+            
+               output+=   "<div id='btnModify'><a href='#listReply'>수정</a></div>";
+               }
+               output += "</td></tr>";
+            }
+            
+            output+="</table>";
+            
+            $("#listReply").html(output);
+            
+         }
+         });
+         
+   }
 
 
-	
-	$("#listReply").on("click","#btnModify",function(){
-		var reply = $(this).parent(); 
-		var replytext = reply.text();
-		  var le = $("#replytext").val().length-2;
-	      var result2 = replytext.slice(0,le);
-	      
-		console.log(reply.attr("data-rno"));
-		var rno = reply.attr("data-rno");
-		$(".modal-title").html(rno);
-		$("#modal-replytext").val(result2);
-		
-		$("#modDiv").show("slow");
-		
-	});
-	
-	
-	$("#replyModBtn").click(function(){
-		var rno = $(".modal-title").html();
-		var replytext = $("#modal-replytext").val();
-		
-		$.ajax({
-			type : "post",
-			url  : "../replies/"+rno,
-			datatype : "text",
-			data : {
-				replytext : replytext
-			},
-			success : function(result){
-				if(result =="SUCCESS"){
-					alert("수정 되었습니다.");
-					$("#modDiv").hide("slow");
-					listReply();
-				}
-			},
-			error : function(){
-				alert("실패");
-				$("#modDiv").hide("slow");
-			}
-	});
-	});
-	
-	$("#closeBtn").on("click",function(){
-		$("#modDiv").hide("slow");
-	});
-	
-	
-	$("#replyDelBtn").on("click",function(){
-		//삭제요청을 보내고 결과에 대한 응답을 받는다. 
-		var rno = $(".modal-title").html();
-		if(confirm("삭제하시겠습니까?")){
-		$.ajax({
-			type : "delete",
-			url  : "../replies/" + rno,
-			datatype : "text",
-			success : function(result){
-				if(result == "SUCCESS"){
-					alert("삭제 되었습니다.");
-					$("#modDiv").hide("slow");
-					listReply();
-				}
-			
-			},
-			error : function(){
-				alert("실패");
-				$("#modDiv").hide("slow");
-			}
-		
-		});
-			
-	}
-	
-	
-	
-	
+   
+   $("#listReply").on("click","#btnModify",function(){
+      var reply = $(this).parent(); 
+      var replytext = reply.text();
+        var le = $("#replytext").val().length-2;
+         var result2 = replytext.slice(0,le);
+         
+      console.log(reply.attr("data-rno"));
+      var rno = reply.attr("data-rno");
+      $(".modal-title").html(rno);
+      $("#modal-replytext").val(result2);
+      
+      $("#modDiv").show("slow");
+      
+   });
+   
+   
+   $("#replyModBtn").click(function(){
+      var rno = $(".modal-title").html();
+      var replytext = $("#modal-replytext").val();
+      
+      $.ajax({
+         type : "post",
+         url  : "../replies/"+rno,
+         datatype : "text",
+         data : {
+            replytext : replytext
+         },
+         success : function(result){
+            if(result =="SUCCESS"){
+               alert("수정 되었습니다.");
+               $("#modDiv").hide("slow");
+               listReply();
+            }
+         },
+         error : function(){
+            alert("실패");
+            $("#modDiv").hide("slow");
+         }
+   });
+   });
+   
+   $("#closeBtn").on("click",function(){
+      $("#modDiv").hide("slow");
+   });
+   
+   
+   $("#replyDelBtn").on("click",function(){
+      //삭제요청을 보내고 결과에 대한 응답을 받는다. 
+      var rno = $(".modal-title").html();
+      if(confirm("삭제하시겠습니까?")){
+      $.ajax({
+         type : "delete",
+         url  : "../replies/" + rno,
+         datatype : "text",
+         success : function(result){
+            if(result == "SUCCESS"){
+               alert("삭제 되었습니다.");
+               $("#modDiv").hide("slow");
+               listReply();
+            }
+         
+         },
+         error : function(){
+            alert("실패");
+            $("#modDiv").hide("slow");
+         }
+      
+      });
+         
+   }
+   
+   
+   
+   
 
-	});
+   });
 });
-	function changeDate(date){
-				 var date = new Date(parseInt(date));
-				
-				   var d = date.getDate();
-				   var m =  date.getMonth();
-				   m += 1;  // JavaScript months are 0-11
-				   var y = date.getFullYear();
-				  var hour = date.getHours();
-			       var minute = date.getMinutes();
-			       var second = date.getSeconds();
-				   
-		return y+"-"+m+"-"+d+" "+hour+":"+minute+":"+second;
-	}
-	
+   function changeDate(date){
+             var date = new Date(parseInt(date));
+            
+               var d = date.getDate();
+               var m =  date.getMonth();
+               m += 1;  // JavaScript months are 0-11
+               var y = date.getFullYear();
+              var hour = date.getHours();
+                var minute = date.getMinutes();
+                var second = date.getSeconds();
+               
+      return y+"-"+m+"-"+d+" "+hour+":"+minute+":"+second;
+   }
+   
 
 </script>
 
@@ -325,6 +390,7 @@ function getOriginalName(fileName){
                      <span>
                         모임 장소 : ${room.location_1} &nbsp; ${room.location_2}
                      </span>
+                     <div id="map_canvas" id="location_3" style="width:450px; height:200px; margin-bottom: 10px;"></div>
                   </div>
                   
                   <div>
@@ -335,12 +401,11 @@ function getOriginalName(fileName){
                   </div>
                   
                </div>
-               
                <div style=" width: 550px; position: relative; float: right; margin: 10px 40px 0px 0px; ">간단소개 : ${room.room_introduce} </div>       
             </div>
-            
-         <div id="viewimg2" style="clear: both;">
-            <font size="5" style=" font-weight: bold; margin-left: 8px; font-style: normal;">개설자정보</font>
+         <div style="clear: both; position: relative; top: -50px; margin-left: -15px; ">   
+         <div id="viewimg2" style="clear: both; ">
+            <font size="5" style=" font-weight: bold; margin-left: 8px; font-style: normal; ">개설자정보</font>
          </div>   
          <div id="viewimg3" style=" line-height: 25px; ">
             <font style="display: block; margin: 0 auto; margin-top: 20px; text-align: center;">${room.owner_name}</font><br>
@@ -359,10 +424,11 @@ function getOriginalName(fileName){
 <%--             <img alt="poto2" src="../images/poto2.png" style="width: 22px; height: 20px; ">${room.owner_phone} --%>
          </div>
             <font size="2" style=" margin-left: 50px;">· 문의사항은 메일 / 전화 / 댓글을 이용해주세요.</font>
+         </div>  
             <form action="joinRoom" method="post" name="joinRoom">
             <input type="hidden" value ="${member.id}" name="id">
             <input type="hidden" value ="${room.room_num}" name="room_num">
-            <input type="submit" value="신청하기" style=" float: right; clear: both; display:inline-block; margin: 0px 25px 0px 0px; width: 170px; height: 50px; border-radius: 10px; border: 0; outline: 0; background: #71B1FA; font-weight: bold; font-size: larger;">
+            <input type="submit" value="신청하기" style=" float: right; clear: both; display:inline-block; margin: -80px 25px 0px 0px; width: 170px; height: 50px; border-radius: 10px; border: 0; outline: 0; background: #71B1FA; font-weight: bold; font-size: larger;">
             </form>
       </div>
          
@@ -405,34 +471,34 @@ function getOriginalName(fileName){
 
 <div id = "modDiv" style="display: none;"  >
 
-		<div class = "modal-title"></div>
-		<div>
-			<input type = "text" id = "modal-replytext">
-		</div>
-		<div>
-		
-	<%-- 	<c:if test="${sessionScope.member.id != null} "> --%>
-			<button type = "button" id = "replyModBtn">수정</button>
-			<button type = "button" id = "replyDelBtn">삭제</button>
-<%-- 		</c:if> --%>
-			<button type = "button" id = "closeBtn">닫기</button>
-			
-		</div>
-		
-	</div>
+      <div class = "modal-title"></div>
+      <div>
+         <input type = "text" id = "modal-replytext">
+      </div>
+      <div>
+      
+   <%--    <c:if test="${sessionScope.member.id != null} "> --%>
+         <button type = "button" id = "replyModBtn">수정</button>
+         <button type = "button" id = "replyDelBtn">삭제</button>
+<%--       </c:if> --%>
+         <button type = "button" id = "closeBtn">닫기</button>
+         
+      </div>
+      
+   </div>
 
-	
+   
 <form name = "replyForm" id ="replyForm">
-	<input type="hidden" value="${member.id}" id="replyer">
-	<!-- 	REPLYER<input type ="text" name = "replyer" id = "replyer"/><br><br> -->
-		<%-- 	REPLYER :${member.id}<br><br> --%>
+   <input type="hidden" value="${member.id}" id="replyer">
+   <!--    REPLYER<input type ="text" name = "replyer" id = "replyer"/><br><br> -->
+      <%--    REPLYER :${member.id}<br><br> --%>
 
 <table style="margin:auto;">
     <tr>
    <!--  <div style="width:800px; height: 85px;"> -->
         
         <td>
-         <textarea rows="4" cols="130" id="replytext" placeholder="댓글을 작성해주세요"></textarea>
+         <textarea rows="4" cols="130" id="replytext" placeholder="댓글을 작성해주세요" style="resize: none;"></textarea>
        </td>
          <td>
        <button type="button" id="btnReply">내용 입력</button>
@@ -443,7 +509,7 @@ function getOriginalName(fileName){
     </form>
     
     <div id="listReply" >
-    	
+       
     </div>
       
      

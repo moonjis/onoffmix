@@ -108,7 +108,7 @@ public class RoomController {
 
 		if (roomService.joinRoom(id, room)) {
 			
-//			rttr.addFlashAttribute("msg", "SUCCESS");
+			rttr.addFlashAttribute("msg", "SUCCESS");
 		} else {
 			rttr.addFlashAttribute("msg", "FAIL");
 		}
