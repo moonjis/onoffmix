@@ -22,6 +22,15 @@
 	width: 100%;
 	bottom: 0px;
 }
+.room-title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2; /* 라인수 */
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+	text-align : center;
+}
 </style>
 </head>
 
@@ -122,7 +131,7 @@
 			<img class="tr_image" onError="${path}/images/onoffmix1.PNG"
 				alt="...">
 			<div class="caption">
-				<h4 class="tr_title" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis; "></h4>
+				<h4 class="tr_title room-title"></h4>
 				<!-- <p class="tr_description"></p> -->
 			</div>
 		</div>

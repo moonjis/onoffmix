@@ -24,7 +24,7 @@
 		alert("이미 등록했거나 본인이 모임 개설자입니다.");
 	}
 </script>
-<link rel="stylesheet" href="../css/roomlist.css">
+<link rel="stylesheet" href="${path}/css/roomlist.css">
 </head>
 <body>
 
@@ -62,7 +62,7 @@
                           <img style=" width: 300px; height: 250px; padding-top: 20px;" src="/project_onoffmix/images/room/${room.fullname}"/>
 
                         <div class="caption">
-                     <h3 style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"><a href="roomView?num=${room.room_num}">${room.room_name}</a></h3>
+                     <h3 class="room-title"><a href="roomView?num=${room.room_num}">${room.room_name}</a></h3>
                    </div>
                      </div>
                   </div>

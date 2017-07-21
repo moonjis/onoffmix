@@ -6,7 +6,18 @@
 	padding: 30px;
 	margin-bottom: 25px;
 }
-
+.room-title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2; /* 라인수 */
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+	text-align : center;
+}
+.thumbnail .caption{
+	height:100px;
+}
 #listtitle {
 	width: 1500px;
 	margin-left: 20px;
