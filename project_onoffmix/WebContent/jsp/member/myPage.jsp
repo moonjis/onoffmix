@@ -17,8 +17,10 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="${path}/css/common.css" />
 <style type="text/css">
-@media ( min-height : 798px) {
-	
+.footer_resizing {
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
 }
 </style>
 </head>
@@ -206,6 +208,13 @@
 				//페이징 처리하기
 				makePagination(response.firstPage, response.lastPage, response.nowPage);
 				
+				if(response.list.length < 4){
+					//푸터 고정시키기 
+					$("footer").addClass("footer_resizing");
+				} else {
+					//푸터 고정 풀기
+					$("footer").removeClass("footer_resizing");
+				}
 			}
 		});
 	}
