@@ -561,10 +561,10 @@
 							</td>
 						</tr>
 					</table>
-					<table style="width: 700px; ">
+					<table style="width: 700px;">
 						<tr>
 							<td>
-								<textarea rows="10" cols="30" id="ir1" style=" width:100%; " name="room_detail"></textarea>
+								<textarea rows="10" cols="30" id="ir1" style=" width:100%; height:200px; " name="room_detail"></textarea>
 							</td>
 						</tr>					
 					</table>
